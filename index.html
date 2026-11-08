@@ -287,6 +287,9 @@
                     </div>
 
                     <div class="flex flex-wrap justify-end gap-2 pt-3 border-t">
+                        <button onclick="saveMatchPreparationData()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg text-xs font-bold shadow flex items-center gap-1.5">
+                            <i class="fa-solid fa-floppy-disk"></i> Gorde Aldaketak
+                        </button>
                         <button onclick="previewMatchPreparationReport()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-xs font-bold shadow flex items-center gap-1.5">
                             <i class="fa-solid fa-eye text-volley-blue"></i> Ikusi Txostena (Vista)
                         </button>
@@ -654,7 +657,7 @@
         </div>
     </div>
 
-    <!-- SAIOA HASTEN / ROL MODALA -->
+    <!-- SAIOa HASTEN / ROL MODALA -->
     <div id="modal-login" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-5 space-y-4">
             <div class="flex justify-between items-center border-b pb-2">
@@ -890,7 +893,7 @@
 
         let prepCanvas = null;
         let prepCtx = null;
-        let prepItems = []; // Mugikorreko elementu taktikoak: {type, x, y, radius, width, height}
+        let prepItems = [];
         let selectedPrepItem = null;
         let isPrepDragging = false;
         let currentPrepTool = 'pen';
@@ -1044,7 +1047,6 @@
             location.reload();
         }
 
-        /* SAIOA HASI / ROLEN KUDEAKETA ETA BAIMENAK */
         function openLoginModal() {
             document.getElementById('login-role-select').value = currentRole;
             onLoginRoleChange();
@@ -1162,7 +1164,6 @@
             prepCtx.lineWidth = 3;
             prepCtx.strokeRect(20, 20, prepCanvas.width - 40, prepCanvas.height - 40);
 
-            // Sare horizontala erdian
             prepCtx.beginPath();
             prepCtx.moveTo(20, prepCanvas.height / 2);
             prepCtx.lineTo(prepCanvas.width - 20, prepCanvas.height / 2);
@@ -1170,7 +1171,6 @@
             prepCtx.strokeStyle = '#1F2937';
             prepCtx.stroke();
 
-            // Elementu mugikor guztiak marraztu
             prepItems.forEach(item => {
                 drawSinglePrepItem(item, item === selectedPrepItem);
             });
@@ -1271,12 +1271,10 @@
         function startPrepPointerDown(e) {
             const c = getPrepCanvasCoords(e);
             
-            // Ea dagoeneko marraztutako elementu bat ukitu den bilatu mugitzeko edo hautatzeko
             const clickedItem = prepItems.slice().reverse().find(item => {
                 if (['K', 'Op', 'L', '4', '3', 'ball', 'space', 'def'].includes(item.type)) {
                     return Math.hypot(item.x - c.x, item.y - c.y) < 22;
                 } else if (['pen', 'arrow', 'attack'].includes(item.type)) {
-                    // Geziaren edo marrazkiaren gertu dagoen egiaztatu
                     const dist = distToSegment({x: c.x, y: c.y}, {x: item.fromX, y: item.fromY}, {x: item.toX, y: item.toY});
                     return dist < 15;
                 }
@@ -1292,7 +1290,6 @@
                 selectedPrepItem = null;
             }
 
-            // Elementu berria sortu
             prepStartX = c.x; prepStartY = c.y;
             if (['K', 'Op', 'L', '4', '3', 'ball', 'space', 'def'].includes(currentPrepTool)) {
                 const newItem = { type: currentPrepTool, x: c.x, y: c.y, radius: 25 };
@@ -1387,6 +1384,7 @@
 
         function toggleAllPrepCallup(checkState) {
             document.querySelectorAll('.prep-player-cb').forEach(cb => cb.checked = checkState);
+            saveCurrentPrepRotation();
         }
 
         function onPrepTeamChange() {
@@ -1403,6 +1401,10 @@
                         : '<option value="">Partidarik gabe</option>';
                 }
                 loadMatchPreparation();
+            } else {
+                if (matchSelect) matchSelect.innerHTML = '<option value="">Lehenik hautatu taldea</option>';
+                const callupContainer = document.getElementById('prep-callup-players-container');
+                if (callupContainer) callupContainer.innerHTML = '<p class="text-xs text-gray-400">Ez da talderik hautatu.</p>';
             }
         }
 
@@ -1423,7 +1425,11 @@
         function loadMatchPreparation() {
             const matchSelect = document.getElementById('prep-match-select');
             const teamSelect = document.getElementById('prep-team-select');
-            if (!matchSelect || !matchSelect.value) return;
+            if (!matchSelect || !matchSelect.value || !teamSelect || !teamSelect.value) {
+                const callupContainer = document.getElementById('prep-callup-players-container');
+                if (callupContainer) callupContainer.innerHTML = '<p class="text-xs text-gray-400">Aukeratu partidua eta taldea.</p>';
+                return;
+            }
 
             const matchId = matchSelect.value;
             const teamId = teamSelect.value;
@@ -1438,6 +1444,7 @@
                     4: { p1: '', p6: '', p5: '', p4: '', p3: '', p2: '' }
                 },
                 objective: '',
+                prepItems: [],
                 boardImage: null
             };
             
@@ -1455,7 +1462,7 @@
 
             const callupContainer = document.getElementById('prep-callup-players-container');
             if (callupContainer) {
-                callupContainer.innerHTML = teamPlayers.map(p => `
+                callupContainer.innerHTML = teamPlayers.length === 0 ? '<p class="text-xs text-gray-400">Ez dago jokalaririk talde honetan.</p>' : teamPlayers.map(p => `
                     <label class="flex items-center justify-between p-2.5 bg-gray-50 hover:bg-gray-100 rounded-xl border border-gray-200 cursor-pointer text-xs transition-all">
                         <div class="flex items-center gap-3">
                             <div class="relative flex-shrink-0">
@@ -1475,7 +1482,7 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="text-[11px] font-semibold text-gray-600">Deitua:</span>
-                            <input type="checkbox" value="${p.id}" class="prep-player-cb w-5 h-5 accent-volley-blue rounded cursor-pointer" ${calledIds.includes(p.id) ? 'checked' : ''}>
+                            <input type="checkbox" value="${p.id}" onchange="saveCurrentPrepRotation()" class="prep-player-cb w-5 h-5 accent-volley-blue rounded cursor-pointer" ${calledIds.includes(p.id) ? 'checked' : ''}>
                         </div>
                     </label>
                 `).join('');
@@ -1534,7 +1541,22 @@
             };
 
             appData.preparations[matchId].rotations[activePrepRotationIndex] = currRot;
+            
+            const calledPlayerIds = Array.from(document.querySelectorAll('.prep-player-cb:checked')).map(cb => cb.value);
+            appData.preparations[matchId].calledPlayerIds = calledPlayerIds;
+            appData.preparations[matchId].objective = document.getElementById('prep-match-objective').value.trim();
+            appData.preparations[matchId].prepItems = prepItems;
+            if (prepCanvas) {
+                appData.preparations[matchId].boardImage = prepCanvas.toDataURL();
+            }
+
+            saveLocalData();
             updatePrepRotationJerseySummary();
+        }
+
+        function saveMatchPreparationData() {
+            saveCurrentPrepRotation();
+            alert("Partiduko deialdia, errotazioa eta pizarra ondo gordeta geratu dira.");
         }
 
         function updatePrepRotationJerseySummary() {
@@ -1585,7 +1607,6 @@
             const calledPlayerIds = Array.from(document.querySelectorAll('.prep-player-cb:checked')).map(cb => cb.value);
             const calledPlayers = teamPlayers.filter(p => calledPlayerIds.includes(p.id));
 
-            // Taldeen ataleko irizpide berberak aplikatu: Kapitainak lehenengo, gero gainerakoak dortsola ordenan, eta liberoak bereizita azpian
             calledPlayers.sort((a, b) => {
                 const aIsLibero = (a.position || '').toLowerCase().includes('libero');
                 const bIsLibero = (b.position || '').toLowerCase().includes('libero');
@@ -1780,7 +1801,6 @@
             modalCtx.lineWidth = 3;
             modalCtx.strokeRect(20, 20, modalCanvas.width - 40, modalCanvas.height - 40);
 
-            // Sare horizontala erdian
             modalCtx.beginPath();
             modalCtx.moveTo(20, modalCanvas.height / 2);
             modalCtx.lineTo(modalCanvas.width - 20, modalCanvas.height / 2);
@@ -1997,136 +2017,6 @@
             modalItems = [];
             selectedModalItem = null;
             redrawModalCanvas();
-        }
-
-        function createDemoTacticalCanvas() {
-            const canvas = document.createElement('canvas');
-            canvas.width = 280; canvas.height = 420;
-            const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#FDE68A'; ctx.fillRect(0, 0, 280, 420);
-            ctx.strokeStyle = '#0F4C81'; ctx.lineWidth = 3; ctx.strokeRect(20, 20, 240, 380);
-            ctx.beginPath(); ctx.moveTo(20, 210); ctx.lineTo(260, 210); ctx.lineWidth = 4; ctx.strokeStyle = '#1F2937'; ctx.stroke();
-            return canvas.toDataURL();
-        }
-
-        function drawCourtOnModalCanvas() {
-            if (!modalCtx) return;
-            modalCtx.fillStyle = '#FDE68A';
-            modalCtx.fillRect(0, 0, modalCanvas.width, modalCanvas.height);
-            modalCtx.strokeStyle = '#0F4C81';
-            modalCtx.lineWidth = 3;
-            modalCtx.strokeRect(20, 20, modalCanvas.width - 40, modalCanvas.height - 40);
-
-            modalCtx.beginPath();
-            modalCtx.moveTo(modalCanvas.width / 2, 20);
-            modalCtx.lineTo(modalCanvas.width / 2, modalCanvas.height - 20);
-            modalCtx.lineWidth = 4;
-            modalCtx.strokeStyle = '#1F2937';
-            modalCtx.stroke();
-        }
-
-        function setModalTool(tool) {
-            currentModalTool = tool;
-            document.querySelectorAll('.mtool-btn').forEach(btn => {
-                btn.classList.remove('bg-volley-blue', 'text-white');
-                btn.classList.add('bg-white', 'text-gray-700');
-            });
-            const activeBtn = document.getElementById(`mtool-${tool}`);
-            if (activeBtn) {
-                activeBtn.classList.remove('bg-white', 'text-gray-700');
-                activeBtn.classList.add('bg-volley-blue', 'text-white');
-            }
-        }
-
-        function getModalCanvasCoords(e) {
-            const rect = modalCanvas.getBoundingClientRect();
-            return {
-                x: (e.clientX - rect.left) * (modalCanvas.width / rect.width),
-                y: (e.clientY - rect.top) * (modalCanvas.height / rect.height)
-            };
-        }
-
-        function startModalDraw(e) {
-            isModalDrawing = true;
-            const c = getModalCanvasCoords(e);
-            modalStartX = c.x; modalStartY = c.y;
-
-            if (['K', 'H', 'D', 'B', 'E', 'U', 'ball', 'cone', 'coach'].includes(currentModalTool)) {
-                drawModalStamp(c.x, c.y);
-                isModalDrawing = false;
-            } else {
-                modalCtx.beginPath();
-                modalCtx.moveTo(modalStartX, modalStartY);
-            }
-        }
-
-        function drawModal(e) {
-            if (!isModalDrawing) return;
-            const c = getModalCanvasCoords(e);
-            if (currentModalTool === 'pen') {
-                modalCtx.strokeStyle = '#0F4C81';
-                modalCtx.lineWidth = 3;
-                modalCtx.lineTo(c.x, c.y);
-                modalCtx.stroke();
-            }
-        }
-
-        function stopModalDraw(e) {
-            if (!isModalDrawing) return;
-            const c = getModalCanvasCoords(e);
-            if (currentModalTool === 'arrow') drawModalArrow(modalStartX, modalStartY, c.x, c.y);
-            else if (currentModalTool === 'attack') drawModalZigZag(modalStartX, modalStartY, c.x, c.y);
-            else if (currentModalTool === 'zone') drawModalZone(modalStartX, modalStartY, c.x, c.y);
-            isModalDrawing = false;
-        }
-
-        function drawModalStamp(x, y) {
-            modalCtx.font = 'bold 11px sans-serif';
-            modalCtx.textAlign = 'center';
-            modalCtx.textBaseline = 'middle';
-            
-            const toolColors = { 'K': '#0A2540', 'H': '#2563EB', 'D': '#059669', 'B': '#D97706', 'E': '#DC2626', 'U': '#7C3AED' };
-
-            if (['K', 'H', 'D', 'B', 'E', 'U'].includes(currentModalTool)) {
-                modalCtx.fillStyle = toolColors[currentModalTool] || '#0A2540';
-                modalCtx.beginPath(); modalCtx.arc(x, y, 13, 0, Math.PI * 2); modalCtx.fill();
-                modalCtx.fillStyle = '#FFF'; modalCtx.fillText(currentModalTool, x, y);
-            } else if (currentModalTool === 'ball') {
-                modalCtx.font = '16px sans-serif'; modalCtx.fillText('🏐', x, y);
-            } else if (currentModalTool === 'cone') {
-                modalCtx.fillStyle = '#F97316';
-                modalCtx.beginPath(); modalCtx.moveTo(x, y - 10); modalCtx.lineTo(x - 10, y + 8); modalCtx.lineTo(x + 10, y + 8); modalCtx.closePath(); modalCtx.fill();
-            } else if (currentModalTool === 'coach') {
-                modalCtx.fillStyle = '#374151';
-                modalCtx.beginPath(); modalCtx.arc(x, y, 13, 0, Math.PI * 2); modalCtx.fill();
-                modalCtx.fillStyle = '#FFF'; modalCtx.font = '9px sans-serif'; modalCtx.fillText('ENT', x, y);
-            }
-        }
-
-        function drawModalArrow(fromX, fromY, toX, toY) {
-            const headlen = 10;
-            const angle = Math.atan2(toY - fromY, toX - fromX);
-            modalCtx.strokeStyle = '#0F4C81'; modalCtx.lineWidth = 3;
-            modalCtx.beginPath(); modalCtx.moveTo(fromX, fromY); modalCtx.lineTo(toX, toY); modalCtx.stroke();
-            modalCtx.beginPath(); modalCtx.moveTo(toX, toY);
-            modalCtx.lineTo(toX - headlen * Math.cos(angle - Math.PI / 6), toY - headlen * Math.sin(angle - Math.PI / 6));
-            modalCtx.lineTo(toX - headlen * Math.cos(angle + Math.PI / 6), toY - headlen * Math.sin(angle + Math.PI / 6));
-            modalCtx.fillStyle = '#0F4C81'; modalCtx.fill();
-        }
-
-        function drawModalZigZag(fromX, fromY, toX, toY) {
-            modalCtx.strokeStyle = '#DC2626'; modalCtx.lineWidth = 3;
-            modalCtx.setLineDash([5, 5]); modalCtx.beginPath(); modalCtx.moveTo(fromX, fromY); modalCtx.lineTo(toX, toY); modalCtx.stroke(); modalCtx.setLineDash([]);
-        }
-
-        function drawModalZone(fromX, fromY, toX, toY) {
-            modalCtx.strokeStyle = '#2563EB';
-            modalCtx.lineWidth = 2;
-            modalCtx.fillStyle = 'rgba(37, 99, 235, 0.15)';
-            const width = toX - fromX;
-            const height = toY - fromY;
-            modalCtx.fillRect(fromX, fromY, width, height);
-            modalCtx.strokeRect(fromX, fromY, width, height);
         }
 
         function clearModalCanvas() { drawCourtOnModalCanvas(); }
@@ -3493,7 +3383,7 @@
                     `;
 
                     ACTION_SKILLS.forEach(skill => {
-                        const sData = pSt[skill] || { pos: 0, neg: 0, neu: 0 };
+                        const sData = pSt[skill] || { pos: 0, neu: 0, neg: 0 };
                         const tot = sData.pos + sData.neg + sData.neu;
                         if (tot > 0) {
                             const eRate = Math.round(((sData.pos - sData.neg) / tot) * 100);
