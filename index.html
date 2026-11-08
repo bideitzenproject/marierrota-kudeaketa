@@ -188,7 +188,7 @@
                 </div>
 
                 <div id="prep-content-panel" class="space-y-6 border-t pt-4">
-                    <!-- Partiduko Deialdia - Goitik Beherako Zerrenda Argazkiekin -->
+                    <!-- Partiduko Deialdia -->
                     <div class="space-y-2">
                         <div class="flex justify-between items-center">
                             <h3 class="font-bold text-sm text-volley-darkblue flex items-center gap-2">
@@ -216,7 +216,7 @@
                             </div>
                         </div>
 
-                        <!-- Errotazio Horizontala P1-etik P6ra epailearen agiriko ordenan -->
+                        <!-- Errotazio Horizontala P1-etik P6ra -->
                         <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 text-center text-xs bg-amber-50/80 p-3 rounded-xl border border-amber-300">
                             <div class="bg-white p-2 rounded-lg border shadow-sm">
                                 <span class="font-bold text-volley-blue block text-[10px]">P1 (Z1 - Sakea)</span>
@@ -244,7 +244,6 @@
                             </div>
                         </div>
 
-                        <!-- Errotazio honetako dortsola laburpen handia epailearen ordenan (P1-P6) -->
                         <div id="prep-rotation-jersey-summary" class="flex flex-wrap gap-1.5 pt-1"></div>
                     </div>
 
@@ -267,7 +266,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Elementu eta tresna berriak -->
                             <div class="flex flex-wrap gap-1 p-1 bg-gray-100 rounded-lg w-full justify-center">
                                 <button id="ptool-pen" onclick="setPrepTool('pen')" class="ptool-btn bg-volley-blue text-white px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Arkatza</button>
                                 <button id="ptool-arrow" onclick="setPrepTool('arrow')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Gezia</button>
@@ -403,7 +401,6 @@
                         </button>
                     </div>
 
-                    <!-- PISTA BISUALA ERROTAZIOAREKIN (P4, P3, P2 AURREAN / P5, P6, P1 ATZEAN) -->
                     <div class="bg-amber-100/70 border-2 border-amber-300 rounded-xl p-3 shadow-inner space-y-3">
                         <div class="text-center bg-volley-blue/10 text-volley-darkblue font-extrabold text-[11px] py-1 rounded">Sarearen Aldea (Aurreko Lerroa)</div>
                         <div class="grid grid-cols-3 gap-2">
@@ -679,7 +676,6 @@
                 <div id="login-password-container">
                     <label class="font-bold text-gray-700 block mb-1" id="login-pass-label">Pasahitza:</label>
                     <input type="password" id="login-password-input" placeholder="Sartu pasahitza..." class="w-full border p-2.5 rounded-lg bg-gray-50">
-                    <p class="text-[10px] text-gray-500 mt-1" id="login-pass-hint">Administratzaileak eta Entrenatzaileak pasahitza behar dute sartzeko.</p>
                 </div>
             </div>
 
@@ -856,6 +852,10 @@
         let supabaseClient = null;
         let tempPlayerPhotoBase64 = '';
 
+        // SUPABASE SINKRONIZAZIO AUTOMATIKORAKO GAKO PUBLIKOAK (AUTOMATIKOKI PRESTATUTA)
+        const DEFAULT_SUPABASE_URL = "https://wxgamdfszvveaexymbsq.supabase.co"; // Ordezkatu zure Project URL-arekin behar izanez gero
+        const DEFAULT_SUPABASE_KEY = "sb_publishable_K3Vij-6jE2X9JX_-4yg_-A_XzT28XV9"; // Zure publishable key gakoa
+
         let appData = {
             teams: [],
             players: [],
@@ -1013,13 +1013,20 @@
         }
 
         function initSupabaseFromStorage() {
-            const url = localStorage.getItem('volley_sp_url');
-            const key = localStorage.getItem('volley_sp_key');
+            let url = localStorage.getItem('volley_sp_url') || DEFAULT_SUPABASE_URL;
+            let key = localStorage.getItem('volley_sp_key') || DEFAULT_SUPABASE_KEY;
+            
             if (url && key && window.supabase) {
                 try {
                     supabaseClient = window.supabase.createClient(url, key);
-                    document.getElementById('db-status-badge').className = "px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1.5";
-                    document.getElementById('db-status-text').innerText = "Supabase Konektatuta";
+                    const statusBadge = document.getElementById('db-status-badge');
+                    const statusText = document.getElementById('db-status-text');
+                    if (statusBadge) {
+                        statusBadge.className = "px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1.5";
+                    }
+                    if (statusText) {
+                        statusText.innerText = "Supabase Konektatuta";
+                    }
                 } catch(e) { console.error("Supabase errorea", e); }
             }
         }
@@ -1059,11 +1066,7 @@
             const passContainer = document.getElementById('login-password-container');
             if (role === 'admin' || role === 'coach') {
                 passContainer.style.display = 'block';
-                if (role === 'admin') {
-                    document.getElementById('login-pass-label').innerText = "Pasahitza (Administratzailea - marierrota2026):";
-                } else {
-                    document.getElementById('login-pass-label').innerText = "Pasahitza (Entrenatzailea - entrenatzailea2026):";
-                }
+                document.getElementById('login-pass-label').innerText = "Pasahitza:";
             } else {
                 passContainer.style.display = 'none';
             }
@@ -1075,12 +1078,12 @@
 
             if (role === 'admin') {
                 if (pass !== 'marierrota2026') {
-                    alert("Pasahitz okerra Administratzailearentzat! Erabili: marierrota2026");
+                    alert("Pasahitz okerra!");
                     return;
                 }
             } else if (role === 'coach') {
                 if (pass !== 'entrenatzailea2026') {
-                    alert("Pasahitz okerra Entrenatzailearentzat! Erabili: entrenatzailea2026");
+                    alert("Pasahitz okerra!");
                     return;
                 }
             }
@@ -2019,8 +2022,6 @@
             redrawModalCanvas();
         }
 
-        function clearModalCanvas() { drawCourtOnModalCanvas(); }
-
         /* TALDEAK ETA JOKALARIAK */
         function renderTeams() {
             const container = document.getElementById('teams-container');
@@ -2689,8 +2690,8 @@
                                 </div>
                                 ${isAdminOrCoach ? `
                                     <div class="flex gap-1">
-                                        <button onclick="editExercise('${ex.id}')" class="text-xs text-blue-500 hover:text-blue-700 p-1"><i class="fa-solid fa-pen"></i></button>
-                                        <button onclick="deleteExercise('${ex.id}')" class="text-xs text-red-400 hover:text-red-600 p-1"><i class="fa-solid fa-trash"></i></button>
+                                        <button onclick="editExercise('${ex.id}')" class="text-xs text-blue-500 hover:text-blue-700 p-1" title="Editatu Ariketa"><i class="fa-solid fa-pen"></i></button>
+                                        <button onclick="deleteExercise('${ex.id}')" class="text-xs text-red-400 hover:text-red-600 p-1" title="Ezabatu Ariketa"><i class="fa-solid fa-trash"></i></button>
                                     </div>
                                 ` : ''}
                             </div>
@@ -2725,22 +2726,24 @@
 
             if (editId) {
                 const ex = appData.exercises.find(e => e.id === editId);
-                document.getElementById('ex-modal-title').innerText = "Editatu Ariketa";
-                document.getElementById('ex-title').value = ex.title;
-                document.getElementById('ex-type').value = ex.type;
-                document.getElementById('ex-target').value = ex.target;
-                document.getElementById('ex-duration').value = ex.duration || 10;
-                document.getElementById('ex-reps').value = ex.reps || '';
-                document.getElementById('ex-v1').value = ex.v1;
-                document.getElementById('ex-v2').value = ex.v2;
-                document.getElementById('ex-v3').value = ex.v3;
+                if (ex) {
+                    document.getElementById('ex-modal-title').innerText = "Editatu Ariketa";
+                    document.getElementById('ex-title').value = ex.title || '';
+                    document.getElementById('ex-type').value = ex.type || 'Táctica';
+                    document.getElementById('ex-target').value = ex.target || 'Saque';
+                    document.getElementById('ex-duration').value = ex.duration || 10;
+                    document.getElementById('ex-reps').value = ex.reps || '';
+                    document.getElementById('ex-v1').value = ex.v1 || '';
+                    document.getElementById('ex-v2').value = ex.v2 || '';
+                    document.getElementById('ex-v3').value = ex.v3 || '';
 
-                modalItems = ex.modalItems || [];
-                redrawModalCanvas();
-                if (ex.image && modalItems.length === 0) {
-                    const img = new Image();
-                    img.onload = () => modalCtx.drawImage(img, 0, 0);
-                    img.src = ex.image;
+                    modalItems = ex.modalItems || [];
+                    redrawModalCanvas();
+                    if (ex.image && modalItems.length === 0) {
+                        const img = new Image();
+                        img.onload = () => modalCtx.drawImage(img, 0, 0);
+                        img.src = ex.image;
+                    }
                 }
             } else {
                 document.getElementById('ex-modal-title').innerText = "Sortu Ariketa Pizarra Taktikoarekin";
@@ -2765,10 +2768,13 @@
             const v1 = document.getElementById('ex-v1').value.trim();
             const v2 = document.getElementById('ex-v2').value.trim();
             const v3 = document.getElementById('ex-v3').value.trim();
-            const image = modalCanvas.toDataURL();
+            const image = modalCanvas ? modalCanvas.toDataURL() : '';
             const savedModalItems = modalItems;
 
-            if (!title) return;
+            if (!title) {
+                alert("Mesedez sartu ariketaren izenburua.");
+                return;
+            }
 
             if (editId) {
                 const exIndex = appData.exercises.findIndex(e => e.id === editId);
@@ -2845,16 +2851,18 @@
 
             if (editId) {
                 const s = appData.sessions.find(item => item.id === editId);
-                document.getElementById('session-modal-title').innerText = "Editatu Entrenamendu Fitxa";
-                document.getElementById('session-team').value = s.teamId;
-                document.getElementById('session-date').value = s.date;
-                document.getElementById('session-objective').value = s.objective;
-                
-                setTimeout(() => {
-                    document.querySelectorAll('.session-ex-cb').forEach(cb => {
-                        cb.checked = s.exerciseIds.includes(cb.value);
-                    });
-                }, 50);
+                if (s) {
+                    document.getElementById('session-modal-title').innerText = "Editatu Entrenamendu Fitxa";
+                    document.getElementById('session-team').value = s.teamId;
+                    document.getElementById('session-date').value = s.date;
+                    document.getElementById('session-objective').value = s.objective;
+                    
+                    setTimeout(() => {
+                        document.querySelectorAll('.session-ex-cb').forEach(cb => {
+                            cb.checked = s.exerciseIds.includes(cb.value);
+                        });
+                    }, 50);
+                }
             } else {
                 document.getElementById('session-modal-title').innerText = "Planifikatu Entrenamendu Fitxa";
                 document.getElementById('session-objective').value = '';
@@ -2895,6 +2903,7 @@
 
         function previewSession(id) {
             const s = appData.sessions.find(item => item.id === id);
+            if (!s) return;
             const team = appData.teams.find(t => t.id === s.teamId);
             const selectedExs = appData.exercises.filter(ex => s.exerciseIds.includes(ex.id));
 
