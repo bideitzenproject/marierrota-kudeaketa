@@ -49,6 +49,86 @@
 </head>
 <body class="bg-volley-bg text-gray-800 pb-20 md:pb-0 flex flex-col min-h-screen">
 
+    <!-- HASIERAKO ROL HAUTATZEKO PANELA (LANDING MENU) -->
+    <div id="welcome-role-screen" class="fixed inset-0 bg-volley-darkblue z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8 space-y-6 text-center border-4 border-volley-yellow">
+            <div class="flex flex-col items-center space-y-3">
+                <div class="w-16 h-16 rounded-full bg-white p-0.5 flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0 border-2 border-volley-yellow">
+                    <svg viewBox="0 0 200 200" class="w-full h-full rounded-full">
+                        <rect width="200" height="200" fill="#0A2540"/>
+                        <text x="100" y="32" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-weight="900" font-size="20" text-anchor="middle">LEKEITIOKO</text>
+                        <text x="100" y="54" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-weight="900" font-size="19" text-anchor="middle">MARIERROTA</text>
+                        <text x="85" y="115" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-weight="900" font-size="70" text-anchor="end">20</text>
+                        <text x="95" y="105" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-weight="900" font-size="24">URTE</text>
+                        <path d="M 60,110 L 115,85 L 140,110 Z" fill="#E63946"/>
+                        <rect x="75" y="110" width="8" height="40" fill="#D97706"/>
+                        <rect x="110" y="100" width="8" height="50" fill="#D97706"/>
+                        <path d="M 125,100 C 130,130 145,150 145,170 C 130,170 120,150 115,130 Z" fill="#4ADE80"/>
+                        <circle cx="145" cy="140" r="18" fill="#F97316" stroke="#0A2540" stroke-width="3"/>
+                        <circle cx="145" cy="140" r="7" fill="#0A2540"/>
+                        <text x="100" y="185" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-weight="900" font-size="17" text-anchor="middle">BOLEIBOL TALDEA</text>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black text-volley-darkblue tracking-wide">MARIERROTA <span class="text-volley-yellow">KUDEAKETA</span></h1>
+                    <p class="text-xs text-gray-500 mt-1">Lekeitioko Marierrota Boleibol Taldea</p>
+                </div>
+            </div>
+
+            <div class="space-y-3 text-left">
+                <label class="font-extrabold text-xs text-gray-700 block text-center uppercase tracking-wider">Aukeratu zure rola sartzeko:</label>
+                
+                <div class="grid grid-cols-1 gap-2.5">
+                    <button onclick="selectWelcomeRole('admin')" class="w-full text-left p-3.5 rounded-xl border-2 border-volley-blue/20 hover:border-volley-blue bg-blue-50/50 hover:bg-blue-50 transition-all flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-volley-blue text-white flex items-center justify-center shadow"><i class="fa-solid fa-user-shield"></i></div>
+                            <div>
+                                <span class="font-bold text-volley-darkblue text-sm block">Kirol Arduraduna</span>
+                                <span class="text-[11px] text-gray-500">Administratzaile nagusia (Pasahitza)</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-volley-blue group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+
+                    <button onclick="selectWelcomeRole('coach')" class="w-full text-left p-3.5 rounded-xl border-2 border-volley-blue/20 hover:border-volley-blue bg-blue-50/50 hover:bg-blue-50 transition-all flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-amber-500 text-white flex items-center justify-center shadow"><i class="fa-solid fa-chalkboard-user"></i></div>
+                            <div>
+                                <span class="font-bold text-volley-darkblue text-sm block">Entrenatzailea</span>
+                                <span class="text-[11px] text-gray-500">Taldeak, ariketak eta scouting-a (Pasahitza)</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-amber-500 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+
+                    <button onclick="selectWelcomeRole('player')" class="w-full text-left p-3.5 rounded-xl border-2 border-gray-200 hover:border-volley-blue bg-gray-50 hover:bg-white transition-all flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shadow"><i class="fa-solid fa-user-injured"></i></div>
+                            <div>
+                                <span class="font-bold text-volley-darkblue text-sm block">Jokalaria</span>
+                                <span class="text-[11px] text-gray-500">Emaila eta pasahitza bidezko sarrera</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+
+                    <button onclick="selectWelcomeRole('parent')" class="w-full text-left p-3.5 rounded-xl border-2 border-gray-200 hover:border-volley-blue bg-gray-50 hover:bg-white transition-all flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg bg-purple-600 text-white flex items-center justify-center shadow"><i class="fa-solid fa-users"></i></div>
+                            <div>
+                                <span class="font-bold text-volley-darkblue text-sm block">Gurasoa</span>
+                                <span class="text-[11px] text-gray-500">Emaila eta pasahitza bidezko sarrera</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <p class="text-[10px] text-gray-400">Lekeitioko Marierrota Boleibol Taldea © 2025/2026</p>
+        </div>
+    </div>
+
     <!-- HEADER / GOIALDEA LOGOAREKIN -->
     <header class="bg-volley-darkblue text-white sticky top-0 z-40 shadow-md no-print border-b-2 border-volley-yellow">
         <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
@@ -115,6 +195,10 @@
                     <i class="fa-solid fa-chart-line text-sm"></i>
                     <span>Scouting</span>
                 </button>
+                <button onclick="switchTab('sec-settings', this)" id="nav-tab-settings" class="nav-tab admin-only flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                    <i class="fa-solid fa-gears text-sm"></i>
+                    <span>Ezarpenak</span>
+                </button>
             </div>
         </nav>
     </header>
@@ -141,7 +225,7 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-3">
                 <div>
                     <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-calendar-days text-volley-blue mr-2"></i>Partiden Egutegia</h2>
-                    <p class="text-xs text-gray-500">Klubaren partiden plangintza eta asteburu zehatzen hautapena</p>
+                    <p class="text-xs text-gray-500">Klubaren partiden plangintza eta egutegi formatuko ikuspegia</p>
                 </div>
                 
                 <div class="flex flex-wrap items-center gap-2 no-print">
@@ -150,6 +234,11 @@
                     <div class="flex items-center gap-1 bg-gray-50 border border-gray-300 rounded-lg px-2 py-1">
                         <span class="text-[11px] font-bold text-gray-600"><i class="fa-solid fa-filter mr-1"></i>Asteburua:</span>
                         <input type="date" id="calendar-filter-weekend" onchange="renderCalendar()" class="text-xs bg-transparent focus:outline-none cursor-pointer">
+                    </div>
+
+                    <div class="flex bg-gray-100 p-1 rounded-lg border text-xs font-bold">
+                        <button onclick="setCalendarViewMode('list')" id="cal-mode-list" class="px-3 py-1 rounded-md bg-volley-blue text-white shadow-sm transition-all">Zerrenda</button>
+                        <button onclick="setCalendarViewMode('grid')" id="cal-mode-grid" class="px-3 py-1 rounded-md text-gray-700 transition-all">Egutegia (Hilabetea)</button>
                     </div>
 
                     <button onclick="clearCalendarFilter()" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-lg border font-medium">Guztiak Ikusi</button>
@@ -161,8 +250,9 @@
                     </button>
                 </div>
             </div>
-            <div id="calendar-pdf-container" class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div id="calendar-pdf-container" class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden p-4">
                 <div id="calendar-list" class="divide-y divide-gray-100"></div>
+                <div id="calendar-grid-view" class="hidden space-y-4"></div>
             </div>
         </section>
 
@@ -220,27 +310,27 @@
                         <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 text-center text-xs bg-amber-50/80 p-3 rounded-xl border border-amber-300">
                             <div class="bg-white p-2 rounded-lg border shadow-sm">
                                 <span class="font-bold text-volley-blue block text-[10px]">P1 (Z1 - Sakea)</span>
-                                <select id="prep-rot-p1" onchange="saveCurrentPrepRotation()" class="w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
+                                <select id="prep-rot-p1" onchange="saveCurrentPrepRotation()" class="prep-input-lock w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
                             </div>
                             <div class="bg-white p-2 rounded-lg border shadow-sm">
                                 <span class="font-bold text-volley-blue block text-[10px]">P2 (Z2 - Aurr. Esk)</span>
-                                <select id="prep-rot-p2" onchange="saveCurrentPrepRotation()" class="w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
+                                <select id="prep-rot-p2" onchange="saveCurrentPrepRotation()" class="prep-input-lock w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
                             </div>
                             <div class="bg-white p-2 rounded-lg border shadow-sm">
                                 <span class="font-bold text-volley-blue block text-[10px]">P3 (Z3 - Aurr. Erd)</span>
-                                <select id="prep-rot-p3" onchange="saveCurrentPrepRotation()" class="w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
+                                <select id="prep-rot-p3" onchange="saveCurrentPrepRotation()" class="prep-input-lock w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
                             </div>
                             <div class="bg-white p-2 rounded-lg border shadow-sm">
                                 <span class="font-bold text-amber-700 block text-[10px]">P4 (Z4 - Aurr. Ezk)</span>
-                                <select id="prep-rot-p4" onchange="saveCurrentPrepRotation()" class="w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
+                                <select id="prep-rot-p4" onchange="saveCurrentPrepRotation()" class="prep-input-lock w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
                             </div>
                             <div class="bg-white p-2 rounded-lg border shadow-sm">
                                 <span class="font-bold text-amber-700 block text-[10px]">P5 (Z5 - Atze. Ezk)</span>
-                                <select id="prep-rot-p5" onchange="saveCurrentPrepRotation()" class="w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
+                                <select id="prep-rot-p5" onchange="saveCurrentPrepRotation()" class="prep-input-lock w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
                             </div>
                             <div class="bg-white p-2 rounded-lg border shadow-sm">
                                 <span class="font-bold text-amber-700 block text-[10px]">P6 (Z6 - Atze. Erd)</span>
-                                <select id="prep-rot-p6" onchange="saveCurrentPrepRotation()" class="w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
+                                <select id="prep-rot-p6" onchange="saveCurrentPrepRotation()" class="prep-input-lock w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
                             </div>
                         </div>
 
@@ -254,19 +344,19 @@
                         </h3>
                         <div>
                             <label class="font-bold text-xs text-gray-700 block mb-1">Partiduko Helburu Nagusia</label>
-                            <input type="text" id="prep-match-objective" placeholder="Adib: Harrera finkatu eta Z4 bidezko trantsizio azkarrak jokatu" class="w-full border p-2 rounded-lg text-xs bg-gray-50">
+                            <input type="text" id="prep-match-objective" placeholder="Adib: Harrera finkatu eta Z4 bidezko trantsizio azkarrak jokatu" class="prep-input-lock w-full border p-2 rounded-lg text-xs bg-gray-50">
                         </div>
 
                         <div class="space-y-1 text-xs flex flex-col items-center">
                             <div class="flex justify-between items-center w-full">
-                                <label class="font-bold text-gray-700">Pizarra Taktikoa (Bertikala) <span class="text-[10px] text-gray-500 font-normal">(Ukitu elementu bat hautatzeko eta ezabatzeko)</span></label>
-                                <div class="flex gap-2">
+                                <label class="font-bold text-gray-700">Pizarra Taktikoa (Bertikala) <span id="prep-canvas-lock-msg" class="text-[10px] text-gray-500 font-normal">(Ukitu elementu bat hautatzeko eta ezabatzeko)</span></label>
+                                <div id="prep-canvas-tools-container" class="flex gap-2">
                                     <button onclick="deleteSelectedPrepItem()" class="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-1 rounded hover:bg-red-200">Ezabatu Hautatua 🗑️</button>
                                     <button onclick="clearPrepCanvas()" class="text-[10px] text-red-500 font-bold hover:underline">Garbitu Pizarra</button>
                                 </div>
                             </div>
                             
-                            <div class="flex flex-wrap gap-1 p-1 bg-gray-100 rounded-lg w-full justify-center">
+                            <div id="prep-tools-bar" class="flex flex-wrap gap-1 p-1 bg-gray-100 rounded-lg w-full justify-center">
                                 <button id="ptool-pen" onclick="setPrepTool('pen')" class="ptool-btn bg-volley-blue text-white px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Arkatza</button>
                                 <button id="ptool-arrow" onclick="setPrepTool('arrow')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Gezia</button>
                                 <button id="ptool-attack" onclick="setPrepTool('attack')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Eraso Gezia ↗</button>
@@ -284,7 +374,7 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-wrap justify-end gap-2 pt-3 border-t">
+                    <div id="prep-action-buttons-container" class="flex flex-wrap justify-end gap-2 pt-3 border-t">
                         <button onclick="saveMatchPreparationData()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg text-xs font-bold shadow flex items-center gap-1.5">
                             <i class="fa-solid fa-floppy-disk"></i> Gorde Aldaketak
                         </button>
@@ -340,15 +430,18 @@
 
         <!-- 5. ATALA: ENTRENAMENDU FITXAK -->
         <section id="sec-sessions" class="app-section hidden space-y-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex justify-between items-center">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                 <div>
-                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-clipboard-list text-volley-blue mr-2"></i>Entrenamendu Fitxak</h2>
-                    <p class="text-xs text-gray-500">Saio egituratuak marrazkiekin eta progresioekin</p>
+                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-clipboard-list text-volley-blue mr-2"></i>Entrenamendu Fitxak (4 Ataleko Egitura)</h2>
+                    <p class="text-xs text-gray-500">Saio egituratuak 4 ataletan banatuta, iraupenen baturarekin eta scouting estatistikekin</p>
                 </div>
                 <button onclick="openSessionModal()" id="btn-add-session" class="admin-coach-only bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
                     <i class="fa-solid fa-plus"></i> Fitxa Berria
                 </button>
             </div>
+
+            <!-- TALDEEN ARABERAKO FILTRO BOTOIAK -->
+            <div id="session-team-filter-buttons" class="flex flex-wrap gap-2"></div>
 
             <div id="sessions-list" class="space-y-4"></div>
         </section>
@@ -459,8 +552,8 @@
                 </div>
 
                 <div class="space-y-1">
-                    <span class="text-[11px] font-bold text-gray-700 block">Hautatu Jokalaria (edo Talde Osoa):</span>
-                    <div id="scout-player-buttons-container" class="flex flex-wrap gap-2 py-1"></div>
+                    <span class="text-[11px] font-bold text-gray-700 block">Hautatu Jokalaria (Mugikorrean azkar egiteko):</span>
+                    <div id="scout-player-buttons-container" class="flex overflow-x-auto gap-2 py-1 hide-scrollbar"></div>
                 </div>
                 
                 <div id="stats-pad-container" class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 border-t"></div>
@@ -476,9 +569,224 @@
                 </div>
                 <div id="stats-summary-display" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2"></div>
 
+                <!-- KOLOKAZIO ETA ERASO ZONALDEEN BANAKETA ANALITIKOA -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t">
+                    <div class="bg-blue-50/70 p-3 rounded-xl border border-blue-200 space-y-1.5 text-xs">
+                        <span class="font-bold text-volley-blue block"><i class="fa-solid fa-bullseye mr-1"></i> Kolokatzailearen Zonalde Banaketa (Balio Absolutuak eta Portzentajeak %)</span>
+                        <div id="scout-setting-zones-breakdown" class="space-y-1"></div>
+                    </div>
+                    <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200 space-y-1.5 text-xs">
+                        <span class="font-bold text-amber-800 block"><i class="fa-solid fa-volleyball mr-1"></i> Eraso Gune / Norabide Banaketa (Balio Absolutuak eta Portzentajeak %)</span>
+                        <div id="scout-attack-zones-breakdown" class="space-y-1"></div>
+                    </div>
+                </div>
+
                 <div class="pt-2 border-t space-y-2">
                     <h4 class="font-bold text-xs text-volley-darkblue"><i class="fa-solid fa-user-check mr-1 text-volley-blue"></i> Jokalarien Banakako Xehetasuna (Set <span id="summary-player-set-num">1</span>)</h4>
                     <div id="active-set-players-summary" class="space-y-2 text-xs"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. ATALA: APLIKAZIOAREN EZARPENAK ETA ADMINISTRAZIOA (ADMIN SOILIK) -->
+        <section id="sec-settings" class="app-section hidden space-y-4">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between md:items-center gap-2">
+                <div>
+                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-gears text-volley-blue mr-2"></i>Aplikazioaren Ezarpenak eta Kudeaketa</h2>
+                    <p class="text-xs text-gray-500">Konfiguratu kluba, datu-base konexioak, segurtasun kopiak eta rol baimenak</p>
+                </div>
+                <span class="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full border border-red-300 flex items-center gap-1">
+                    <i class="fa-solid fa-shield-halved"></i> Kirol Arduraduna (Administratzailea)
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- KLUBARIAREN INFORMAZIOA ETA DENBORALDIA -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                    <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-shield text-volley-blue"></i> Klubaren Konfigurazioa eta Denboraldia
+                    </h3>
+                    <div class="space-y-3 text-xs">
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">Klubaren Izena</label>
+                            <input type="text" id="settings-club-name" value="Lekeitioko Marierrota Boleibol Taldea" class="w-full border p-2 rounded-lg bg-gray-50 font-semibold">
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">Egungo Denboraldia</label>
+                            <input type="text" id="settings-club-season" value="2025/2026" class="w-full border p-2 rounded-lg bg-gray-50 font-semibold">
+                        </div>
+                        <div class="pt-2 flex justify-end">
+                            <button onclick="saveClubSettings()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5">
+                                <i class="fa-solid fa-floppy-disk"></i> Gorde Kluba
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1. DATU-BASE ETA SUPABASE KONEXIO EZARPENAK -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                    <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-database text-volley-blue"></i> Datu-Basearen eta Hodeiko Konexioaren Ezarpenak
+                    </h3>
+                    <div class="space-y-3 text-xs">
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">Datu-Basearen Izena / Proiektua</label>
+                            <input type="text" id="settings-db-name" value="Marierrota Boleibol DB (Cloud)" class="w-full border p-2 rounded-lg bg-gray-50 font-semibold">
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">Supabase Project URL</label>
+                            <input type="text" id="settings-supabase-url" placeholder="https://xyz.supabase.co" class="w-full border p-2 rounded-lg bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">Supabase Anon / Publishable Key</label>
+                            <input type="password" id="settings-supabase-key" placeholder="eyJhbGciOi..." class="w-full border p-2 rounded-lg bg-gray-50">
+                        </div>
+                        <div class="pt-2 flex justify-end gap-2">
+                            <button onclick="saveAppSettingsDatabase()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5">
+                                <i class="fa-solid fa-floppy-disk"></i> Gorde Konexioa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEGURTASUN KOPIAK ETA DATU-BASE DESKARGATZEA -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4 md:col-span-2">
+                    <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-file-arrow-down text-emerald-600"></i> Segurtasun Kopia (Backup), Datu-Base Deskarga eta Berreskurapena
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                        <div class="bg-gray-50 p-3 rounded-xl border space-y-2 flex flex-col justify-between">
+                            <div>
+                                <span class="font-bold text-gray-800 block mb-1">Datu-Basearen eta Taldeen Kopia JSON Fitxategian</span>
+                                <p class="text-gray-500 text-[11px]">Deskargatu ordenagailura aplikazioko datu osoa (taldeak, egutegia, ariketak eta fitxak) segurtasun kopia gisa.</p>
+                            </div>
+                            <button onclick="downloadFullDatabaseBackup()" class="w-full bg-volley-blue hover:bg-volley-darkblue text-white py-2 rounded-lg font-bold shadow flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-download"></i> Deskargatu Kopia JSON
+                            </button>
+                        </div>
+
+                        <div class="bg-gray-50 p-3 rounded-xl border space-y-2 flex flex-col justify-between">
+                            <div>
+                                <span class="font-bold text-gray-800 block mb-1">Egutegia eta Partiden Kopia Esportatu</span>
+                                <p class="text-gray-500 text-[11px]">Deskargatu soilik denboraldiko partiden egutegia eta deialdiak.</p>
+                            </div>
+                            <button onclick="downloadCalendarBackup()" class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg font-bold shadow flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-calendar-days"></i> Deskargatu Egutegia JSON
+                            </button>
+                        </div>
+
+                        <div class="bg-gray-50 p-3 rounded-xl border space-y-2 flex flex-col justify-between">
+                            <div>
+                                <span class="font-bold text-gray-800 block mb-1">Segurtasun Kopia Berreskuratu (Igo)</span>
+                                <p class="text-gray-500 text-[11px]">Kargatu aurretik egindako JSON fitxategia aplikazioa eta datu-basea leheneratzeko.</p>
+                            </div>
+                            <input type="file" id="backup-file-input" accept=".json" onchange="restoreDatabaseFromBackup(event)" class="hidden">
+                            <button onclick="document.getElementById('backup-file-input').click()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-lg font-bold shadow flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-upload"></i> Berreskuratu Kopia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. ROLEN PASAHITZEN KUDEAKETA -->
+                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                    <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-key text-volley-yellow"></i> Rolen Pasahitz Pertsonalizatuak
+                    </h3>
+                    <div class="space-y-3 text-xs">
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">Kirol Arduradunaren Pasahitza (Admin)</label>
+                            <div class="relative flex items-center">
+                                <input type="password" id="settings-pass-admin" value="marierrota2026" class="w-full border p-2 rounded-lg bg-gray-50 pr-10">
+                                <button type="button" onclick="togglePasswordVisibility('settings-pass-admin', this)" class="absolute right-2.5 text-gray-400 hover:text-gray-700 p-1" title="Ikusi / Ezkutatu">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="font-bold text-gray-700 block mb-1">Entrenatzaileen Pasahitza</label>
+                            <div class="relative flex items-center">
+                                <input type="password" id="settings-pass-coach" value="entrenatzailea2026" class="w-full border p-2 rounded-lg bg-gray-50 pr-10">
+                                <button type="button" onclick="togglePasswordVisibility('settings-pass-coach', this)" class="absolute right-2.5 text-gray-400 hover:text-gray-700 p-1" title="Ikusi / Ezkutatu">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="pt-2 flex justify-end gap-2">
+                            <button onclick="saveAppSettingsPasswords()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5">
+                                <i class="fa-solid fa-floppy-disk"></i> Gorde Pasahitzak
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. ROLEN BAIMENEN MATRIZEA -->
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-emerald-600"></i> Rolen Baimen eta Ikusgarritasun Matrizea
+                </h3>
+                <div class="overflow-x-auto text-xs">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-volley-blue text-white text-left">
+                                <th class="p-2.5">Aplikazioaren Atala</th>
+                                <th class="p-2.5 text-center">Kirol Arduraduna</th>
+                                <th class="p-2.5 text-center">Entrenatzailea</th>
+                                <th class="p-2.5 text-center">Jokalaria</th>
+                                <th class="p-2.5 text-center">Gurasoa</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="p-2.5 font-bold text-gray-800">Taldeak eta Jokalariak</td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked class="accent-volley-blue" disabled></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold text-gray-800">Partiden Egutegia</td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold text-gray-800">Deialdia & Pizarra Taktikoa</td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" class="accent-volley-blue"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold text-gray-800">Ariketa Bankua</td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold text-gray-800">Entrenamendu Fitxak eta Asistentzia</td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold text-gray-800">Scouting eta Estatistikak</td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox"></td>
+                                <td class="p-2.5 text-center"><input type="checkbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flex justify-end pt-2">
+                    <button onclick="alert('Baimenen matrizea ondo gorde da.')" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg text-xs font-bold shadow">
+                        Gorde Baimenak
+                    </button>
                 </div>
             </div>
         </section>
@@ -658,7 +966,7 @@
     <div id="modal-login" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-5 space-y-4">
             <div class="flex justify-between items-center border-b pb-2">
-                <h3 class="font-bold text-volley-darkblue text-base"><i class="fa-solid fa-lock mr-2 text-volley-yellow"></i>Aukeratu Rol eta Sartu Pasahitza</h3>
+                <h3 class="font-bold text-volley-darkblue text-base"><i class="fa-solid fa-lock mr-2 text-volley-yellow"></i>Sartu Kredentzialekin</h3>
                 <button onclick="closeModal('modal-login')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             
@@ -673,14 +981,21 @@
                     </select>
                 </div>
 
+                <div id="login-google-container" class="hidden space-y-2 pt-2">
+                    <p class="text-[11px] text-gray-600 text-center font-medium">Jokalari eta gurasoek Google kontuarekin sartu behar dute segurtasuna bermatzeko:</p>
+                    <button type="button" onclick="loginWithGoogle()" class="w-full bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-300 font-bold py-2.5 px-4 rounded-xl shadow-sm flex items-center justify-center gap-2.5 transition-all">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.18v3.15C3.15 21.32 7.23 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.61H1.18C.43 8.13 0 9.87 0 12s.43 3.87 1.18 5.39l4.09-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.15 2.68 1.18 6.61l4.09 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
+                        <span>Sartu Google Kontuarekin</span>
+                    </button>
+                </div>
+
                 <div id="login-password-container">
                     <label class="font-bold text-gray-700 block mb-1" id="login-pass-label">Pasahitza:</label>
                     <input type="password" id="login-password-input" placeholder="Sartu pasahitza..." class="w-full border p-2.5 rounded-lg bg-gray-50">
-                    <p class="text-[10px] text-gray-500 mt-1" id="login-pass-hint">Administratzaileak eta Entrenatzaileak pasahitza behar dute sartzeko.</p>
                 </div>
             </div>
 
-            <div class="flex justify-end gap-2 pt-2 border-t">
+            <div class="flex justify-end gap-2 pt-2 border-t" id="login-action-buttons">
                 <button onclick="closeModal('modal-login')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold">Utzi</button>
                 <button onclick="verifyAndLogin()" class="px-4 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-bold shadow">Sartu / Aldatu Rola</button>
             </div>
@@ -816,20 +1131,142 @@
 
     <!-- SAIOA MODALA -->
     <div id="modal-session" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-4 space-y-3 max-h-[85vh] overflow-y-auto">
-            <h3 id="session-modal-title" class="font-bold text-gray-800 text-sm">Planifikatu Entrenamendu Fitxa</h3>
-            <input type="hidden" id="session-edit-id">
-            <div class="space-y-2 text-xs">
-                <select id="session-team" class="w-full border p-2 rounded-lg"></select>
-                <input type="date" id="session-date" class="w-full border p-2 rounded-lg">
-                <input type="text" id="session-objective" placeholder="Helburu Nagusia (Adib: K2 Trantsizioa)" class="w-full border p-2 rounded-lg">
-                
-                <label class="font-bold text-gray-700 block pt-2">Aukeratu Ariketak:</label>
-                <div id="session-exercise-selector" class="border rounded-lg p-2 max-h-40 overflow-y-auto space-y-1 bg-gray-50"></div>
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full p-5 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b pb-2">
+                <h3 id="session-modal-title" class="font-bold text-gray-800 text-sm">Planifikatu 4 Ataleko Entrenamendu Fitxa</h3>
+                <button onclick="closeModal('modal-session')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
+            <input type="hidden" id="session-edit-id">
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">Taldea</label>
+                    <select id="session-team" class="w-full border p-2 rounded-lg bg-gray-50"></select>
+                </div>
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">Data</label>
+                    <input type="date" id="session-date" class="w-full border p-2 rounded-lg bg-gray-50">
+                </div>
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">Saioaren Iraupena</label>
+                    <div id="session-total-duration-badge" class="w-full border p-2 rounded-lg bg-amber-50 text-amber-900 font-extrabold text-center">0 min</div>
+                </div>
+            </div>
+
+            <div>
+                <label class="font-bold text-gray-700 block mb-1">Helburu Nagusia</label>
+                <input type="text" id="session-objective" placeholder="Adib: K1 irteera eta blokeoaren koordinazioa" class="w-full border p-2 rounded-lg text-xs bg-gray-50">
+            </div>
+
+            <!-- 4 ATALETAN BANATUTA -->
+            <div class="space-y-4 border-t pt-3">
+                <span class="font-bold text-xs text-volley-darkblue block"><i class="fa-solid fa-layer-group text-volley-blue mr-1"></i> Entrenamenduaren 4 Atal Nagusiak eta Ariketen Hautapena:</span>
+
+                <!-- 1. BEROKETA -->
+                <div class="bg-blue-50/50 border border-blue-200 rounded-xl p-3 space-y-2 text-xs">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-blue-200 pb-2">
+                        <span class="font-extrabold text-volley-blue">1. ATALA: Beroketa</span>
+                        <div class="flex gap-2">
+                            <select id="filter-sec-1-type" onchange="renderSessionSelectorSection(1)" class="border p-1 rounded bg-white text-[11px]">
+                                <option value="ALL" selected>Kategoria Guztiak</option>
+                                <option value="Calentamiento">Beroketa</option>
+                                <option value="Juegos">Jokoak</option>
+                                <option value="Técnica">Teknika</option>
+                                <option value="Táctica">Taktika</option>
+                                <option value="Retos">Erronkak</option>
+                            </select>
+                            <select id="filter-sec-1-target" onchange="renderSessionSelectorSection(1)" class="border p-1 rounded bg-white text-[11px]">
+                                <option value="ALL" selected>Helburu Guztiak</option>
+                                <option value="Movilidad">Mugikortasuna / Koordinazioa</option>
+                                <option value="Saque">Sakea</option>
+                                <option value="Remate">Rematea</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="selector-section-1" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+                </div>
+
+                <!-- 2. LEHENENGO ATALA -->
+                <div class="bg-amber-50/50 border border-amber-200 rounded-xl p-3 space-y-2 text-xs">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-200 pb-2">
+                        <span class="font-extrabold text-amber-800">2. ATALA: Lehenengo Atala</span>
+                        <div class="flex gap-2">
+                            <select id="filter-sec-2-type" onchange="renderSessionSelectorSection(2)" class="border p-1 rounded bg-white text-[11px]">
+                                <option value="ALL" selected>Kategoria Guztiak</option>
+                                <option value="Técnica">Teknika</option>
+                                <option value="Táctica">Taktika</option>
+                                <option value="Juegos">Jokoak</option>
+                                <option value="Calentamiento">Beroketa</option>
+                                <option value="Retos">Erronkak</option>
+                            </select>
+                            <select id="filter-sec-2-target" onchange="renderSessionSelectorSection(2)" class="border p-1 rounded bg-white text-[11px]">
+                                <option value="ALL" selected>Helburu Guztiak</option>
+                                <option value="Salida KI">K1 Irteera</option>
+                                <option value="Colocación">Kolokazioa</option>
+                                <option value="Remate">Rematea</option>
+                                <option value="Saque">Sakea</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="selector-section-2" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+                </div>
+
+                <!-- 3. BIGARREN ATALA -->
+                <div class="bg-emerald-50/50 border border-emerald-200 rounded-xl p-3 space-y-2 text-xs">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-200 pb-2">
+                        <span class="font-extrabold text-emerald-800">3. ATALA: Bigarren Atala</span>
+                        <div class="flex gap-2">
+                            <select id="filter-sec-3-type" onchange="renderSessionSelectorSection(3)" class="border p-1 rounded bg-white text-[11px]">
+                                <option value="ALL" selected>Kategoria Guztiak</option>
+                                <option value="Táctica">Taktika</option>
+                                <option value="Técnica">Teknika</option>
+                                <option value="Juegos">Jokoak</option>
+                                <option value="Retos">Erronkak</option>
+                            </select>
+                            <select id="filter-sec-3-target" onchange="renderSessionSelectorSection(3)" class="border p-1 rounded bg-white text-[11px]">
+                                <option value="ALL" selected>Helburu Guztiak</option>
+                                <option value="Defensa KII">K2 Defentsa</option>
+                                <option value="Contrataques KII">K2 Kontraerasoak</option>
+                                <option value="Defensa">Defentsa</option>
+                                <option value="Sistema de juego">Joko sistema</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="selector-section-3" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+                </div>
+
+                <!-- 4. LAUGARREN ATALA -->
+                <div class="bg-purple-50/50 border border-purple-200 rounded-xl p-3 space-y-2 text-xs">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-purple-200 pb-2">
+                        <span class="font-extrabold text-purple-800">4. ATALA: Laugarren Atala</span>
+                        <div class="flex gap-2">
+                            <select id="filter-sec-4-type" onchange="renderSessionSelectorSection(4)" class="border p-1 rounded bg-white text-[11px]">
+                                <option value="ALL" selected>Kategoria Guztiak</option>
+                                <option value="Táctica">Taktika</option>
+                                <option value="Retos">Erronkak</option>
+                                <option value="Juegos">Jokoak</option>
+                            </select>
+                            <select id="filter-sec-4-target" onchange="renderSessionSelectorSection(4)" class="border p-1 rounded bg-white text-[11px]">
+                                <option value="ALL" selected>Helburu Guztiak</option>
+                                <option value="Sistema de juego">Joko sistema</option>
+                                <option value="Saque">Sakea</option>
+                                <option value="Remate">Rematea</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="selector-section-4" class="space-y-1.5 max-h-36 overflow-y-auto pr-1"></div>
+                </div>
+            </div>
+
+            <!-- ENTRENATZAILEAREN OHARRAK -->
+            <div class="space-y-1 text-xs pt-2">
+                <label class="font-bold text-gray-700 block"><i class="fa-solid fa-note-sticky mr-1 text-volley-blue"></i> Entrenatzailearen Oharrak / Gomendioak</label>
+                <textarea id="session-coach-notes" rows="2" placeholder="Sartu entrenamendu honetarako ohar bereziak, materialen banaketa edo intentsitate gakoak..." class="w-full border p-2 rounded-lg bg-gray-50"></textarea>
+            </div>
+
             <div class="flex justify-end gap-2 pt-2 border-t">
-                <button onclick="closeModal('modal-session')" class="px-3 py-1.5 rounded-lg border text-xs">Utzi</button>
-                <button onclick="saveSession()" class="px-3 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold">Gorde Fitxa</button>
+                <button onclick="closeModal('modal-session')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold">Utzi</button>
+                <button onclick="saveSession()" class="px-4 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold shadow">Gorde Fitxa</button>
             </div>
         </div>
     </div>
@@ -837,11 +1274,11 @@
     <!-- SAIOAREN AURREIKUSPEN MODALA -->
     <div id="modal-session-preview" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden">
         <div class="bg-white rounded-xl shadow-xl max-w-3xl w-full p-5 space-y-4 max-h-[90vh] overflow-y-auto">
-            <div id="session-preview-content" class="space-y-4"></div>
+            <div id="session-preview-content" class="space-y-4 text-xs"></div>
             <div class="flex justify-end gap-2 border-t pt-3 no-print">
                 <button onclick="closeModal('modal-session-preview')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold">Itxi</button>
-                <button onclick="printSessionPreview()" class="px-4 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold flex items-center gap-1 shadow">
-                    <i class="fa-solid fa-print"></i> Inprimatu Fitxa
+                <button onclick="saveSessionPreviewNotes()" class="px-3 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold flex items-center gap-1 shadow">
+                    <i class="fa-solid fa-floppy-disk"></i> Gorde
                 </button>
             </div>
         </div>
@@ -854,8 +1291,8 @@
         let tempPlayerPhotoBase64 = '';
 
         // SUPABASE SINKRONIZAZIO AUTOMATIKORAKO GAKO PUBLIKOAK (AUTOMATIKOKI PRESTATUTA)
-        const DEFAULT_SUPABASE_URL = "https://wxgamdfszvveaexymbsq.supabase.co"; // Ordezkatu zure Project URL-arekin behar izanez gero
-        const DEFAULT_SUPABASE_KEY = "sb_publishable_K3Vij-6jE2X9JX_-4yg_-A_XzT28XV9"; // Zure publishable key gakoa
+        const DEFAULT_SUPABASE_URL = "https://wxgamdfszvveaexymbsq.supabase.co";
+        const DEFAULT_SUPABASE_KEY = "sb_publishable_K3Vij-6jE2X9JX_-4yg_-A_XzT28XV9";
 
         let appData = {
             teams: [],
@@ -864,15 +1301,26 @@
             exercises: [],
             sessions: [],
             stats: [],
-            preparations: {}
+            preparations: {},
+            sessionNotes: {},
         };
 
         const ACTION_SKILLS = ['Sakea', 'Harrera', 'Kolokazioa', 'Rematea', 'Blokeoa', 'Defentsa'];
-        
+        let activeSessionFilterTeamId = 'ALL';
         let activeScoutSet = 1;
         let lastActionHistory = [];
         let selectedScoutPlayerId = 'ALL';
         let activePrepRotationIndex = 1;
+        let calendarViewMode = 'list';
+
+        let activeScoutSystem = 'KI';
+        let activeSettingZone = 'Z4';
+        let activeAttackType = 'Diagonal';
+        let activeSessionSettingZone = 'Z4';
+        let activeSessionAttackDir = 'Diagonal';
+
+        let globalSettingZoneCounts = { 1: { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 }, 2: { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 }, 3: { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 }, 4: { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 }, 5: { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 } };
+        let globalAttackDirCounts = { 1: { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 }, 2: { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 }, 3: { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 }, 4: { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 }, 5: { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 } };
 
         let setRotations = {
             1: { p1: '', p6: '', p5: '', p4: '', p3: '', p2: '' },
@@ -883,7 +1331,7 @@
         };
         let setStatsData = { 1: {}, 2: {}, 3: {}, 4: {}, 5: {} };
         let playerStatsData = { 1: {}, 2: {}, 3: {}, 4: {}, 5: {} };
-
+        let playerActionDetailsData = { 1: {}, 2: {}, 3: {}, 4: {}, 5: {} };
         let modalCanvas = null;
         let modalCtx = null;
         let modalItems = [];
@@ -900,21 +1348,182 @@
         let currentPrepTool = 'pen';
         let prepStartX = 0, prepStartY = 0;
 
-        window.onload = function () {
-            loadLocalData();
+        window.onload = async function () {
+            initSupabaseFromStorage();
+            await loadDataFromCloudOrLocal();
             if (!appData.teams || appData.teams.length === 0) {
                 seedDemoData();
+                await saveDataToCloud();
             }
-            initSupabaseFromStorage();
             initModalCanvas();
             initPrepCanvas();
             renderAll();
             setupStatsPad();
+            loadSettingsValues();
             if (appData.teams.length > 0) {
                 onScoutTeamChange();
                 onPrepTeamChange();
             }
         };
+
+        function selectWelcomeRole(role) {
+            currentRole = role;
+            document.getElementById('login-role-select').value = role;
+            onLoginRoleChange();
+            document.getElementById('login-password-input').value = '';
+            openModal('modal-login');
+        }
+
+        function onLoginRoleChange() {
+            const role = document.getElementById('login-role-select').value;
+            const passContainer = document.getElementById('login-password-container');
+            const googleContainer = document.getElementById('login-google-container');
+            const actionButtons = document.getElementById('login-action-buttons');
+            
+            if (role === 'player' || role === 'parent') {
+                if (googleContainer) googleContainer.style.display = 'block';
+                if (passContainer) passContainer.style.display = 'none';
+                if (actionButtons) actionButtons.style.display = 'none';
+            } else {
+                if (googleContainer) googleContainer.style.display = 'none';
+                if (passContainer) passContainer.style.display = 'block';
+                if (actionButtons) actionButtons.style.display = 'flex';
+                document.getElementById('login-pass-label').innerText = "Pasahitza:";
+            }
+        }
+
+        async function loginWithGoogle() {
+            if (supabaseClient) {
+                try {
+                    const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                        provider: 'google',
+                        options: {
+                            redirectTo: window.location.href
+                        }
+                    });
+                    if (error) {
+                        alert("Google bidezko saioa hasteko errorea: " + error.message);
+                    }
+                } catch(e) {
+                    console.error("Google auth exception:", e);
+                    alert("Ezin izan da Google bidez saioa hasi.");
+                }
+            } else {
+                // Supabase aktibatu gabe badago modu lokalean simulatu Google saioa
+                const role = document.getElementById('login-role-select').value;
+                currentRole = role;
+                closeModal('modal-login');
+                const welcomeScreen = document.getElementById('welcome-role-screen');
+                if (welcomeScreen) welcomeScreen.classList.add('hidden');
+                renderAll();
+                document.getElementById('header-role-label').innerText = role === 'player' ? 'Jokalaria (Google)' : 'Gurasoa (Google)';
+            }
+        }
+
+        async function verifyAndLogin() {
+            const role = document.getElementById('login-role-select').value;
+            const pass = document.getElementById('login-password-input').value.trim();
+            const email = document.getElementById('login-email-input').value.trim();
+
+            if (role === 'admin') {
+                const adminPass = localStorage.getItem('volley_pass_admin') || 'marierrota2026';
+                if (pass !== adminPass) {
+                    alert("Pasahitz okerra Administratzailearentzat! Saiatu berriro.");
+                    return;
+                }
+            } else if (role === 'coach') {
+                const coachPass = localStorage.getItem('volley_pass_coach') || 'entrenatzailea2026';
+                if (pass !== coachPass) {
+                    alert("Pasahitz okerra Entrenatzailearentzat! Saiatu berriro.");
+                    return;
+                }
+            } else if (role === 'player' || role === 'parent') {
+                if (!email) {
+                    alert("Mesedez, sartu zure posta elektronikoa.");
+                    return;
+                }
+                // Jokalari edo gurasoen sarrera baimendua email bidez
+                if (supabaseClient) {
+                    try {
+                        const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password: pass || 'marierrota2026' });
+                        if (error) {
+                            // Erregistratuta ez badago Supabase Auth-en, saioa lokaletik edo sortu pasahitza automatikoki
+                            console.log("Erabiltzaile saio irekiera modua:", error.message);
+                        }
+                    } catch(e) { console.error(e); }
+                }
+            }
+
+            currentRole = role;
+            closeModal('modal-login');
+            const welcomeScreen = document.getElementById('welcome-role-screen');
+            if (welcomeScreen) welcomeScreen.classList.add('hidden');
+            
+            renderAll();
+
+            const roleLabels = {
+                'admin': 'Kirol Arduraduna',
+                'coach': 'Entrenatzailea',
+                'player': 'Jokalaria',
+                'parent': 'Gurasoa'
+            };
+            document.getElementById('header-role-label').innerText = roleLabels[currentRole] || 'Erabiltzailea';
+        }
+
+        async function loadDataFromCloudOrLocal() {
+            if (supabaseClient) {
+                try {
+                    const { data, error } = await supabaseClient.from('marierrota_app_state').select('*').eq('id', 'main_state').single();
+                    if (data && data.payload) {
+                        appData = data.payload;
+                        return;
+                    }
+                } catch(e) { console.log("Hodeitik kargatzean huts egin du, tokiko memoriara pasatzen...", e); }
+            }
+            loadLocalData();
+        }
+
+        async function saveDataToCloud() {
+            saveLocalData();
+            if (supabaseClient) {
+                try {
+                    await supabaseClient.from('marierrota_app_state').upsert({ id: 'main_state', payload: appData, updated_at: new Date() });
+                } catch(e) { console.error("Hodeian gordetzean akatsa:", e); }
+            }
+        }
+
+        function verifyAndLogin() {
+            const role = document.getElementById('login-role-select').value;
+            const pass = document.getElementById('login-password-input').value.trim();
+
+            if (role === 'admin') {
+                if (pass !== 'marierrota2026') {
+                    alert("Pasahitz okerra Administratzailearentzat! Saiatu berriro.");
+                    return;
+                }
+            } else if (role === 'coach') {
+                if (pass !== 'entrenatzailea2026') {
+                    alert("Pasahitz okerra Entrenatzailearentzat! Saiatu berriro.");
+                    return;
+                }
+            }
+
+            currentRole = role;
+            closeModal('modal-login');
+            // Ziurtatu hasierako pantaila ezkutatzen dela aplikaziora sartzerakoan
+            const welcomeScreen = document.getElementById('welcome-role-screen');
+            if (welcomeScreen) welcomeScreen.classList.add('hidden');
+            
+            renderAll();
+
+            const roleLabels = {
+                'admin': 'Kirol Arduraduna',
+                'coach': 'Entrenatzailea',
+                'player': 'Jokalaria',
+                'parent': 'Gurasoa'
+            };
+            document.getElementById('header-role-label').innerText = roleLabels[currentRole] || 'Erabiltzailea';
+        }
 
         function switchTab(tabId, btnEl) {
             document.querySelectorAll('.app-section').forEach(sec => sec.classList.add('hidden'));
@@ -1026,7 +1635,7 @@
                         statusBadge.className = "px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 flex items-center gap-1.5";
                     }
                     if (statusText) {
-                        statusText.innerText = "Supabase Konektatuta";
+                        statusText.innerText = "Supabase Cloud Realtime";
                     }
                 } catch(e) { console.error("Supabase errorea", e); }
             }
@@ -1068,42 +1677,13 @@
             if (role === 'admin' || role === 'coach') {
                 passContainer.style.display = 'block';
                 if (role === 'admin') {
-                    document.getElementById('login-pass-label').innerText = "Pasahitza (Administratzailea - marierrota2026):";
+                    document.getElementById('login-pass-label').innerText = "Pasahitza:";
                 } else {
-                    document.getElementById('login-pass-label').innerText = "Pasahitza (Entrenatzailea - entrenatzailea2026):";
+                    document.getElementById('login-pass-label').innerText = "Pasahitza:";
                 }
             } else {
                 passContainer.style.display = 'none';
             }
-        }
-
-        function verifyAndLogin() {
-            const role = document.getElementById('login-role-select').value;
-            const pass = document.getElementById('login-password-input').value.trim();
-
-            if (role === 'admin') {
-                if (pass !== 'marierrota2026') {
-                    alert("Pasahitz okerra Administratzailearentzat! Erabili: marierrota2026");
-                    return;
-                }
-            } else if (role === 'coach') {
-                if (pass !== 'entrenatzailea2026') {
-                    alert("Pasahitz okerra Entrenatzailearentzat! Erabili: entrenatzailea2026");
-                    return;
-                }
-            }
-
-            currentRole = role;
-            closeModal('modal-login');
-            renderAll();
-
-            const roleLabels = {
-                'admin': 'Kirol Arduraduna',
-                'coach': 'Entrenatzailea',
-                'player': 'Jokalaria',
-                'parent': 'Gurasoa'
-            };
-            document.getElementById('header-role-label').innerText = roleLabels[currentRole] || 'Erabiltzailea';
         }
 
         function renderAll() {
@@ -1117,6 +1697,7 @@
 
         function applyRolePermissions() {
             const isAdminOrCoach = currentRole === 'admin' || currentRole === 'coach';
+            const isAdmin = currentRole === 'admin';
             const isPlayer = currentRole === 'player';
             const isParent = currentRole === 'parent';
 
@@ -1124,11 +1705,92 @@
             const btnAddMatch = document.getElementById('btn-add-match');
             const btnAddExercise = document.getElementById('btn-add-exercise');
             const btnAddSession = document.getElementById('btn-add-session');
+            const navTabSettings = document.getElementById('nav-tab-settings');
 
             if (btnAddTeam) btnAddTeam.style.display = isAdminOrCoach ? 'flex' : 'none';
             if (btnAddMatch) btnAddMatch.style.display = isAdminOrCoach ? 'flex' : 'none';
             if (btnAddExercise) btnAddExercise.style.display = isAdminOrCoach ? 'flex' : 'none';
             if (btnAddSession) btnAddSession.style.display = isAdminOrCoach ? 'flex' : 'none';
+            if (navTabSettings) navTabSettings.style.display = isAdmin ? 'flex' : 'none';
+
+            // Jokalari eta gurasoentzat irakurtzeko soilik (pizarra eta deialdiaren edizioa blokeatu)
+            if (isPlayer || isParent) {
+                document.querySelectorAll('.prep-player-cb, .prep-input-lock, .session-att-cb').forEach(el => {
+                    el.disabled = true;
+                    el.readOnly = true;
+                });
+
+                // Oharra: Jokalariak taldea eta partida hautatu ahal izateko select elementuak ez ditugu desgaitzen hemen
+                document.querySelectorAll('#sec-preparation input[type="text"]').forEach(el => {
+                    el.disabled = true;
+                });
+
+                // Deialdiaren eta errotazioen kontrolak ezgaitu jokalari/gurasoentzat
+                const callupActionButtons = document.querySelector("#sec-preparation .flex.gap-2 button[onclick*='toggleAllPrepCallup']");
+                if (callupActionButtons && callupActionButtons.parentElement) {
+                    callupActionButtons.parentElement.style.display = 'none';
+                }
+
+                const prepToolsBar = document.getElementById('prep-tools-bar');
+                if (prepToolsBar) prepToolsBar.style.display = 'none';
+
+                const prepCanvasTools = document.getElementById('prep-canvas-tools-container');
+                if (prepCanvasTools) prepCanvasTools.style.display = 'none';
+
+                const prepActionBtns = document.getElementById('prep-action-buttons-container');
+                if (prepActionBtns) {
+                    const saveBtn = prepActionBtns.querySelector("button[onclick*='saveMatchPreparationData']");
+                    if (saveBtn) saveBtn.style.display = 'none';
+                }
+
+                const canvasEl = document.getElementById('prep-canvas');
+                if (canvasEl) {
+                    canvasEl.style.pointerEvents = 'none';
+                }
+
+                const canvasLockMsg = document.getElementById('prep-canvas-lock-msg');
+                if (canvasLockMsg) {
+                    canvasLockMsg.innerText = "(Aukeratu taldea eta partida ikusteko - Ikusi txostena eta deskargatu PDF bakarrik)";
+                    canvasLockMsg.className = "text-[10px] text-red-500 font-bold";
+                }
+
+                const trackingNotes = document.getElementById('session-tracking-notes');
+                if (trackingNotes) {
+                    trackingNotes.disabled = true;
+                    trackingNotes.readOnly = true;
+                }
+            } else {
+                // Entrenatzaile eta Administratzaileentzat desblokeatuta
+                document.querySelectorAll('.prep-player-cb, .prep-input-lock, .session-att-cb').forEach(el => {
+                    el.disabled = false;
+                    el.readOnly = false;
+                });
+                document.querySelectorAll('#sec-preparation select, #sec-preparation input[type="text"]').forEach(el => {
+                    el.disabled = false;
+                });
+                const callupActionButtons = document.querySelector("#sec-preparation .flex.gap-2 button[onclick*='toggleAllPrepCallup']");
+                if (callupActionButtons && callupActionButtons.parentElement) {
+                    callupActionButtons.parentElement.style.display = 'flex';
+                }
+                const prepToolsBar = document.getElementById('prep-tools-bar');
+                if (prepToolsBar) prepToolsBar.style.display = 'flex';
+                const prepCanvasTools = document.getElementById('prep-canvas-tools-container');
+                if (prepCanvasTools) prepCanvasTools.style.display = 'flex';
+                const prepActionBtns = document.getElementById('prep-action-buttons-container');
+                if (prepActionBtns) {
+                    const saveBtn = prepActionBtns.querySelector("button[onclick*='saveMatchPreparationData']");
+                    if (saveBtn) saveBtn.style.display = 'inline-flex';
+                }
+                const canvasEl = document.getElementById('prep-canvas');
+                if (canvasEl) {
+                    canvasEl.style.pointerEvents = 'auto';
+                }
+                const canvasLockMsg = document.getElementById('prep-canvas-lock-msg');
+                if (canvasLockMsg) {
+                    canvasLockMsg.innerText = "(Ukitu elementu bat hautatzeko eta ezabatzeko)";
+                    canvasLockMsg.className = "text-[10px] text-gray-500 font-normal";
+                }
+            }
 
             const tabButtons = document.querySelectorAll('.nav-tab');
             tabButtons.forEach(btn => {
@@ -1139,6 +1801,8 @@
                 } else if (isPlayer) {
                     if (onclickAttr.includes('sec-calendar') || onclickAttr.includes('sec-sessions') || onclickAttr.includes('sec-preparation')) btn.style.display = 'flex';
                     else btn.style.display = 'none';
+                } else if (!isAdmin && onclickAttr.includes('sec-settings')) {
+                    btn.style.display = 'none';
                 } else {
                     btn.style.display = 'flex';
                 }
@@ -1149,6 +1813,128 @@
                 switchTab('sec-calendar', document.querySelector("button[onclick*='sec-calendar']"));
             } else if (isPlayer && activeSec && !['sec-calendar', 'sec-sessions', 'sec-preparation'].includes(activeSec.id)) {
                 switchTab('sec-calendar', document.querySelector("button[onclick*='sec-calendar']"));
+            } else if (!isAdmin && activeSec && activeSec.id === 'sec-settings') {
+                switchTab('sec-teams', document.querySelector("button[onclick*='sec-teams']"));
+            }
+        }
+
+        /* Ezarpenen Kudeaketa Funtzioak */
+        function loadSettingsValues() {
+            const urlInput = document.getElementById('settings-supabase-url');
+            const keyInput = document.getElementById('settings-supabase-key');
+            if (urlInput) urlInput.value = localStorage.getItem('volley_sp_url') || DEFAULT_SUPABASE_URL;
+            if (keyInput) keyInput.value = localStorage.getItem('volley_sp_key') || DEFAULT_SUPABASE_KEY;
+
+            const adminPassInput = document.getElementById('settings-pass-admin');
+            const coachPassInput = document.getElementById('settings-pass-coach');
+            if (adminPassInput) adminPassInput.value = localStorage.getItem('volley_pass_admin') || 'marierrota2026';
+            if (coachPassInput) coachPassInput.value = localStorage.getItem('volley_pass_coach') || 'entrenatzailea2026';
+
+            const clubNameInput = document.getElementById('settings-club-name');
+            const clubSeasonInput = document.getElementById('settings-club-season');
+            if (clubNameInput) clubNameInput.value = localStorage.getItem('volley_club_name') || 'Lekeitioko Marierrota Boleibol Taldea';
+            if (clubSeasonInput) clubSeasonInput.value = localStorage.getItem('volley_club_season') || '2025/2026';
+        }
+
+        function saveClubSettings() {
+            const clubName = document.getElementById('settings-club-name').value.trim();
+            const clubSeason = document.getElementById('settings-club-season').value.trim();
+            if (clubName && clubSeason) {
+                localStorage.setItem('volley_club_name', clubName);
+                localStorage.setItem('volley_club_season', clubSeason);
+                alert("Klubaren izena eta denboraldia ondo gorde dira.");
+            } else {
+                alert("Mesedez, bete eremu guztiak.");
+            }
+        }
+
+        function downloadFullDatabaseBackup() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `Marierrota_Backup_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        function downloadCalendarBackup() {
+            const calendarData = {
+                matches: appData.matches,
+                teams: appData.teams
+            };
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(calendarData, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `Marierrota_Egutegia_Backup_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        async function restoreDatabaseFromBackup(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if (parsed.teams && parsed.players) {
+                        appData = parsed;
+                        if (!appData.preparations) appData.preparations = {};
+                        await saveDataToCloud();
+                        renderAll();
+                        alert("Datu-basearen segurtasun kopia ondo leheneratu da!");
+                    } else {
+                        alert("Fitxategiaren formatua ez da zuzena Marierrota datu-basearentzat.");
+                    }
+                } catch(err) {
+                    console.error("Errorea kopia irakurtzean:", err);
+                    alert("Errorea fitxategia irakurtzean.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function togglePasswordVisibility(inputId, btnEl) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const icon = btnEl.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                if (icon) icon.className = "fa-solid fa-eye-slash";
+            } else {
+                input.type = 'password';
+                if (icon) icon.className = "fa-solid fa-eye";
+            }
+        }
+
+        function saveAppSettingsDatabase() {
+            const url = document.getElementById('settings-supabase-url').value.trim();
+            const key = document.getElementById('settings-supabase-key').value.trim();
+            const dbName = document.getElementById('settings-db-name').value.trim();
+
+            if (url && key) {
+                localStorage.setItem('volley_sp_url', url);
+                localStorage.setItem('volley_sp_key', key);
+                localStorage.setItem('volley_db_name', dbName);
+                alert("Datu-basearen konexio ezarpenak ondo gorde dira hodeian.");
+                initSupabaseFromStorage();
+            } else {
+                alert("Mesedez, bete URL eta Key gakoak.");
+            }
+        }
+
+        function saveAppSettingsPasswords() {
+            const adminPass = document.getElementById('settings-pass-admin').value.trim();
+            const coachPass = document.getElementById('settings-pass-coach').value.trim();
+
+            if (adminPass && coachPass) {
+                localStorage.setItem('volley_pass_admin', adminPass);
+                localStorage.setItem('volley_pass_coach', coachPass);
+                alert("Rolen pasahitzak ondo eguneratu dira.");
+            } else {
+                alert("Pasahitzek ezin dute hutsik egon.");
             }
         }
 
@@ -1467,6 +2253,7 @@
 
             appData.preparations[matchId] = prepData;
             const calledIds = Array.isArray(prepData.calledPlayerIds) ? prepData.calledPlayerIds : teamPlayers.map(p => p.id);
+            const isPlayerOrParent = currentRole === 'player' || currentRole === 'parent';
 
             const callupContainer = document.getElementById('prep-callup-players-container');
             if (callupContainer) {
@@ -1490,7 +2277,7 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="text-[11px] font-semibold text-gray-600">Deitua:</span>
-                            <input type="checkbox" value="${p.id}" onchange="saveCurrentPrepRotation()" class="prep-player-cb w-5 h-5 accent-volley-blue rounded cursor-pointer" ${calledIds.includes(p.id) ? 'checked' : ''}>
+                            <input type="checkbox" value="${p.id}" onchange="saveCurrentPrepRotation()" class="prep-player-cb w-5 h-5 accent-volley-blue rounded ${isPlayerOrParent ? 'cursor-not-allowed pointer-events-none' : 'cursor-pointer'}" ${calledIds.includes(p.id) ? 'checked' : ''} ${isPlayerOrParent ? 'disabled' : ''}>
                         </div>
                     </label>
                 `).join('');
@@ -1529,6 +2316,9 @@
         }
 
         function saveCurrentPrepRotation() {
+            if (currentRole === 'player' || currentRole === 'parent') {
+                return; // Jokalariak ezin du gorde
+            }
             const matchSelect = document.getElementById('prep-match-select');
             if (!matchSelect || !matchSelect.value) return;
             const matchId = matchSelect.value;
@@ -1563,6 +2353,10 @@
         }
 
         function saveMatchPreparationData() {
+            if (currentRole === 'player' || currentRole === 'parent') {
+                alert("Jokalari eta gurasoek ikusi bakarrik egin dezakete.");
+                return;
+            }
             saveCurrentPrepRotation();
             alert("Partiduko deialdia, errotazioa eta pizarra ondo gordeta geratu dira.");
         }
@@ -2055,26 +2849,30 @@
                                 <span class="text-xs text-gray-500">${team.category}</span>
                             </div>
                             <div class="flex items-center gap-1">
-                                <button onclick="exportTeamRosterPDF('${team.id}')" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-2 py-1.5 rounded-lg shadow flex items-center gap-1" title="Deskargatu Jokalarien Zerrenda PDF">
-                                    <i class="fa-solid fa-file-pdf"></i> PDF Zerrenda
-                                </button>
                                 ${isAdminOrCoach ? `
                                     <button onclick="openTeamModal('${team.id}')" class="text-xs text-blue-500 hover:text-blue-700 p-1.5 rounded-lg hover:bg-blue-50" title="Editatu Taldea">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
-                                    <button onclick="openPlayerModal('${team.id}')" class="text-xs bg-volley-blue hover:bg-volley-darkblue text-white font-semibold px-2 py-1.5 rounded-lg shadow flex items-center gap-1">
+                                    <button onclick="openPlayerModal('${team.id}')" class="text-xs bg-volley-blue hover:bg-volley-darkblue text-white font-semibold px-2.5 py-1.5 rounded-lg shadow flex items-center gap-1">
                                         <i class="fa-solid fa-plus"></i> Jokalaria
                                     </button>
                                 ` : ''}
                             </div>
                         </div>
 
-                        <div class="space-y-1.5">
-                            ${teamPlayers.length === 0 ? '<p class="text-xs text-gray-400">Jokalaririk gabe</p>' : ''}
+                        <div class="flex items-center justify-between bg-blue-50/60 p-2 rounded-lg border border-blue-100">
+                            <span class="text-xs font-bold text-volley-blue"><i class="fa-solid fa-users-viewfinder mr-1"></i> Jokalariak: ${teamPlayers.length}</span>
+                            <button onclick="openTeamDetailModal('${team.id}')" class="text-xs bg-volley-blue hover:bg-volley-darkblue text-white font-bold px-3 py-1 rounded-md shadow-sm transition-all flex items-center gap-1">
+                                <i class="fa-solid fa-eye"></i> Ikusi Taldea
+                            </button>
+                        </div>
+
+                        <div class="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+                            ${teamPlayers.length === 0 ? '<p class="text-xs text-gray-400 py-2 text-center">Jokalaririk gabe</p>' : ''}
                             ${teamPlayers.map(p => `
                                 <div class="flex justify-between items-center bg-gray-50 p-2 rounded-lg text-xs">
-                                    <div class="flex items-center gap-2">
-                                        <div class="relative">
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="relative flex-shrink-0">
                                             ${p.photo ? 
                                                 `<img src="${p.photo}" class="w-8 h-8 rounded-full object-cover border border-volley-blue">` :
                                                 `<span class="w-8 h-8 rounded-full bg-volley-blue text-white font-bold flex items-center justify-center text-xs">${p.number}</span>`
@@ -2083,10 +2881,11 @@
                                         </div>
                                         <div>
                                             <div class="flex items-center gap-1.5">
-                                                <span class="font-semibold text-gray-800 block">${p.name}</span>
+                                                <span class="font-bold text-gray-900">${p.name}</span>
+                                                <span class="text-[10px] bg-blue-100 text-volley-blue font-extrabold px-1.5 py-0.2 rounded">#${p.number}</span>
                                                 ${p.isCaptain ? `<span class="text-[9px] bg-amber-100 text-amber-800 font-extrabold px-1.5 py-0.2 rounded-md border border-amber-300">KAPITAINA</span>` : ''}
                                             </div>
-                                            <span class="text-[10px] text-gray-500">Dortsala #${p.number} - ${p.position}</span>
+                                            <span class="text-[10px] text-gray-500">${p.position}</span>
                                         </div>
                                     </div>
                                     ${isAdminOrCoach ? `
@@ -2101,6 +2900,124 @@
                     </div>
                 `;
             });
+        }
+
+        function openTeamDetailModal(teamId) {
+            const team = appData.teams.find(t => t.id === teamId);
+            if (!team) return;
+            const teamPlayers = appData.players.filter(p => p.teamId === teamId);
+
+            teamPlayers.sort((a, b) => {
+                const aIsLibero = (a.position || '').toLowerCase().includes('libero');
+                const bIsLibero = (b.position || '').toLowerCase().includes('libero');
+                if (a.isCaptain && !b.isCaptain) return -1;
+                if (!a.isCaptain && b.isCaptain) return 1;
+                if (aIsLibero && !bIsLibero) return 1;
+                if (!aIsLibero && bIsLibero) return -1;
+                return parseInt(a.number || 0) - parseInt(b.number || 0);
+            });
+
+            let modalEl = document.getElementById('modal-team-detail');
+            if (!modalEl) {
+                modalEl = document.createElement('div');
+                modalEl.id = 'modal-team-detail';
+                modalEl.className = 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden';
+                modalEl.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+                        <div class="flex justify-between items-center border-b pb-3 no-print">
+                            <div>
+                                <h3 id="modal-team-detail-title" class="font-bold text-volley-darkblue text-base">Taldearen Xehetasunak</h3>
+                                <p id="modal-team-detail-subtitle" class="text-xs text-gray-500"></p>
+                            </div>
+                            <button onclick="closeModal('modal-team-detail')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                        </div>
+                        <div id="modal-team-detail-content" class="bg-white p-2 rounded-lg"></div>
+                        <div class="flex justify-end gap-2 pt-3 border-t no-print">
+                            <button onclick="closeModal('modal-team-detail')" class="px-4 py-1.5 rounded-lg border text-xs font-semibold">Itxi</button>
+                            <button id="modal-team-detail-pdf-btn" class="px-4 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold flex items-center gap-1 shadow">
+                                <i class="fa-solid fa-file-pdf"></i> Deskargatu PDF
+                            </button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modalEl);
+            }
+
+            document.getElementById('modal-team-detail-title').innerText = team.name;
+            document.getElementById('modal-team-detail-subtitle').innerText = `${team.category} — Denboraldia: ${team.season || '2025/2026'} (${teamPlayers.length} jokalari)`;
+            document.getElementById('modal-team-detail-pdf-btn').setAttribute('onclick', `exportTeamRosterPDF('${team.id}')`);
+
+            let playersRows = '';
+            let currentSection = '';
+
+            if (teamPlayers.length === 0) {
+                playersRows = `<tr><td colspan="3" style="padding: 20px; text-align: center; color: #9ca3af; font-size: 12px;">Ez dago jokalaririk erregistratuta talde honetan.</td></tr>`;
+            } else {
+                playersRows = teamPlayers.map((p, index) => {
+                    const isLibero = (p.position || '').toLowerCase().includes('libero');
+                    let sectionSeparator = '';
+
+                    if (isLibero && currentSection !== 'LIBERO') {
+                        currentSection = 'LIBERO';
+                        sectionSeparator = `
+                            <tr style="background-color: #fef3c7;">
+                                <td colspan="3" style="padding: 6px 10px; font-weight: bold; font-size: 11px; color: #92400e; border-top: 2px solid #f59e0b; border-bottom: 2px solid #f59e0b;">
+                                    <i class="fa-solid fa-shield-halved" style="margin-right: 4px;"></i> LIBEROAK (BANATUTA)
+                                </td>
+                            </tr>
+                        `;
+                    }
+
+                    return `
+                        ${sectionSeparator}
+                        <tr style="border-bottom: 1px solid #e5e7eb; ${p.isCaptain ? 'background-color: #fffbeb;' : (isLibero ? 'background-color: #fffbeb;' : (index % 2 === 0 ? 'background-color: #f9fafb;' : ''))}">
+                            <td style="padding: 10px; text-align: center; font-weight: bold; font-size: 14px; color: #0A2540;">#${p.number || '-'}</td>
+                            <td style="padding: 10px; font-weight: bold; font-size: 13px; color: #1f2937; display: flex; align-items: center; gap: 8px;">
+                                ${p.photo ? 
+                                    `<img src="${p.photo}" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1.5px solid #0A2540;">` :
+                                    `<div style="width: 32px; height: 32px; border-radius: 50%; background-color: #0A2540; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold;">${p.number || ''}</div>`
+                                }
+                                <span>${p.name} ${p.isCaptain ? '<span style="background-color: #fef3c7; color: #92400e; font-size: 10px; padding: 2px 6px; border-radius: 4px; border: 1px solid #fcd34d; font-weight: 800; margin-left: 6px;">KAPITAINA (C)</span>' : ''}</span>
+                            </td>
+                            <td style="padding: 10px; font-size: 12px; color: #4b5563;">${p.position || '-'}</td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            const contentContainer = document.getElementById('modal-team-detail-content');
+            contentContainer.innerHTML = `
+                <div style="font-family: Arial, sans-serif; background-color: #ffffff; padding: 10px;">
+                    <div style="border-bottom: 3px solid #0A2540; padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 style="color: #0A2540; margin: 0; font-size: 16px; font-weight: bold;">LEKEITIOKO MARIERROTA BOLEIBOL TALDEA</h2>
+                            <span style="color: #F5C518; background-color: #0A2540; display: inline-block; padding: 2px 8px; margin-top: 4px; font-size: 12px; font-weight: bold; border-radius: 4px;">${team.name.toUpperCase()}</span>
+                        </div>
+                        <div style="text-align: right; font-size: 10px; color: #6b7280;">
+                            <b>Kategoria:</b> ${team.category || '-'}<br>
+                            <b>Denboraldia:</b> ${team.season || '2025/2026'}<br>
+                            <b>Jokalariak:</b> ${teamPlayers.length}
+                        </div>
+                    </div>
+
+                    <h3 style="font-size: 12px; color: #0A2540; font-weight: bold; margin-bottom: 8px; border-left: 3px solid #F5C518; padding-left: 6px;">JOKALARIEN ZERRENDA OFIZIALA</h3>
+
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background-color: #0A2540; color: #ffffff; text-align: left; font-size: 11px;">
+                                <th style="padding: 8px; text-align: center; width: 15%;">#</th>
+                                <th style="padding: 8px; width: 55%;">Izen-Abizenak eta Argazkia</th>
+                                <th style="padding: 8px; width: 30%;">Posizioa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${playersRows}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            openModal('modal-team-detail');
         }
 
         function openTeamModal(editId = null) {
@@ -2123,7 +3040,7 @@
             openModal('modal-team');
         }
 
-        function saveTeam() {
+        async function saveTeam() {
             if (currentRole !== 'admin' && currentRole !== 'coach') return;
             const editId = document.getElementById('team-edit-id').value;
             const name = document.getElementById('team-name').value.trim();
@@ -2141,7 +3058,7 @@
                 appData.teams.push({ id: 't_' + Date.now(), name, category, season });
             }
 
-            saveLocalData();
+            await saveDataToCloud();
             renderTeams();
             populateSelectOptions();
             closeModal('modal-team');
@@ -2300,7 +3217,7 @@
             renderTeams();
         }
 
-        function savePlayer() {
+        async function savePlayer() {
             if (currentRole !== 'admin' && currentRole !== 'coach') return;
             const editId = document.getElementById('player-edit-id').value;
             const teamId = document.getElementById('player-team-id').value;
@@ -2332,7 +3249,7 @@
             }
 
             tempPlayerPhotoBase64 = '';
-            saveLocalData();
+            await saveDataToCloud();
             renderTeams();
             closeModal('modal-player');
         }
@@ -2340,8 +3257,8 @@
         /* PARTIDEN EGUTEGIA */
         function renderCalendar() {
             const container = document.getElementById('calendar-list');
-            if (!container) return;
-            container.innerHTML = '';
+            const gridContainer = document.getElementById('calendar-grid-view');
+            if (!container || !gridContainer) return;
 
             let filtered = [...appData.matches];
             const teamFilterElem = document.getElementById('calendar-filter-team');
@@ -2362,6 +3279,18 @@
 
             filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
 
+            if (calendarViewMode === 'grid') {
+                container.classList.add('hidden');
+                gridContainer.classList.remove('hidden');
+                renderCalendarGrid(filtered);
+                return;
+            } else {
+                container.classList.remove('hidden');
+                gridContainer.classList.add('hidden');
+            }
+
+            container.innerHTML = '';
+
             if (filtered.length === 0) {
                 container.innerHTML = '<p class="text-center text-xs text-gray-400 py-6">Ez dago partidarik hautatutako datan / asteburuan</p>';
                 return;
@@ -2377,7 +3306,7 @@
                     : `${m.rival} vs ${team ? team.name : ''}`;
 
                 container.innerHTML += `
-                    <div class="p-3 flex justify-between items-center hover:bg-gray-50 text-xs">
+                    <div class="p-3 flex justify-between items-center hover:bg-gray-50 text-xs border-b border-gray-100 last:border-b-0">
                         <div class="space-y-1">
                             <div class="flex items-center gap-2">
                                 <span class="font-bold text-volley-blue">${matchTitle}</span>
@@ -2401,6 +3330,94 @@
                     </div>
                 `;
             });
+        }
+
+        function setCalendarViewMode(mode) {
+            calendarViewMode = mode;
+            const btnList = document.getElementById('cal-mode-list');
+            const btnGrid = document.getElementById('cal-mode-grid');
+
+            if (mode === 'list') {
+                btnList.className = "px-3 py-1 rounded-md bg-volley-blue text-white shadow-sm transition-all";
+                btnGrid.className = "px-3 py-1 rounded-md text-gray-700 transition-all";
+            } else {
+                btnGrid.className = "px-3 py-1 rounded-md bg-volley-blue text-white shadow-sm transition-all";
+                btnList.className = "px-3 py-1 rounded-md text-gray-700 transition-all";
+            }
+            renderCalendar();
+        }
+
+        function renderCalendarGrid(matches) {
+            const gridContainer = document.getElementById('calendar-grid-view');
+            if (!gridContainer) return;
+
+            // Group matches by YYYY-MM
+            let monthsMap = {};
+            matches.forEach(m => {
+                if (!m.date) return;
+                const ym = m.date.substring(0, 7); // "YYYY-MM"
+                if (!monthsMap[ym]) monthsMap[ym] = [];
+                monthsMap[ym].push(m);
+            });
+
+            const sortedMonths = Object.keys(monthsMap).sort();
+            if (sortedMonths.length === 0) {
+                gridContainer.innerHTML = '<p class="text-center text-xs text-gray-400 py-6">Ez dago partidarik hautatutako iragazkietan</p>';
+                return;
+            }
+
+            const monthNames = {
+                "01": "Urtarrila", "02": "Otsaila", "03": "Martxoa", "04": "Apirila",
+                "05": "Maiatza", "06": "Ekaina", "07": "Uztaila", "08": "Abuztua",
+                "09": "Iraila", "10": "Urria", "11": "Azaroa", "12": "Abendua"
+            };
+
+            let html = '';
+            sortedMonths.forEach(ym => {
+                const [year, monthNum] = ym.split('-');
+                const monthName = monthNames[monthNum] || monthNum;
+                const monthMatches = monthsMap[ym];
+
+                html += `
+                    <div class="border rounded-xl p-4 bg-gray-50/50 space-y-3">
+                        <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center justify-between">
+                            <span><i class="fa-regular fa-calendar-days mr-2 text-volley-blue"></i> ${monthName} ${year}</span>
+                            <span class="text-xs bg-blue-100 text-volley-blue px-2.5 py-0.5 rounded-full font-bold">${monthMatches.length} partida</span>
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                `;
+
+                monthMatches.forEach(m => {
+                    const team = appData.teams.find(t => t.id === m.teamId);
+                    const isHome = m.isHome !== false;
+                    const matchTitle = isHome ? `${team ? team.name : ''} vs ${m.rival}` : `${m.rival} vs ${team ? team.name : ''}`;
+
+                    html += `
+                        <div class="bg-white p-3 rounded-xl border shadow-sm space-y-2 text-xs flex flex-col justify-between">
+                            <div class="space-y-1">
+                                <div class="flex justify-between items-start">
+                                    <span class="font-extrabold text-volley-blue">${matchTitle}</span>
+                                    <span class="text-[9px] font-bold px-2 py-0.5 rounded-full ${isHome ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                                        ${isHome ? 'Etxean' : 'Kanpoan'}
+                                    </span>
+                                </div>
+                                <p class="text-gray-600 font-semibold"><i class="fa-regular fa-calendar mr-1"></i>${m.date} - ${m.time}</p>
+                                <p class="text-gray-500 truncate">📍 ${m.location}</p>
+                                ${!isHome ? `<p class="text-[10px] text-amber-700 font-semibold"><i class="fa-solid fa-bus mr-1"></i>Irteera: ${m.departureTime || '-'}</p>` : ''}
+                            </div>
+                            <div class="pt-2 border-t flex justify-end gap-1">
+                                <button onclick="exportMatchCallupPDF('${m.id}')" class="text-[10px] bg-volley-blue text-white px-2 py-1 rounded font-bold shadow-sm flex items-center gap-1">
+                                    <i class="fa-solid fa-file-pdf"></i> PDF
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div></div>`;
+            });
+
+            gridContainer.innerHTML = html;
         }
 
         function clearCalendarFilter() {
@@ -2453,7 +3470,7 @@
             renderCalendar();
         }
 
-        function saveMatch() {
+        async function saveMatch() {
             if (currentRole !== 'admin' && currentRole !== 'coach') return;
             const editId = document.getElementById('match-edit-id').value;
             const teamId = document.getElementById('match-team').value;
@@ -2476,7 +3493,7 @@
                 appData.matches.push(matchData);
             }
 
-            saveLocalData();
+            await saveDataToCloud();
             renderCalendar();
             closeModal('modal-match');
         }
@@ -2762,7 +3779,7 @@
             openModal('modal-exercise');
         }
 
-        function saveExercise() {
+        async function saveExercise() {
             if (currentRole !== 'admin' && currentRole !== 'coach') return;
             const editId = document.getElementById('ex-edit-id').value;
             const title = document.getElementById('ex-title').value.trim();
@@ -2790,7 +3807,7 @@
                 appData.exercises.push({ id: 'ex_' + Date.now(), title, type, target, duration, reps, image, modalItems: savedModalItems, v1, v2, v3 });
             }
 
-            saveLocalData();
+            await saveDataToCloud();
             renderExercises();
             closeModal('modal-exercise');
         }
@@ -2805,43 +3822,72 @@
 
         /* ENTRENAMENDU FITXAK */
         function renderSessions() {
+            const filterButtonsContainer = document.getElementById('session-team-filter-buttons');
+            if (filterButtonsContainer) {
+                let filterBtnsHtml = `<button onclick="setSessionTeamFilter('ALL')" class="px-3 py-1.5 rounded-lg text-xs font-bold ${activeSessionFilterTeamId === 'ALL' ? 'bg-volley-blue text-white shadow' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-all">Talde Guztiak</button>`;
+                appData.teams.forEach(t => {
+                    const isSel = activeSessionFilterTeamId === t.id;
+                    filterBtnsHtml += `<button onclick="setSessionTeamFilter('${t.id}')" class="px-3 py-1.5 rounded-lg text-xs font-bold ${isSel ? 'bg-volley-blue text-white shadow' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-all">${t.name}</button>`;
+                });
+                filterButtonsContainer.innerHTML = filterBtnsHtml;
+            }
+
             const container = document.getElementById('sessions-list');
             if (!container) return;
             container.innerHTML = '';
 
-            if (appData.sessions.length === 0) {
-                container.innerHTML = '<p class="text-center text-xs text-gray-400 py-6">Ez dago entrenamendu fitxarik sortuta</p>';
+            let filteredSessions = [...appData.sessions];
+            if (activeSessionFilterTeamId !== 'ALL') {
+                filteredSessions = filteredSessions.filter(s => s.teamId === activeSessionFilterTeamId);
+            }
+
+            if (filteredSessions.length === 0) {
+                container.innerHTML = '<p class="text-center text-xs text-gray-400 py-6">Ez dago entrenamendu fitxarik hautatutako talderako</p>';
                 return;
             }
 
             const isAdminOrCoach = currentRole === 'admin' || currentRole === 'coach';
 
-            appData.sessions.forEach(s => {
+            filteredSessions.forEach(s => {
                 const team = appData.teams.find(t => t.id === s.teamId);
                 const selectedExs = appData.exercises.filter(ex => s.exerciseIds.includes(ex.id));
+                const totalDuration = selectedExs.reduce((acc, ex) => acc + parseInt(ex.duration || 10), 0);
 
                 container.innerHTML += `
                     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 space-y-3">
-                        <div class="flex justify-between items-start border-b pb-2">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-2 gap-2">
                             <div>
-                                <h3 class="font-bold text-gray-800 text-base">${team ? team.name : 'Taldea'}</h3>
-                                <p class="text-xs text-volley-blue font-semibold"><i class="fa-regular fa-calendar mr-1"></i>${s.date} - Helburua: ${s.objective}</p>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-bold text-gray-800 text-base">${team ? team.name : 'Taldea'}</h3>
+                                    <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2.5 py-0.5 rounded-full"><i class="fa-regular fa-clock mr-1"></i>${totalDuration} min guztira</span>
+                                </div>
+                                <p class="text-xs text-volley-blue font-semibold mt-0.5"><i class="fa-regular fa-calendar mr-1"></i>${s.date} - Helburua: ${s.objective}</p>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <button onclick="previewSession('${s.id}')" class="text-xs bg-volley-blue text-white px-2.5 py-1.5 rounded-lg font-semibold flex items-center gap-1">
-                                    <i class="fa-solid fa-eye"></i> Ikusi
+                            <div class="flex flex-wrap items-center gap-1.5">
+                                <button onclick="previewSession('${s.id}')" class="text-xs bg-volley-blue hover:bg-volley-darkblue text-white px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1 shadow-sm">
+                                    <i class="fa-solid fa-eye"></i> Ikusi Saioa & Oharrak
+                                </button>
+                                <button onclick="openSessionScoutModal('${s.id}')" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg font-semibold flex items-center gap-1 shadow-sm">
+                                    <i class="fa-solid fa-chart-line"></i> Saioko Scouting-a
                                 </button>
                                 ${isAdminOrCoach ? `
-                                    <button onclick="editSession('${s.id}')" class="text-xs text-blue-500 p-1"><i class="fa-solid fa-pen"></i></button>
-                                    <button onclick="deleteSession('${s.id}')" class="text-xs text-red-400 p-1"><i class="fa-solid fa-trash"></i></button>
+                                    <button onclick="editSession('${s.id}')" class="text-xs text-blue-500 hover:text-blue-700 p-1.5 rounded-lg hover:bg-blue-50"><i class="fa-solid fa-pen"></i></button>
+                                    <button onclick="deleteSession('${s.id}')" class="text-xs text-red-400 hover:text-red-600 p-1.5 rounded-lg hover:bg-red-50"><i class="fa-solid fa-trash"></i></button>
                                 ` : ''}
                             </div>
                         </div>
 
+                        ${s.coachNotes ? `
+                            <div class="bg-amber-50/60 p-2 rounded-lg border border-amber-200 text-xs text-amber-900">
+                                <span class="font-bold block text-[11px] mb-0.5"><i class="fa-solid fa-note-sticky mr-1"></i> Entrenatzailearen Oharrak:</span>
+                                <p>${s.coachNotes}</p>
+                            </div>
+                        ` : ''}
+
                         <div class="space-y-1">
-                            <p class="text-xs font-bold text-gray-700">Sartutako Ariketak (${selectedExs.length}):</p>
+                            <p class="text-xs font-bold text-gray-700">Aukeratutako Ariketak (${selectedExs.length}):</p>
                             <div class="flex flex-wrap gap-1 text-[11px]">
-                                ${selectedExs.map(ex => `<span class="bg-blue-50 text-volley-blue px-2 py-0.5 rounded border">${ex.title}</span>`).join('')}
+                                ${selectedExs.map(ex => `<span class="bg-blue-50 text-volley-blue px-2.5 py-1 rounded border">${ex.title} (${ex.duration || 10} min)</span>`).join('')}
                             </div>
                         </div>
                     </div>
@@ -2849,10 +3895,113 @@
             });
         }
 
+        function setSessionTeamFilter(teamId) {
+            activeSessionFilterTeamId = teamId;
+            renderSessions();
+        }
+
+        function renderSessionSelectorSection(sectionNum) {
+            const container = document.getElementById(`selector-section-${sectionNum}`);
+            if (!container) return;
+            const typeFilter = document.getElementById(`filter-sec-${sectionNum}-type`).value;
+            const targetFilter = document.getElementById(`filter-sec-${sectionNum}-target`).value;
+
+            // Gather currently checked exercise IDs in OTHER sections to prevent duplicates
+            const selectedIds = new Set();
+            document.querySelectorAll('.session-ex-cb:checked').forEach(cb => {
+                // If we want to allow or disallow cross-section selection: "Ariketa berdina atal guztietan ezin da jarri"
+                selectedIds.add(cb.value);
+            });
+
+            let filtered = appData.exercises.filter(ex => {
+                const matchType = typeFilter === 'ALL' || ex.type === typeFilter;
+                const matchTarget = targetFilter === 'ALL' || ex.target === targetFilter;
+                return matchType && matchTarget;
+            });
+
+            container.innerHTML = filtered.length === 0 ? '<p class="text-[11px] text-gray-400 italic p-1">Ez da ariketarik aurkitu iragazki honekin</p>' : filtered.map(ex => {
+                // Check if this exercise is already checked in another section
+                const isCheckedInThisSection = document.querySelector(`#selector-section-${sectionNum} input[value="${ex.id}"]`)?.checked;
+                const isUsedElsewhere = selectedIds.has(ex.id) && !isCheckedInThisSection;
+
+                return `
+                    <label class="flex items-center justify-between p-2 bg-white hover:bg-gray-50 rounded-lg border border-gray-200 cursor-pointer text-xs ${isUsedElsewhere ? 'opacity-55 bg-gray-100' : ''}">
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" value="${ex.id}" data-duration="${ex.duration || 10}" onchange="handleSessionCheckboxChange(this)" class="session-ex-cb rounded text-volley-blue w-4 h-4" ${isUsedElsewhere ? 'disabled' : ''} ${isCheckedInThisSection ? 'checked' : ''}>
+                            <div>
+                                <span class="font-bold text-gray-900 block">${ex.title} ${isUsedElsewhere ? '<span class="text-[9px] text-red-500 font-normal">(Beste atal batean hautatuta)</span>' : ''}</span>
+                                <span class="text-[10px] text-gray-500">${ex.type} | ${ex.target} — <b class="text-volley-blue">${ex.duration || 10} min</b></span>
+                            </div>
+                        </div>
+                    </label>
+                `;
+            }).join('');
+        }
+
+        function handleSessionCheckboxChange(checkbox) {
+            // Re-render all 4 sections so disabled states update dynamically when an exercise is checked/unchecked
+            const checkedId = checkbox.value;
+            const isChecked = checkbox.checked;
+
+            if (isChecked) {
+                // Ensure no other section has this checked
+                for (let i = 1; i <= 4; i++) {
+                    const cb = document.querySelector(`#selector-section-${i} input[value="${checkedId}"]`);
+                    if (cb && cb !== checkbox) {
+                        cb.checked = false;
+                        cb.disabled = true;
+                    }
+                }
+            } else {
+                // Re-enable in all sections
+                for (let i = 1; i <= 4; i++) {
+                    const cb = document.querySelector(`#selector-section-${i} input[value="${checkedId}"]`);
+                    if (cb) cb.disabled = false;
+                }
+            }
+
+            updateSessionTotalDuration();
+            // Refresh all sections to update disabled styling
+            for (let i = 1; i <= 4; i++) {
+                // Keep current checkbox states intact while refreshing disabled attributes
+                refreshSectionDisabledStates(i);
+            }
+        }
+
+        function refreshSectionDisabledStates(sectionNum) {
+            const selectedIds = new Set();
+            document.querySelectorAll('.session-ex-cb:checked').forEach(cb => selectedIds.add(cb.value));
+
+            document.querySelectorAll(`#selector-section-${sectionNum} .session-ex-cb`).forEach(cb => {
+                const exId = cb.value;
+                const isCheckedHere = cb.checked;
+                if (selectedIds.has(exId) && !isCheckedHere) {
+                    cb.disabled = true;
+                    cb.closest('label').classList.add('opacity-55', 'bg-gray-100');
+                } else {
+                    cb.disabled = false;
+                    cb.closest('label').classList.remove('opacity-55', 'bg-gray-100');
+                }
+            });
+        }
+
+        function updateSessionTotalDuration() {
+            let total = 0;
+            document.querySelectorAll('.session-ex-cb:checked').forEach(cb => {
+                total += parseInt(cb.getAttribute('data-duration') || 10);
+            });
+            const badge = document.getElementById('session-total-duration-badge');
+            if (badge) badge.innerText = `${total} min`;
+        }
+
         function openSessionModal(editId = null) {
             if (currentRole !== 'admin' && currentRole !== 'coach') return;
             document.getElementById('session-edit-id').value = editId || '';
             populateSelectOptions();
+
+            for (let i = 1; i <= 4; i++) {
+                renderSessionSelectorSection(i);
+            }
 
             if (editId) {
                 const s = appData.sessions.find(item => item.id === editId);
@@ -2861,39 +4010,61 @@
                     document.getElementById('session-team').value = s.teamId;
                     document.getElementById('session-date').value = s.date;
                     document.getElementById('session-objective').value = s.objective;
-                    
+                    document.getElementById('session-coach-notes').value = s.coachNotes || '';
+
                     setTimeout(() => {
                         document.querySelectorAll('.session-ex-cb').forEach(cb => {
-                            cb.checked = s.exerciseIds.includes(cb.value);
+                            if (s.exerciseIds.includes(cb.value)) {
+                                cb.checked = true;
+                            }
                         });
+                        for (let i = 1; i <= 4; i++) {
+                            refreshSectionDisabledStates(i);
+                        }
+                        updateSessionTotalDuration();
                     }, 50);
                 }
             } else {
-                document.getElementById('session-modal-title').innerText = "Planifikatu Entrenamendu Fitxa";
+                document.getElementById('session-modal-title').innerText = "Planifikatu 4 Ataleko Entrenamendu Fitxa";
                 document.getElementById('session-objective').value = '';
+                document.getElementById('session-coach-notes').value = '';
+                document.querySelectorAll('.session-ex-cb').forEach(cb => {
+                    cb.checked = false;
+                    cb.disabled = false;
+                });
+                for (let i = 1; i <= 4; i++) {
+                    refreshSectionDisabledStates(i);
+                }
+                updateSessionTotalDuration();
             }
             openModal('modal-session');
         }
 
-        function saveSession() {
+        async function saveSession() {
             if (currentRole !== 'admin' && currentRole !== 'coach') return;
             const editId = document.getElementById('session-edit-id').value;
             const teamId = document.getElementById('session-team').value;
             const date = document.getElementById('session-date').value;
             const objective = document.getElementById('session-objective').value.trim();
+            const coachNotes = document.getElementById('session-coach-notes').value.trim();
             const checkboxes = document.querySelectorAll('.session-ex-cb:checked');
             const exerciseIds = Array.from(checkboxes).map(cb => cb.value);
 
-            if (!date || exerciseIds.length === 0) return;
+            if (!date || exerciseIds.length === 0) {
+                alert("Mesedez, hautatu data eta gutxienez ariketa bat entrenamendu saiorako.");
+                return;
+            }
+
+            const sessionData = { id: editId || ('s_' + Date.now()), teamId, date, objective, coachNotes, exerciseIds };
 
             if (editId) {
                 const idx = appData.sessions.findIndex(s => s.id === editId);
-                if (idx !== -1) appData.sessions[idx] = { id: editId, teamId, date, objective, exerciseIds };
+                if (idx !== -1) appData.sessions[idx] = sessionData;
             } else {
-                appData.sessions.push({ id: 's_' + Date.now(), teamId, date, objective, exerciseIds });
+                appData.sessions.push(sessionData);
             }
 
-            saveLocalData();
+            await saveDataToCloud();
             renderSessions();
             closeModal('modal-session');
         }
@@ -2910,53 +4081,619 @@
             const s = appData.sessions.find(item => item.id === id);
             if (!s) return;
             const team = appData.teams.find(t => t.id === s.teamId);
+            const teamPlayers = appData.players.filter(p => p.teamId === s.teamId);
             const selectedExs = appData.exercises.filter(ex => s.exerciseIds.includes(ex.id));
+            const totalDuration = selectedExs.reduce((acc, ex) => acc + parseInt(ex.duration || 10), 0);
+            const isPlayerOrParent = currentRole === 'player' || currentRole === 'parent';
+
+            if (!appData.sessionNotes) appData.sessionNotes = {};
+            if (!appData.sessionNotes[id]) {
+                const defaultAtt = {};
+                teamPlayers.forEach(p => defaultAtt[p.id] = true);
+                appData.sessionNotes[id] = { 
+                    attendance: defaultAtt, 
+                    trackingNotes: '', 
+                    scoutingTool: { challenge: '', rating: 'Oso Ona', notes: '' }, 
+                    sessionScoutData: {
+                        k1: { pos: 0, neu: 0, neg: 0 },
+                        k2: { pos: 0, neu: 0, neg: 0 },
+                        k3: { pos: 0, neu: 0, neg: 0 }
+                    },
+                    sessionPlayerStats: {},
+                    sessionSettingZoneCounts: { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 },
+                    sessionAttackDirCounts: { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 }
+                };
+            }
+            const notesObj = appData.sessionNotes[id];
 
             const container = document.getElementById('session-preview-content');
             container.innerHTML = `
-                <div class="border-b pb-3">
-                    <h2 class="text-xl font-bold text-volley-darkblue">MARIERROTA KUDEAKETA - ${team ? team.name.toUpperCase() : ''}</h2>
-                    <p class="text-xs text-gray-600 font-semibold">Data: ${s.date} | Helburua: ${s.objective}</p>
-                </div>
-                
-                <div class="space-y-6">
-                    ${selectedExs.map((ex, index) => `
-                        <div class="border rounded-xl p-4 bg-gray-50 space-y-3">
-                            <div class="flex justify-between items-start border-b pb-2">
-                                <div>
-                                    <span class="text-xs font-bold text-volley-blue">Ariketa ${index + 1}: ${ex.title}</span>
-                                    <div class="flex flex-wrap gap-2 mt-1">
-                                        <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">${ex.target}</span>
-                                        ${ex.duration ? `<span class="text-[10px] text-gray-600 font-semibold"><i class="fa-regular fa-clock mr-1"></i>${ex.duration} min</span>` : ''}
-                                        ${ex.reps ? `<span class="text-[10px] text-gray-600 font-semibold"><i class="fa-solid fa-rotate mr-1"></i>${ex.reps}</span>` : ''}
-                                    </div>
-                                </div>
-                            </div>
-
-                            ${ex.image ? `<img src="${ex.image}" class="w-full max-h-56 object-contain rounded-lg border bg-white">` : ''}
-
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
-                                <div class="bg-blue-100/60 p-2 rounded-lg border-l-2 border-blue-600">
-                                    <span class="font-bold text-blue-800 block">1. M: Analitikoa</span>
-                                    <p class="text-gray-700">${ex.v1 || 'E/G'}</p>
-                                </div>
-                                <div class="bg-amber-100/60 p-2 rounded-lg border-l-2 border-amber-600">
-                                    <span class="font-bold text-amber-800 block">2. M: Egoerazkoa</span>
-                                    <p class="text-gray-700">${ex.v2 || 'E/G'}</p>
-                                </div>
-                                <div class="bg-emerald-100/60 p-2 rounded-lg border-l-2 border-emerald-600">
-                                    <span class="font-bold text-emerald-800 block">3. M: Erreala</span>
-                                    <p class="text-gray-700">${ex.v3 || 'E/G'}</p>
-                                </div>
-                            </div>
+                <div style="font-family: Arial, sans-serif; color: #1f2937; max-width: 700px; margin: 0 auto; background: #ffffff; padding: 12px;" id="printable-session-content" data-session-id="${s.id}">
+                    <div style="border-bottom: 2px solid #0A2540; padding-bottom: 8px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h2 style="color: #0A2540; margin: 0; font-size: 14px; font-weight: bold;">LEKEITIOKO MARIERROTA BOLEIBOL TALDEA</h2>
+                            <h3 style="color: #E65100; margin: 2px 0 0 0; font-size: 11px; font-weight: bold;">ENTRENAMENDU FITXA OFIZIALA ETA OHARRAK</h3>
                         </div>
-                    `).join('')}
+                        <div style="text-align: right; font-size: 9px; color: #4b5563;">
+                            <b>Taldea:</b> ${team ? team.name : ''}<br>
+                            <b>Data:</b> ${s.date} | <b>Iraupena:</b> ${totalDuration} min
+                        </div>
+                    </div>
+
+                    <div style="background-color: #f0fdf4; border-left: 3px solid #16a34a; padding: 6px 10px; margin-bottom: 12px; font-size: 10px;">
+                        <b>Helburu Nagusia:</b> ${s.objective || 'Zehaztu gabe'}
+                    </div>
+
+                    <!-- ATALAK ETA ARIKETAK -->
+                    <div style="margin-bottom: 12px;">
+                        <h4 style="font-size: 11px; color: #0A2540; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px; margin-bottom: 8px;">ENTRENAMENDUAREN ATALAK ETA ARIKETAK</h4>
+                        ${selectedExs.map((ex, index) => `
+                            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; margin-bottom: 8px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                                    <span style="font-weight: bold; color: #0A2540; font-size: 11px;">${index + 1}. ATALA: ${ex.title}</span>
+                                    <span style="font-size: 9px; background-color: #fef3c7; color: #92400e; padding: 1px 6px; border-radius: 4px; font-weight: bold;">${ex.target} (${ex.duration || 10} min)</span>
+                                </div>
+                                ${ex.image ? `<div style="text-align: center; margin: 6px 0;"><img src="${ex.image}" style="max-height: 140px; object-fit: contain; border: 1px solid #cbd5e1; border-radius: 4px; background: #fef3c7;"></div>` : ''}
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; font-size: 9px; margin-top: 6px;">
+                                    <div style="background: #eff6ff; padding: 4px; border-radius: 4px; border-left: 2px solid #2563eb;"><b>1. Analitikoa:</b> ${ex.v1 || '-'}</div>
+                                    <div style="background: #fffbeb; padding: 4px; border-radius: 4px; border-left: 2px solid #d97706;"><b>2. Egoerazkoa:</b> ${ex.v2 || '-'}</div>
+                                    <div style="background: #f0fdf4; padding: 4px; border-radius: 4px; border-left: 2px solid #16a34a;"><b>3. Globala:</b> ${ex.v3 || '-'}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <!-- ASISTENTZIA INTEGRATUA -->
+                    <div style="margin-bottom: 12px;">
+                        <h4 style="font-size: 11px; color: #0A2540; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px; margin-bottom: 6px;">JOKALARIEN ASISTENTZIA (KONTROLA)</h4>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 9px;">
+                            <thead>
+                                <tr style="background-color: #0A2540; color: #ffffff; text-align: left;">
+                                    <th style="padding: 4px; text-align: center; width: 15%;">Dortsala</th>
+                                    <th style="padding: 4px; width: 60%;">Izen-Abizenak</th>
+                                    <th style="padding: 4px; text-align: center; width: 25%;">Etorri da</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${teamPlayers.length === 0 ? '<tr><td colspan="3" style="padding: 6px; text-align: center; color: #9ca3af;">Ez dago jokalaririk talde honetan.</td></tr>' : teamPlayers.map(p => {
+                                    const isAtt = notesObj.attendance[p.id] !== false;
+                                    return `
+                                        <tr style="border-bottom: 1px solid #e5e7eb;">
+                                            <td style="padding: 4px; text-align: center; font-weight: bold;">#${p.number}</td>
+                                            <td style="padding: 4px; font-weight: bold;">${p.name} ${p.isCaptain ? '(C)' : ''}</td>
+                                            <td style="padding: 4px; text-align: center;">
+                                                <input type="checkbox" class="session-att-cb" data-player-id="${p.id}" ${isAtt ? 'checked' : ''} ${isPlayerOrParent ? 'disabled' : ''} style="accent-color: #0A2540;"> Etorri da
+                                            </td>
+                                        </tr>
+                                    `;
+                                }).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- JARRAIPENERAKO OHARRAK -->
+                    <div style="background-color: #fefce8; border: 1px solid #fef08a; border-radius: 6px; padding: 8px; font-size: 10px; margin-bottom: 10px;">
+                        <b style="color: #854d0e; display: block; margin-bottom: 2px;"><i class="fa-solid fa-clipboard-user mr-1"></i> Jokalari eta Taldearen Jarraipenerako Oharrak:</b>
+                        <textarea id="session-tracking-notes" placeholder="Idatzi jokalarien bilakaerari, taldearen dinamikari edo hurrengo saiorako gomendioei buruzko oharrak..." ${isPlayerOrParent ? 'readonly disabled' : ''} style="width: 100%; border: 1px solid #fef08a; padding: 4px; border-radius: 4px; font-size: 10px; height: 50px; resize: none; background: #ffffe5;">${notesObj.trackingNotes || ''}</textarea>
+                    </div>
+
+                    ${s.coachNotes ? `
+                        <div style="background-color: #fffbeb; border: 1px solid #fcd34d; border-radius: 6px; padding: 8px; font-size: 10px; margin-bottom: 10px;">
+                            <b style="color: #92400e; display: block; margin-bottom: 2px;">Entrenatzailearen Ohar Orokorrak:</b>
+                            <p style="margin: 0; color: #78350f;">${s.coachNotes}</p>
+                        </div>
+                    ` : ''}
+
+                    <div style="border-top: 1px dashed #cbd5e1; padding-top: 6px; font-size: 7px; color: #64748b; display: flex; justify-content: space-between;">
+                        <span>Marierrota Kudeaketa Sistema Ofiziala</span>
+                        <span>Sortze data: ${new Date().toLocaleDateString('eu-ES')}</span>
+                    </div>
                 </div>
             `;
+            
+            // Ezkutatu Gorde botoia jokalari edo gurasoentzat saioaren aurrebistan
+            const saveBtnInModal = document.querySelector("#modal-session-preview button[onclick*='saveSessionPreviewNotes']");
+            if (saveBtnInModal) saveBtnInModal.style.display = isPlayerOrParent ? 'none' : 'inline-flex';
+
             openModal('modal-session-preview');
         }
 
-        function printSessionPreview() { window.print(); }
+        function openSessionScoutModal(id) {
+            const s = appData.sessions.find(item => item.id === id);
+            if (!s) return;
+            const team = appData.teams.find(t => t.id === s.teamId);
+            const teamPlayers = appData.players.filter(p => p.teamId === s.teamId);
+            const isPlayerOrParent = currentRole === 'player' || currentRole === 'parent';
+
+            if (!appData.sessionNotes) appData.sessionNotes = {};
+            if (!appData.sessionNotes[id]) {
+                const defaultAtt = {};
+                teamPlayers.forEach(p => defaultAtt[p.id] = true);
+                appData.sessionNotes[id] = { 
+                    attendance: defaultAtt, 
+                    trackingNotes: '', 
+                    scoutingTool: { challenge: '', rating: 'Oso Ona', notes: '' }, 
+                    sessionScoutData: {
+                        k1: { pos: 0, neu: 0, neg: 0 },
+                        k2: { pos: 0, neu: 0, neg: 0 },
+                        k3: { pos: 0, neu: 0, neg: 0 }
+                    },
+                    sessionPlayerStats: {},
+                    sessionSettingZoneCounts: { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 },
+                    sessionAttackDirCounts: { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 }
+                };
+            }
+            const notesObj = appData.sessionNotes[id];
+            if (!notesObj.sessionScoutData) {
+                notesObj.sessionScoutData = {
+                    k1: { pos: 0, neu: 0, neg: 0 },
+                    k2: { pos: 0, neu: 0, neg: 0 },
+                    k3: { pos: 0, neu: 0, neg: 0 }
+                };
+            }
+            if (!notesObj.sessionPlayerStats) notesObj.sessionPlayerStats = {};
+            if (!notesObj.sessionSettingZoneCounts) notesObj.sessionSettingZoneCounts = { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 };
+            if (!notesObj.sessionAttackDirCounts) notesObj.sessionAttackDirCounts = { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 };
+
+            let modalEl = document.getElementById('modal-session-scout');
+            if (!modalEl) {
+                modalEl = document.createElement('div');
+                modalEl.id = 'modal-session-scout';
+                modalEl.className = 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden';
+                modalEl.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-xl max-w-3xl w-full p-5 space-y-4 max-h-[90vh] overflow-y-auto">
+                        <div class="flex justify-between items-center border-b pb-3">
+                            <div>
+                                <h3 id="modal-session-scout-title" class="font-bold text-volley-darkblue text-base">Saioko Scouting (Scouting Modulua)</h3>
+                                <p id="modal-session-scout-subtitle" class="text-xs text-gray-500"></p>
+                            </div>
+                            <button onclick="closeModal('modal-session-scout')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                        </div>
+                        <div id="modal-session-scout-content" class="space-y-4 text-xs"></div>
+                        <div class="flex justify-between items-center pt-3 border-t">
+                            <button onclick="previewSessionScoutReport('${id}')" class="px-4 py-1.5 rounded-lg bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold flex items-center gap-1 shadow">
+                                <i class="fa-solid fa-eye"></i> Ikusi Aurrebista
+                            </button>
+                            <div class="flex gap-2">
+                                <button onclick="closeModal('modal-session-scout')" class="px-4 py-1.5 rounded-lg border text-xs font-semibold">Itxi</button>
+                                ${!isPlayerOrParent ? `
+                                    <button onclick="saveSessionScoutChanges()" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center gap-1 shadow">
+                                        <i class="fa-solid fa-floppy-disk"></i> Gorde Aldaketak
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modalEl);
+            }
+
+            document.getElementById('modal-session-scout-subtitle').innerText = `${team ? team.name : ''} — Data: ${s.date}`;
+            document.getElementById('modal-session-scout-content').setAttribute('data-session-id', id);
+
+            let playerRadioHtml = '';
+            teamPlayers.forEach((p, idx) => {
+                if (idx === 0 && (!activeSessionScoutTargetPlayer || activeSessionScoutTargetPlayer === 'TEAM')) {
+                    activeSessionScoutTargetPlayer = p.id;
+                }
+                const isSelected = activeSessionScoutTargetPlayer === p.id;
+                playerRadioHtml += `
+                    <div onclick="selectSessionPlayerCard('${p.id}', '${id}')" class="flex flex-col items-center p-2 rounded-xl border-2 cursor-pointer transition-all text-center flex-shrink-0 w-20 ${isSelected ? 'border-volley-blue bg-blue-100 shadow-md ring-2 ring-volley-blue' : 'border-gray-200 bg-white hover:bg-gray-50'}">
+                        <div class="relative mb-1">
+                            ${p.photo ? 
+                                `<img src="${p.photo}" class="w-11 h-11 rounded-full object-cover border-2 border-volley-blue shadow-sm">` :
+                                `<div class="w-11 h-11 rounded-full bg-volley-blue text-white font-black flex items-center justify-center text-xs shadow-sm"><i class="fa-solid fa-user"></i></div>`
+                            }
+                            ${p.isCaptain ? `<span class="absolute -top-1 -right-1 bg-amber-500 text-white font-black text-[9px] w-4 h-4 rounded-full flex items-center justify-center border border-white">C</span>` : ''}
+                        </div>
+                        <span class="font-bold text-gray-900 text-[11px] truncate w-full">${p.name.split(' ')[0]}</span>
+                        <span class="text-[9px] text-gray-500 truncate w-full">${p.position}</span>
+                    </div>
+                `;
+            });
+
+            let teamK1 = notesObj.sessionScoutData.k1 || { pos: 0, neu: 0, neg: 0 };
+            let teamK2 = notesObj.sessionScoutData.k2 || { pos: 0, neu: 0, neg: 0 };
+            let teamK3 = notesObj.sessionScoutData.k3 || { pos: 0, neu: 0, neg: 0 };
+
+            let summaryHtml = `
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <div class="bg-blue-50 p-2 rounded-lg border border-blue-200">
+                        <b class="text-volley-blue block">KI Sistema (K1 / Harrera):</b>
+                        <span class="text-gray-700">${teamK1.pos}+ / ${teamK1.neu}0 / ${teamK1.neg}-</span>
+                        <span class="font-bold text-volley-blue block text-[11px] mt-0.5">Eraginkortasuna: ${calcEfficiency(teamK1.pos, teamK1.neu, teamK1.neg)}%</span>
+                    </div>
+                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-200">
+                        <b class="text-amber-800 block">KII Sistema (K2 / Defentsa eta Kontraerasoa):</b>
+                        <span class="text-gray-700">${teamK2.pos}+ / ${teamK2.neu}0 / ${teamK2.neg}-</span>
+                        <span class="font-bold text-amber-800 block text-[11px] mt-0.5">Eraginkortasuna: ${calcEfficiency(teamK2.pos, teamK2.neu, teamK2.neg)}%</span>
+                    </div>
+                    <div class="bg-purple-50 p-2 rounded-lg border border-purple-200">
+                        <b class="text-purple-800 block">KIII Sistema (K3):</b>
+                        <span class="text-gray-700">${teamK3.pos}+ / ${teamK3.neu}0 / ${teamK3.neg}-</span>
+                        <span class="font-bold text-purple-800 block text-[11px] mt-0.5">Eraginkortasuna: ${calcEfficiency(teamK3.pos, teamK3.neu, teamK3.neg)}%</span>
+                    </div>
+                </div>
+            `;
+
+            let actionPadSection = '';
+            if (!isPlayerOrParent) {
+                actionPadSection = `
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-volley-darkblue"><i class="fa-solid fa-gamepad mr-1 text-volley-blue"></i> Kontrol Panela: Sistema eta Jokalaria</h4>
+                        
+                        <div class="bg-amber-50/80 p-2.5 rounded-xl border border-amber-300 space-y-1.5">
+                            <span class="font-bold text-xs text-amber-900 block"><i class="fa-solid fa-layer-group mr-1"></i> 1. Hautatu Lantzen Ari Garen Sistema:</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                <button type="button" onclick="setSessionActiveSystem('KI')" id="sys-btn-KI" class="sys-btn py-1.5 px-2 rounded-lg font-bold text-xs bg-volley-blue text-white shadow-sm text-left">
+                                    <div class="flex justify-between items-center"><span>KI Sistema</span><span class="text-[9px] bg-white/20 px-1.5 py-0.5 rounded">Harrera</span></div>
+                                </button>
+                                <button type="button" onclick="setSessionActiveSystem('KII')" id="sys-btn-KII" class="sys-btn py-1.5 px-2 rounded-lg font-bold text-xs bg-gray-100 text-gray-700 shadow-sm text-left hover:bg-gray-200">
+                                    <div class="flex justify-between items-center"><span>KII Sistema</span><span class="text-[9px] bg-gray-200 px-1.5 py-0.5 rounded text-gray-800">Defentsa/Kontraerasoa</span></div>
+                                </button>
+                                <button type="button" onclick="setSessionActiveSystem('KIII')" id="sys-btn-KIII" class="sys-btn py-1.5 px-2 rounded-lg font-bold text-xs bg-gray-100 text-gray-700 shadow-sm text-left hover:bg-gray-200">
+                                    <div class="flex justify-between items-center"><span>KIII Sistema</span><span class="text-[9px] bg-gray-200 px-1.5 py-0.5 rounded text-gray-800">Laguntzak</span></div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <span class="font-bold text-xs text-gray-700 block">2. Aukeratu Ekintza Egin Duen Jokalaria:</span>
+                            <div class="flex overflow-x-auto gap-2 py-1 hide-scrollbar">${playerRadioHtml}</div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 bg-emerald-50/70 p-3 rounded-xl border border-emerald-200">
+                            ${ACTION_SKILLS.map(skill => {
+                                let extraCtrl = '';
+                                if (skill === 'Kolokazioa') {
+                                    extraCtrl = `
+                                        <div class="space-y-0.5 mt-1">
+                                            <span class="text-[9px] font-bold text-volley-blue block">Zonaldea:</span>
+                                            <div class="grid grid-cols-4 gap-0.5 text-[9px]">
+                                                <button type="button" onclick="setSessionSettingZone('Z4', this)" id="ssz-btn-Z4" class="ssz-btn py-1 px-0 rounded font-bold bg-volley-blue text-white shadow-sm">Z4</button>
+                                                <button type="button" onclick="setSessionSettingZone('Z3', this)" id="ssz-btn-Z3" class="ssz-btn py-1 px-0 rounded font-bold bg-gray-100 text-gray-700">Z3</button>
+                                                <button type="button" onclick="setSessionSettingZone('Z2', this)" id="ssz-btn-Z2" class="ssz-btn py-1 px-0 rounded font-bold bg-gray-100 text-gray-700">Z2</button>
+                                                <button type="button" onclick="setSessionSettingZone('Z6-Zag', this)" id="ssz-btn-Z6-Zag" class="ssz-btn py-1 px-0 rounded font-bold bg-gray-100 text-gray-700">Z6Z</button>
+                                            </div>
+                                        </div>
+                                    `;
+                                } else if (skill === 'Rematea') {
+                                    extraCtrl = `
+                                        <div class="space-y-0.5 mt-1">
+                                            <span class="text-[9px] font-bold text-amber-700 block">Norabidea:</span>
+                                            <div class="grid grid-cols-4 gap-0.5 text-[9px]">
+                                                <button type="button" onclick="setSessionAttackDir('Diagonal', this)" id="sad-btn-Diagonal" class="sad-btn py-1 px-0 rounded font-bold bg-volley-blue text-white shadow-sm">Diag</button>
+                                                <button type="button" onclick="setSessionAttackDir('Linea', this)" id="sad-btn-Linea" class="sad-btn py-1 px-0 rounded font-bold bg-gray-100 text-gray-700">Lin</button>
+                                                <button type="button" onclick="setSessionAttackDir('Z6', this)" id="sad-btn-Z6" class="sad-btn py-1 px-0 rounded font-bold bg-gray-100 text-gray-700">Z6</button>
+                                                <button type="button" onclick="setSessionAttackDir('Beste', this)" id="sad-btn-Beste" class="sad-btn py-1 px-0 rounded font-bold bg-gray-100 text-gray-700">Best</button>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                                return `
+                                    <div class="bg-white p-2 rounded-lg border shadow-sm space-y-1 text-center flex flex-col justify-between">
+                                        <span class="font-bold text-volley-blue block text-[11px]">${skill}</span>
+                                        ${extraCtrl}
+                                        <div class="grid grid-cols-3 gap-1 mt-1">
+                                            <button type="button" onclick="registerSessionDetailedStat('${id}', '${skill}', 'pos')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-1.5 rounded text-[11px]">+1</button>
+                                            <button type="button" onclick="registerSessionDetailedStat('${id}', '${skill}', 'neu')" class="bg-amber-400 hover:bg-amber-500 text-white font-bold py-1.5 rounded text-[11px]">0</button>
+                                            <button type="button" onclick="registerSessionDetailedStat('${id}', '${skill}', 'neg')" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1.5 rounded text-[11px]">-1</button>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                actionPadSection = `
+                    <div class="bg-blue-50 p-3 rounded-xl border border-blue-200 text-center text-xs text-blue-900 font-bold">
+                        <i class="fa-solid fa-eye mr-1"></i> Jokalari modua: Irakurtzeko soilik (Ez dago ekintzarik editatzeko baimenik)
+                    </div>
+                `;
+            }
+
+            document.getElementById('modal-session-scout-content').innerHTML = `
+                <div class="space-y-4">
+                    ${actionPadSection}
+                    <div class="border-t pt-3 space-y-2">
+                        <h4 class="font-bold text-volley-darkblue">Momentuko Laburpena eta Emaitzak</h4>
+                        <div id="session-scout-live-summary">${summaryHtml}</div>
+                    </div>
+                </div>
+            `;
+            openModal('modal-session-scout');
+        }
+
+        let activeSessionScoutTargetPlayer = '';
+
+        function selectSessionPlayerCard(playerId, sessionId) {
+            activeSessionScoutTargetPlayer = playerId;
+            openSessionScoutModal(sessionId);
+        }
+
+        function setSessionActiveSystem(sys) {
+            activeScoutSystem = sys;
+            ['KI', 'KII', 'KIII'].forEach(s => {
+                const btn = document.getElementById(`sys-btn-${s}`);
+                if (!btn) return;
+                if (s === sys) {
+                    btn.className = "sys-btn py-1.5 px-2 rounded-lg font-bold text-xs bg-volley-blue text-white shadow-sm text-left";
+                } else {
+                    btn.className = "sys-btn py-1.5 px-2 rounded-lg font-bold text-xs bg-gray-100 text-gray-700 shadow-sm text-left hover:bg-gray-200";
+                }
+            });
+        }
+
+        function setSessionSettingZone(zone, btnEl) {
+            activeSessionSettingZone = zone;
+            document.querySelectorAll('.ssz-btn').forEach(b => {
+                b.className = "ssz-btn py-1 px-0 rounded font-bold bg-gray-100 text-gray-700 hover:bg-gray-200";
+            });
+            if (btnEl) {
+                btnEl.className = "ssz-btn py-1 px-0 rounded font-bold bg-volley-blue text-white shadow-sm";
+            }
+        }
+
+        function setSessionAttackDir(dir, btnEl) {
+            activeSessionAttackDir = dir;
+            document.querySelectorAll('.sad-btn').forEach(b => {
+                b.className = "sad-btn py-1 px-0 rounded font-bold bg-gray-100 text-gray-700 hover:bg-gray-200";
+            });
+            if (btnEl) {
+                btnEl.className = "sad-btn py-1 px-0 rounded font-bold bg-volley-blue text-white shadow-sm";
+            }
+        }
+
+        function setSessionAttackDir(dir, btnEl) {
+            activeSessionAttackDir = dir;
+            document.querySelectorAll('.ad-btn').forEach(b => {
+                b.className = "ad-btn py-2 px-1 rounded-md font-bold text-xs bg-gray-100 text-gray-700 hover:bg-gray-200";
+            });
+            if (btnEl) {
+                btnEl.className = "ad-btn py-2 px-1 rounded-md font-bold text-xs bg-volley-blue text-white shadow-sm";
+            }
+        }
+
+        function onSessionScoutTargetChange(radio) {
+            activeSessionScoutTargetPlayer = radio.value;
+            // Update visual active card styles
+            document.querySelectorAll('input[name="scout-target-player"]').forEach(r => {
+                const label = r.closest('label');
+                if (r.checked) {
+                    label.className = "flex items-center gap-2.5 p-2 rounded-xl border-2 cursor-pointer transition-all border-volley-blue bg-blue-50/70 shadow-sm";
+                } else {
+                    label.className = "flex items-center gap-2.5 p-2 rounded-xl border-2 cursor-pointer transition-all border-gray-200 bg-white hover:bg-gray-50";
+                }
+            });
+        }
+
+        function registerSessionDetailedStat(sessionId, skill, type) {
+            if (!appData.sessionNotes[sessionId]) return;
+            if (!appData.sessionNotes[sessionId].sessionScoutData) {
+                appData.sessionNotes[sessionId].sessionScoutData = { k1:{pos:0,neu:0,neg:0}, k2:{pos:0,neu:0,neg:0}, k3:{pos:0,neu:0,neg:0} };
+            }
+
+            // Update system tally (fix incrementing by 1 properly for pos, neu, neg)
+            const sysKey = activeScoutSystem === 'KI' ? 'k1' : (activeScoutSystem === 'KII' ? 'k2' : 'k3');
+            if (!appData.sessionNotes[sessionId].sessionScoutData[sysKey]) {
+                appData.sessionNotes[sessionId].sessionScoutData[sysKey] = { pos: 0, neu: 0, neg: 0 };
+            }
+            appData.sessionNotes[sessionId].sessionScoutData[sysKey][type]++;
+
+            // Update player stat
+            if (activeSessionScoutTargetPlayer && activeSessionScoutTargetPlayer !== 'TEAM') {
+                const playerId = activeSessionScoutTargetPlayer;
+                if (!appData.sessionNotes[sessionId].sessionPlayerStats) {
+                    appData.sessionNotes[sessionId].sessionPlayerStats = {};
+                }
+                if (!appData.sessionNotes[sessionId].sessionPlayerStats[playerId]) {
+                    appData.sessionNotes[sessionId].sessionPlayerStats[playerId] = {};
+                }
+                if (!appData.sessionNotes[sessionId].sessionPlayerStats[playerId][skill]) {
+                    appData.sessionNotes[sessionId].sessionPlayerStats[playerId][skill] = { pos: 0, neu: 0, neg: 0 };
+                }
+                appData.sessionNotes[sessionId].sessionPlayerStats[playerId][skill][type]++;
+            }
+
+            saveLocalData();
+            updateSessionScoutLiveSummary(sessionId);
+        }
+
+        function updateSessionScoutLiveSummary(sessionId) {
+            const notesObj = appData.sessionNotes[sessionId];
+            if (!notesObj) return;
+            const teamK1 = notesObj.sessionScoutData?.k1 || { pos: 0, neu: 0, neg: 0 };
+            const teamK2 = notesObj.sessionScoutData?.k2 || { pos: 0, neu: 0, neg: 0 };
+            const teamK3 = notesObj.sessionScoutData?.k3 || { pos: 0, neu: 0, neg: 0 };
+
+            const summaryEl = document.getElementById('session-scout-live-summary');
+            if (!summaryEl) return;
+
+            const formatSummaryItem = (st) => {
+                const total = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                return `Guztira: ${total} | +(${st.pos}) 0(${st.neu}) -(${st.neg}) | <span class="font-bold ${eff >= 0 ? 'text-emerald-600' : 'text-red-500'}">${eff}%</span>`;
+            };
+
+            let html = `
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+                    <div class="bg-blue-50 p-2 rounded-lg border border-blue-200 text-xs">
+                        <b class="text-volley-blue block">KI Sistema (K1):</b>
+                        <span class="text-gray-700 block">${formatSummaryItem(teamK1)}</span>
+                    </div>
+                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-200 text-xs">
+                        <b class="text-amber-800 block">KII Sistema (K2):</b>
+                        <span class="text-gray-700 block">${formatSummaryItem(teamK2)}</span>
+                    </div>
+                    <div class="bg-purple-50 p-2 rounded-lg border border-purple-200 text-xs">
+                        <b class="text-purple-800 block">KIII Sistema (K3):</b>
+                        <span class="text-gray-700 block">${formatSummaryItem(teamK3)}</span>
+                    </div>
+                </div>
+            `;
+
+            const playerStats = notesObj.sessionPlayerStats || {};
+            const teamPlayers = appData.players;
+
+            let pHtml = '';
+            for (const [pid, pSkills] of Object.entries(playerStats)) {
+                const pl = teamPlayers.find(p => p.id === pid);
+                if (!pl) continue;
+                let skillText = [];
+                for (const [sk, st] of Object.entries(pSkills)) {
+                    const total = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                    if (total > 0) {
+                        const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                        skillText.push(`<b>${sk}:</b> Guzt. ${total} (+${st.pos}/${st.neu}0/-${st.neg}) <span class="${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} font-bold">${eff}%</span>`);
+                    }
+                }
+                if (skillText.length > 0) {
+                    pHtml += `<div class="bg-gray-50 p-2 rounded border text-[11px] mb-1"><b>#${pl.number} ${pl.name}:</b> ${skillText.join(' | ')}</div>`;
+                }
+            }
+
+            if (pHtml) {
+                html += `<div class="space-y-1"><span class="font-bold text-gray-700 block text-[11px]">Jokalarien Erregistroak eta Zenbaki Absolutuak:</span>${pHtml}</div>`;
+            }
+
+            summaryEl.innerHTML = html;
+        }
+
+        function calcEfficiency(pos, neu, neg) {
+            const p = pos || 0;
+            const n = neg || 0;
+            const total = p + (neu || 0) + n;
+            if (total === 0) return 0;
+            return Math.round(((p - n) / total) * 100);
+        }
+
+        function previewSessionScoutReport(sessionId) {
+            const s = appData.sessions.find(item => item.id === sessionId);
+            if (!s) return;
+            const team = appData.teams.find(t => t.id === s.teamId);
+            const notesObj = appData.sessionNotes[sessionId] || {};
+            const teamPlayers = appData.players.filter(p => p.teamId === s.teamId);
+
+            let previewModal = document.getElementById('modal-session-scout-preview');
+            if (!previewModal) {
+                previewModal = document.createElement('div');
+                previewModal.id = 'modal-session-scout-preview';
+                previewModal.className = 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden';
+                previewModal.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-xl max-w-4xl w-full p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+                        <div class="flex justify-between items-center border-b pb-3 no-print">
+                            <h3 class="font-bold text-volley-darkblue text-base">Saioko Scouting-aren Informea eta Aurrebista</h3>
+                            <button onclick="closeModal('modal-session-scout-preview')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                        </div>
+                        <div id="session-scout-preview-content" class="space-y-4 text-xs bg-white p-4"></div>
+                        <div class="flex justify-end gap-2 pt-3 border-t no-print">
+                            <button onclick="closeModal('modal-session-scout-preview')" class="px-4 py-1.5 rounded-lg border text-xs font-semibold">Itxi</button>
+                            <button onclick="exportSessionScoutPDF('${sessionId}')" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center gap-1 shadow">
+                                <i class="fa-solid fa-file-pdf"></i> Deskargatu PDF Txostena
+                            </button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(previewModal);
+            }
+
+            const k1 = notesObj.sessionScoutData?.k1 || {pos:0,neu:0,neg:0};
+            const k2 = notesObj.sessionScoutData?.k2 || {pos:0,neu:0,neg:0};
+            const k3 = notesObj.sessionScoutData?.k3 || {pos:0,neu:0,neg:0};
+
+            let playerRowsHtml = '';
+            const pStatsMap = notesObj.sessionPlayerStats || {};
+
+            teamPlayers.forEach(p => {
+                const pSt = pStatsMap[p.id] || {};
+                let hasAnyAction = false;
+                let skRows = [];
+
+                for (const [sk, st] of Object.entries(pSt)) {
+                    const tot = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                    if (tot > 0) {
+                        hasAnyAction = true;
+                        const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                        skRows.push(`<div><b>${sk}:</b> Guztira: ${tot} ekintza (+${st.pos}/${st.neu}0/-${st.neg}) — <span class="${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} font-bold">${eff}% erag.</span></div>`);
+                    }
+                }
+
+                if (hasAnyAction) {
+                    playerRowsHtml += `
+                        <div class="bg-gray-50 p-3 rounded-lg border space-y-1">
+                            <span class="font-bold text-gray-900 text-sm block">#${p.number} ${p.name} (${p.position})</span>
+                            <div class="text-gray-600 text-xs space-y-0.5">${skRows.join('')}</div>
+                        </div>
+                    `;
+                }
+            });
+
+            const formatSystemBox = (title, st, bgClass, borderClass) => {
+                const tot = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                return `
+                    <div class="${bgClass} p-3 rounded-xl border ${borderClass} space-y-1">
+                        <b class="block text-volley-darkblue">${title}</b>
+                        <span class="text-gray-700 block text-[11px]">Ekintzak Guztira: ${tot}</span>
+                        <span class="font-bold text-xs ${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} block">Eraginkortasuna: ${eff}%</span>
+                    </div>
+                `;
+            };
+
+            document.getElementById('session-scout-preview-content').innerHTML = `
+                <div class="space-y-4 font-sans" id="printable-session-scout-content">
+                    <div class="border-b-2 border-volley-darkblue pb-3 flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-base text-volley-darkblue">LEKEITIOKO MARIERROTA BOLEIBOL TALDEA</h4>
+                            <p class="text-xs text-volley-blue font-semibold">Saioko Scouting Informea — ${team ? team.name : ''} (${s.date})</p>
+                        </div>
+                        <span class="bg-volley-blue text-white text-xs px-3 py-1 rounded-lg font-bold shadow-sm">Informe Ofiziala</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h5 class="font-bold text-xs text-volley-darkblue uppercase tracking-wide"><i class="fa-solid fa-chart-line mr-1 text-volley-blue"></i> 1. Talde Sistema Taktikoen Balantzea</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            ${formatSystemBox('KI Sistema (K1)', k1, 'bg-blue-50', 'border-blue-200')}
+                            ${formatSystemBox('KII Sistema (K2)', k2, 'bg-amber-50', 'border-amber-200')}
+                            ${formatSystemBox('KIII Sistema (K3)', k3, 'bg-purple-50', 'border-purple-200')}
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 pt-2 border-t">
+                        <h5 class="font-bold text-xs text-volley-darkblue uppercase tracking-wide"><i class="fa-solid fa-users mr-1 text-volley-blue"></i> 2. Jokalarien Banakako Baloreak eta Eraginkortasuna</h5>
+                        <div class="space-y-2">
+                            ${playerRowsHtml || '<p class="text-gray-400 italic text-xs">Ez dago jokalarien ekintza erregistraturik saio honetan.</p>'}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            openModal('modal-session-scout-preview');
+        }
+
+        function exportSessionScoutPDF(sessionId) {
+            const printElement = document.getElementById('printable-session-scout-content');
+            if (typeof html2pdf !== 'undefined' && printElement) {
+                const opt = {
+                    margin: 10,
+                    filename: `Marierrota_Saioko_Scouting_${sessionId}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true, logging: false },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                html2pdf().from(printElement).set(opt).save().catch(err => {
+                    console.error("PDF sorkuntza errorea:", err);
+                    alert("Errorea PDFa sortzean.");
+                });
+            }
+        }
+
+        async function saveSessionScoutChanges() {
+            await saveDataToCloud();
+            alert("Saioko scouting aldaketak ondo gorde dira hodeian.");
+            closeModal('modal-session-scout');
+        }
 
         /* SCOUTING ETA ESTATISTIKAK */
         function onScoutTeamChange() {
@@ -3087,27 +4824,31 @@
             if (!container) return;
             const teamSelect = document.getElementById('scout-team-select');
             if (!teamSelect || !teamSelect.value) {
-                container.innerHTML = `<button type="button" onclick="selectScoutPlayer('ALL')" class="scout-p-btn px-3 py-1.5 rounded-full text-xs font-bold bg-volley-blue text-white shadow">Talde Osoa</button>`;
-                selectedScoutPlayerId = 'ALL';
+                container.innerHTML = `<span class="text-xs text-gray-400">Ez dago jokalaririk hautatutako taldean.</span>`;
+                selectedScoutPlayerId = '';
                 return;
             }
             const teamId = teamSelect.value;
             const teamPlayers = appData.players.filter(p => p.teamId === teamId);
 
-            let html = `<button type="button" onclick="selectScoutPlayer('ALL')" class="scout-p-btn px-3 py-1.5 rounded-full text-xs font-bold ${selectedScoutPlayerId === 'ALL' ? 'bg-volley-blue text-white ring-2 ring-volley-yellow' : 'bg-gray-100 text-gray-700'} shadow transition-all">Talde Osoa</button>`;
+            if (teamPlayers.length > 0 && (!selectedScoutPlayerId || !teamPlayers.some(p => p.id === selectedScoutPlayerId))) {
+                selectedScoutPlayerId = teamPlayers[0].id;
+            }
 
+            let html = '';
             teamPlayers.forEach(p => {
                 const isSelected = selectedScoutPlayerId === p.id;
                 html += `
-                    <button type="button" onclick="selectScoutPlayer('${p.id}')" class="scout-p-btn flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold ${isSelected ? 'bg-volley-blue text-white ring-2 ring-volley-yellow' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} shadow transition-all">
-                        <div class="relative">
+                    <button type="button" onclick="selectScoutPlayer('${p.id}')" class="scout-p-btn flex flex-col items-center p-2 rounded-xl border-2 cursor-pointer transition-all flex-shrink-0 w-20 text-center ${isSelected ? 'border-volley-blue bg-blue-100 shadow-md ring-2 ring-volley-blue' : 'border-gray-200 bg-white hover:bg-gray-50'}">
+                        <div class="relative mb-1">
                             ${p.photo ? 
-                                `<img src="${p.photo}" class="w-6 h-6 rounded-full object-cover border-2 border-volley-yellow">` : 
-                                `<span class="w-6 h-6 rounded-full bg-volley-yellow text-volley-darkblue flex items-center justify-center text-[10px] font-extrabold">${p.number}</span>`
+                                `<img src="${p.photo}" class="w-11 h-11 rounded-full object-cover border-2 border-volley-yellow">` : 
+                                `<span class="w-11 h-11 rounded-full bg-volley-yellow text-volley-darkblue flex items-center justify-center text-xs font-extrabold">${p.number}</span>`
                             }
-                            ${p.isCaptain ? `<span class="absolute -top-1 -right-1 bg-amber-500 text-white font-black text-[7px] w-3 h-3 rounded-full flex items-center justify-center border border-white">C</span>` : ''}
+                            ${p.isCaptain ? `<span class="absolute -top-1 -right-1 bg-amber-500 text-white font-black text-[8px] w-4 h-4 rounded-full flex items-center justify-center border border-white">C</span>` : ''}
                         </div>
-                        <span>${p.name.split(' ')[0]} ${p.isCaptain ? '(C)' : ''} (#${p.number})</span>
+                        <span class="font-bold text-gray-900 text-[11px] truncate w-full">${p.name.split(' ')[0]}</span>
+                        <span class="text-[9px] text-gray-500 truncate w-full">#${p.number}</span>
                     </button>
                 `;
             });
@@ -3129,8 +4870,36 @@
                 const itemDiv = document.createElement('div');
                 itemDiv.className = "bg-gray-50 p-2.5 rounded-xl border border-gray-200 flex flex-col justify-between space-y-2";
 
+                let extraControls = '';
+                if (skill === 'Kolokazioa') {
+                    extraControls = `
+                        <div class="space-y-1">
+                            <span class="text-[10px] font-bold text-volley-blue block">Kolokazio Zonaldea:</span>
+                            <div class="grid grid-cols-4 gap-1 text-[10px]">
+                                <button type="button" onclick="setScoutSettingZone('Z4', this)" id="scout-sz-Z4" class="scout-sz-btn py-1 px-0.5 rounded font-bold bg-volley-blue text-white shadow-sm">Z4</button>
+                                <button type="button" onclick="setScoutSettingZone('Z3', this)" id="scout-sz-Z3" class="scout-sz-btn py-1 px-0.5 rounded font-bold bg-gray-100 text-gray-700">Z3</button>
+                                <button type="button" onclick="setScoutSettingZone('Z2', this)" id="scout-sz-Z2" class="scout-sz-btn py-1 px-0.5 rounded font-bold bg-gray-100 text-gray-700">Z2</button>
+                                <button type="button" onclick="setScoutSettingZone('Z6-Zag', this)" id="scout-sz-Z6-Zag" class="scout-sz-btn py-1 px-0.5 rounded font-bold bg-gray-100 text-gray-700">Z6Z</button>
+                            </div>
+                        </div>
+                    `;
+                } else if (skill === 'Rematea') {
+                    extraControls = `
+                        <div class="space-y-1">
+                            <span class="text-[10px] font-bold text-amber-700 block">Eraso Norabidea / Gunea:</span>
+                            <div class="grid grid-cols-4 gap-1 text-[10px]">
+                                <button type="button" onclick="setScoutAttackDir('Diagonal', this)" id="scout-ad-Diagonal" class="scout-ad-btn py-1 px-0.5 rounded font-bold bg-volley-blue text-white shadow-sm">Diag</button>
+                                <button type="button" onclick="setScoutAttackDir('Linea', this)" id="scout-ad-Linea" class="scout-ad-btn py-1 px-0.5 rounded font-bold bg-gray-100 text-gray-700">Linea</button>
+                                <button type="button" onclick="setScoutAttackDir('Z6', this)" id="scout-ad-Z6" class="scout-ad-btn py-1 px-0.5 rounded font-bold bg-gray-100 text-gray-700">Z6</button>
+                                <button type="button" onclick="setScoutAttackDir('Beste', this)" id="scout-ad-Beste" class="scout-ad-btn py-1 px-0.5 rounded font-bold bg-gray-100 text-gray-700">Beste</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
                 itemDiv.innerHTML = `
                     <span class="font-bold text-xs text-volley-darkblue text-center">${skill}</span>
+                    ${extraControls}
                     <div class="grid grid-cols-3 gap-1.5">
                         <button type="button" onclick="registerStat('${skill}', 'pos')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs py-3 rounded-lg shadow active:scale-95 transition-transform">+1</button>
                         <button type="button" onclick="registerStat('${skill}', 'neu')" class="bg-amber-400 hover:bg-amber-500 text-white font-extrabold text-xs py-3 rounded-lg shadow active:scale-95 transition-transform">0</button>
@@ -3142,23 +4911,71 @@
             });
         }
 
+        function setScoutSettingZone(zone, btnEl) {
+            activeSettingZone = zone;
+            document.querySelectorAll('.scout-sz-btn').forEach(b => {
+                b.className = "scout-sz-btn py-1 px-0.5 rounded font-bold bg-gray-100 text-gray-700 hover:bg-gray-200";
+            });
+            if (btnEl) {
+                btnEl.className = "scout-sz-btn py-1 px-0.5 rounded font-bold bg-volley-blue text-white shadow-sm";
+            }
+        }
+
+        function setScoutAttackDir(dir, btnEl) {
+            activeAttackType = dir;
+            document.querySelectorAll('.scout-ad-btn').forEach(b => {
+                b.className = "scout-ad-btn py-1 px-1 rounded font-bold bg-gray-100 text-gray-700 hover:bg-gray-200";
+            });
+            if (btnEl) {
+                btnEl.className = "scout-ad-btn py-1 px-1 rounded font-bold bg-volley-blue text-white shadow-sm";
+            }
+        }
+
         function registerStat(skill, type) {
             if (!setStatsData[activeScoutSet]) setStatsData[activeScoutSet] = {};
             if (!setStatsData[activeScoutSet][skill]) setStatsData[activeScoutSet][skill] = { pos: 0, neg: 0, neu: 0 };
 
-            setStatsData[activeScoutSet][skill][type]++;
+            setStatsData[activeScoutSet][skill][type] += 1;
 
-            const playerId = selectedScoutPlayerId || 'ALL';
+            const playerId = selectedScoutPlayerId;
+            let detailMeta = '';
+            if (skill === 'Kolokazioa') {
+                detailMeta = activeSettingZone;
+                if (!globalSettingZoneCounts[activeScoutSet]) globalSettingZoneCounts[activeScoutSet] = { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 };
+                globalSettingZoneCounts[activeScoutSet][activeSettingZone] = (globalSettingZoneCounts[activeScoutSet][activeSettingZone] || 0) + 1;
+            }
+            if (skill === 'Rematea') {
+                detailMeta = activeAttackType;
+                if (!globalAttackDirCounts[activeScoutSet]) globalAttackDirCounts[activeScoutSet] = { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 };
+                globalAttackDirCounts[activeScoutSet][activeAttackType] = (globalAttackDirCounts[activeScoutSet][activeAttackType] || 0) + 1;
+            }
             
-            if (playerId !== 'ALL') {
+            if (playerId) {
                 if (!playerStatsData[activeScoutSet][playerId]) playerStatsData[activeScoutSet][playerId] = {};
                 if (!playerStatsData[activeScoutSet][playerId][skill]) playerStatsData[activeScoutSet][playerId][skill] = { pos: 0, neg: 0, neu: 0 };
-                playerStatsData[activeScoutSet][playerId][skill][type]++;
+                playerStatsData[activeScoutSet][playerId][skill][type] += 1;
+
+                if (!playerActionDetailsData[activeScoutSet][playerId]) playerActionDetailsData[activeScoutSet][playerId] = [];
+                playerActionDetailsData[activeScoutSet][playerId].push({ skill, type, meta: detailMeta });
             }
 
-            lastActionHistory.push({ set: activeScoutSet, skill, type, playerId });
+            lastActionHistory.push({ set: activeScoutSet, skill, type, playerId, meta: detailMeta });
             updateUndoButtonState();
             updateStatsSummaryDisplay();
+        }
+
+        function updateUndoButtonState() {
+            const undoBtn = document.getElementById('undo-stat-btn');
+            if (!undoBtn) return;
+            if (lastActionHistory.length > 0) {
+                undoBtn.disabled = false;
+                undoBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-200', 'text-gray-500');
+                undoBtn.classList.add('bg-red-100', 'text-red-700', 'hover:bg-red-200');
+            } else {
+                undoBtn.disabled = true;
+                undoBtn.classList.remove('bg-red-100', 'text-red-700', 'hover:bg-red-200');
+                undoBtn.classList.add('opacity-50', 'cursor-not-allowed', 'bg-gray-200', 'text-gray-500');
+            }
         }
 
         function undoLastStat() {
@@ -3170,27 +4987,25 @@
                 if (target[last.type] > 0) target[last.type]--;
             }
 
-            if (last.playerId !== 'ALL' && playerStatsData[last.set]?.[last.playerId]?.[last.skill]) {
+            if (last.skill === 'Kolokazioa' && last.meta && globalSettingZoneCounts[last.set]) {
+                if (globalSettingZoneCounts[last.set][last.meta] > 0) globalSettingZoneCounts[last.set][last.meta]--;
+            }
+            if (last.skill === 'Rematea' && last.meta && globalAttackDirCounts[last.set]) {
+                if (globalAttackDirCounts[last.set][last.meta] > 0) globalAttackDirCounts[last.set][last.meta]--;
+            }
+
+            if (last.playerId && playerStatsData[last.set]?.[last.playerId]?.[last.skill]) {
                 const pTarget = playerStatsData[last.set][last.playerId][last.skill];
                 if (pTarget[last.type] > 0) pTarget[last.type]--;
+
+                if (playerActionDetailsData[last.set][last.playerId]) {
+                    const arr = playerActionDetailsData[last.set][last.playerId];
+                    arr.pop();
+                }
             }
 
             updateUndoButtonState();
             updateStatsSummaryDisplay();
-        }
-
-        function updateUndoButtonState() {
-            const btn = document.getElementById('undo-stat-btn');
-            if (!btn) return;
-            if (lastActionHistory.length > 0) {
-                btn.removeAttribute('disabled');
-                btn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-200', 'text-gray-500');
-                btn.classList.add('bg-volley-yellow', 'text-volley-darkblue', 'shadow-sm');
-            } else {
-                btn.setAttribute('disabled', 'true');
-                btn.classList.add('opacity-50', 'cursor-not-allowed', 'bg-gray-200', 'text-gray-500');
-                btn.classList.remove('bg-volley-yellow', 'text-volley-darkblue', 'shadow-sm');
-            }
         }
 
         function updateStatsSummaryDisplay() {
@@ -3206,13 +5021,49 @@
                 const eff = total > 0 ? Math.round(((s.pos - s.neg) / total) * 100) : 0;
 
                 container.innerHTML += `
-                    <div class="bg-gray-50 p-2 rounded-lg border text-xs">
+                    <div class="bg-gray-50 p-2 rounded-lg border text-xs space-y-0.5">
                         <span class="font-bold text-gray-700 block">${skill}</span>
-                        <span class="text-[10px] text-gray-500 block">${s.pos}+ / ${s.neu}0 / ${s.neg}-</span>
-                        <span class="font-bold ${eff >= 0 ? 'text-emerald-600' : 'text-red-500'}">${eff}% Erag.</span>
+                        <span class="text-[10px] text-gray-500 block">Absolutua: ${total} (<b>+${s.pos}</b>, <b>${s.neu}0</b>, <b>-${s.neg}</b>)</span>
+                        <span class="font-bold ${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} block">Eraginkortasuna: ${eff}%</span>
                     </div>
                 `;
             });
+
+            // Update Setting Zones Breakdown
+            const szContainer = document.getElementById('scout-setting-zones-breakdown');
+            if (szContainer) {
+                const szCounts = globalSettingZoneCounts[activeScoutSet] || { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 };
+                const totalSz = (szCounts['Z4'] || 0) + (szCounts['Z3'] || 0) + (szCounts['Z2'] || 0) + (szCounts['Z6-Zag'] || 0);
+                
+                szContainer.innerHTML = ['Z4', 'Z3', 'Z2', 'Z6-Zag'].map(z => {
+                    const count = szCounts[z] || 0;
+                    const pct = totalSz > 0 ? Math.round((count / totalSz) * 100) : 0;
+                    return `
+                        <div class="flex justify-between items-center bg-white p-1.5 rounded border text-[11px]">
+                            <span class="font-bold text-volley-blue">Kolokazioa ${z}:</span>
+                            <span><b>${count} kolokazio</b> (${pct}%)</span>
+                        </div>
+                    `;
+                }).join('') + `<div class="text-[10px] text-gray-500 text-right pt-0.5">Kolokazioak Guztira: <b>${totalSz}</b></div>`;
+            }
+
+            // Update Attack Directions Breakdown
+            const adContainer = document.getElementById('scout-attack-zones-breakdown');
+            if (adContainer) {
+                const adCounts = globalAttackDirCounts[activeScoutSet] || { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 };
+                const totalAd = (adCounts['Diagonal'] || 0) + (adCounts['Linea'] || 0) + (adCounts['Z6'] || 0) + (adCounts['Beste'] || 0);
+
+                adContainer.innerHTML = ['Diagonal', 'Linea', 'Z6', 'Beste'].map(d => {
+                    const count = adCounts[d] || 0;
+                    const pct = totalAd > 0 ? Math.round((count / totalAd) * 100) : 0;
+                    return `
+                        <div class="flex justify-between items-center bg-white p-1.5 rounded border text-[11px]">
+                            <span class="font-bold text-amber-800">Eraso Gunea (${d}):</span>
+                            <span><b>${count} eraso</b> (${pct}%)</span>
+                        </div>
+                    `;
+                }).join('') + `<div class="text-[10px] text-gray-500 text-right pt-0.5">Erasoak Guztira: <b>${totalAd}</b></div>`;
+            }
 
             const pSetNum = document.getElementById('summary-player-set-num');
             if (pSetNum) pSetNum.innerText = activeScoutSet;
@@ -3248,10 +5099,10 @@
                     const eff = total > 0 ? Math.round(((st.pos - st.neg) / total) * 100) : 0;
                     if (total > 0) {
                         skillsHtml += `
-                            <div class="bg-white p-1.5 rounded border text-[11px]">
-                                <span class="font-bold text-volley-blue block">${skill}</span>
-                                <span class="text-gray-500">${st.pos}+/${st.neu}0/${st.neg}-</span>
-                                <span class="font-bold ${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} block">${eff}%</span>
+                            <div class="bg-white p-2 rounded border text-[11px] flex flex-col justify-between space-y-1">
+                                <span class="font-bold text-volley-blue">${skill}</span>
+                                <span class="text-gray-600 text-[10px]">Absolutua: ${total} (+${st.pos}/${st.neu}0/-${st.neg})</span>
+                                <span class="font-bold text-xs px-1 py-0.5 rounded text-white text-center ${eff >= 0 ? 'bg-emerald-600' : 'bg-red-500'}">Erag.: ${eff}%</span>
                             </div>
                         `;
                     }
