@@ -35,10 +35,11 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px; /* Oinarrizko letra tamaina handitu mugikorrean irakurgarritasuna hobetzeko */
         }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        canvas { touch-action: none; }
+        canvas { touch-action: none; max-width: 100%; height: auto; }
         @media print {
             body * { visibility: hidden; }
             #sec-calendar, #sec-calendar * { visibility: visible; }
@@ -47,13 +48,13 @@
         }
     </style>
 </head>
-<body class="bg-volley-bg text-gray-800 pb-20 md:pb-0 flex flex-col min-h-screen">
+<body class="bg-volley-bg text-gray-800 pb-24 md:pb-0 flex flex-col min-h-screen">
 
     <!-- HASIERAKO ROL HAUTATZEKO PANELA (LANDING MENU) -->
-    <div id="welcome-role-screen" class="fixed inset-0 bg-volley-darkblue z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8 space-y-6 text-center border-4 border-volley-yellow">
-            <div class="flex flex-col items-center space-y-3">
-                <div class="w-16 h-16 rounded-full bg-white p-0.5 flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0 border-2 border-volley-yellow">
+    <div id="welcome-role-screen" class="fixed inset-0 bg-volley-darkblue z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-5 sm:p-8 space-y-5 text-center border-4 border-volley-yellow my-auto">
+            <div class="flex flex-col items-center space-y-2">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white p-0.5 flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0 border-2 border-volley-yellow">
                     <svg viewBox="0 0 200 200" class="w-full h-full rounded-full">
                         <rect width="200" height="200" fill="#0A2540"/>
                         <text x="100" y="32" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-weight="900" font-size="20" text-anchor="middle">LEKEITIOKO</text>
@@ -70,54 +71,54 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-black text-volley-darkblue tracking-wide">MARIERROTA <span class="text-volley-yellow">KUDEAKETA</span></h1>
-                    <p class="text-xs text-gray-500 mt-1">Lekeitioko Marierrota Boleibol Taldea</p>
+                    <h1 class="text-lg sm:text-2xl font-black text-volley-darkblue tracking-wide">MARIERROTA <span class="text-volley-yellow">KUDEAKETA</span></h1>
+                    <p class="text-xs text-gray-500 mt-0.5">Lekeitioko Marierrota Boleibol Taldea</p>
                 </div>
             </div>
 
-            <div class="space-y-3 text-left">
+            <div class="space-y-2.5 text-left">
                 <label class="font-extrabold text-xs text-gray-700 block text-center uppercase tracking-wider">Aukeratu zure rola sartzeko:</label>
                 
-                <div class="grid grid-cols-1 gap-2.5">
-                    <button onclick="selectWelcomeRole('admin')" class="w-full text-left p-3.5 rounded-xl border-2 border-volley-blue/20 hover:border-volley-blue bg-blue-50/50 hover:bg-blue-50 transition-all flex items-center justify-between group">
+                <div class="grid grid-cols-1 gap-2">
+                    <button onclick="selectWelcomeRole('admin')" class="w-full text-left p-3 rounded-xl border-2 border-volley-blue/20 hover:border-volley-blue bg-blue-50/50 hover:bg-blue-50 transition-all flex items-center justify-between group">
                         <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-lg bg-volley-blue text-white flex items-center justify-center shadow"><i class="fa-solid fa-user-shield"></i></div>
+                            <div class="w-9 h-9 rounded-lg bg-volley-blue text-white flex items-center justify-center shadow flex-shrink-0"><i class="fa-solid fa-user-shield"></i></div>
                             <div>
                                 <span class="font-bold text-volley-darkblue text-sm block">Kirol Arduraduna</span>
-                                <span class="text-[11px] text-gray-500">Administratzaile nagusia (Pasahitza)</span>
+                                <span class="text-[11px] text-gray-500 block">Administratzaile nagusia (Pasahitza)</span>
                             </div>
                         </div>
                         <i class="fa-solid fa-chevron-right text-volley-blue group-hover:translate-x-1 transition-transform"></i>
                     </button>
 
-                    <button onclick="selectWelcomeRole('coach')" class="w-full text-left p-3.5 rounded-xl border-2 border-volley-blue/20 hover:border-volley-blue bg-blue-50/50 hover:bg-blue-50 transition-all flex items-center justify-between group">
+                    <button onclick="selectWelcomeRole('coach')" class="w-full text-left p-3 rounded-xl border-2 border-volley-blue/20 hover:border-volley-blue bg-blue-50/50 hover:bg-blue-50 transition-all flex items-center justify-between group">
                         <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-lg bg-amber-500 text-white flex items-center justify-center shadow"><i class="fa-solid fa-chalkboard-user"></i></div>
+                            <div class="w-9 h-9 rounded-lg bg-amber-500 text-white flex items-center justify-center shadow flex-shrink-0"><i class="fa-solid fa-chalkboard-user"></i></div>
                             <div>
                                 <span class="font-bold text-volley-darkblue text-sm block">Entrenatzailea</span>
-                                <span class="text-[11px] text-gray-500">Taldeak, ariketak eta scouting-a (Pasahitza)</span>
+                                <span class="text-[11px] text-gray-500 block">Taldeak, ariketak eta scouting-a</span>
                             </div>
                         </div>
                         <i class="fa-solid fa-chevron-right text-amber-500 group-hover:translate-x-1 transition-transform"></i>
                     </button>
 
-                    <button onclick="selectWelcomeRole('player')" class="w-full text-left p-3.5 rounded-xl border-2 border-gray-200 hover:border-volley-blue bg-gray-50 hover:bg-white transition-all flex items-center justify-between group">
+                    <button onclick="selectWelcomeRole('player')" class="w-full text-left p-3 rounded-xl border-2 border-gray-200 hover:border-volley-blue bg-gray-50 hover:bg-white transition-all flex items-center justify-between group">
                         <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shadow"><i class="fa-solid fa-user-injured"></i></div>
+                            <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shadow flex-shrink-0"><i class="fa-solid fa-user-injured"></i></div>
                             <div>
                                 <span class="font-bold text-volley-darkblue text-sm block">Jokalaria</span>
-                                <span class="text-[11px] text-gray-500">Emaila eta pasahitza bidezko sarrera</span>
+                                <span class="text-[11px] text-gray-500 block">Google edo saio bidezko sarrera</span>
                             </div>
                         </div>
                         <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></i>
                     </button>
 
-                    <button onclick="selectWelcomeRole('parent')" class="w-full text-left p-3.5 rounded-xl border-2 border-gray-200 hover:border-volley-blue bg-gray-50 hover:bg-white transition-all flex items-center justify-between group">
+                    <button onclick="selectWelcomeRole('parent')" class="w-full text-left p-3 rounded-xl border-2 border-gray-200 hover:border-volley-blue bg-gray-50 hover:bg-white transition-all flex items-center justify-between group">
                         <div class="flex items-center gap-3">
-                            <div class="w-9 h-9 rounded-lg bg-purple-600 text-white flex items-center justify-center shadow"><i class="fa-solid fa-users"></i></div>
+                            <div class="w-9 h-9 rounded-lg bg-purple-600 text-white flex items-center justify-center shadow flex-shrink-0"><i class="fa-solid fa-users"></i></div>
                             <div>
                                 <span class="font-bold text-volley-darkblue text-sm block">Gurasoa</span>
-                                <span class="text-[11px] text-gray-500">Emaila eta pasahitza bidezko sarrera</span>
+                                <span class="text-[11px] text-gray-500 block">Google edo saio bidezko sarrera</span>
                             </div>
                         </div>
                         <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></i>
@@ -131,9 +132,13 @@
 
     <!-- HEADER / GOIALDEA LOGOAREKIN -->
     <header class="bg-volley-darkblue text-white sticky top-0 z-40 shadow-md no-print border-b-2 border-volley-yellow">
-        <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="w-11 h-11 rounded-full bg-white p-0.5 flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0 border-2 border-volley-yellow">
+        <div class="max-w-7xl mx-auto px-2.5 sm:px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <!-- HAMBURGER BOTOIA MUGIKORRENTZAT -->
+                <button onclick="toggleMobileSidebar()" class="md:hidden text-volley-yellow text-lg p-2 focus:outline-none rounded-lg hover:bg-white/10" aria-label="Menua Ireki" title="Ireki Menua">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white p-0.5 flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0 border-2 border-volley-yellow">
                     <svg viewBox="0 0 200 200" class="w-full h-full rounded-full">
                         <rect width="200" height="200" fill="#0A2540"/>
                         <text x="100" y="32" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-weight="900" font-size="20" text-anchor="middle">LEKEITIOKO</text>
@@ -150,52 +155,52 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="font-extrabold text-base md:text-lg tracking-wide text-white leading-tight">MARIERROTA <span class="text-volley-yellow">KUDEAKETA</span></h1>
-                    <p class="text-[10px] text-gray-300">Lekeitioko Marierrota Boleibol Taldea</p>
+                    <h1 class="font-extrabold text-xs sm:text-sm md:text-lg tracking-wide text-white leading-tight">MARIERROTA <span class="text-volley-yellow">KUDEAKETA</span></h1>
+                    <p class="text-[9px] sm:text-[10px] text-gray-300">Lekeitioko Marierrota VT</p>
                 </div>
             </div>
             
-            <div class="flex items-center space-x-2">
-                <button onclick="openSupabaseModal()" id="db-status-badge" class="px-2 py-1 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1">
+            <div class="flex items-center space-x-1.5 sm:space-x-2">
+                <button onclick="openSupabaseModal()" id="db-status-badge" class="px-2 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1">
                     <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
                     <span id="db-status-text" class="hidden sm:inline">Modu Lokala</span>
                 </button>
 
-                <button onclick="openLoginModal()" id="current-user-btn" class="bg-volley-yellow text-volley-darkblue px-3 py-1.5 rounded-lg text-xs font-extrabold shadow flex items-center gap-1.5">
+                <button onclick="openLoginModal()" id="current-user-btn" class="bg-volley-yellow text-volley-darkblue px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-extrabold shadow flex items-center gap-1.5">
                     <i class="fa-solid fa-user-shield"></i>
                     <span id="header-role-label">Kirol Arduraduna</span>
                 </button>
             </div>
         </div>
 
-        <!-- NABIGAZIO BARRA NAGUSIA -->
-        <nav class="bg-volley-blue border-t border-blue-900/50 shadow-inner px-2 py-1.5 no-print">
-            <div class="max-w-7xl mx-auto flex justify-around sm:justify-center sm:gap-6 items-center">
-                <button onclick="switchTab('sec-teams', this)" class="nav-tab active-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-volley-yellow font-bold text-[11px] sm:text-xs transition-all">
+        <!-- MAHAI GAINEKO NABIGAZIO BARRA -->
+        <nav class="hidden md:block bg-volley-blue border-t border-blue-900/50 shadow-inner px-2 py-1.5 no-print">
+            <div class="max-w-7xl mx-auto flex justify-center gap-4 items-center flex-wrap">
+                <button onclick="switchTab('sec-teams', this)" class="nav-tab active-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-volley-yellow font-bold text-xs transition-all">
                     <i class="fa-solid fa-users text-sm"></i>
                     <span>Taldeak</span>
                 </button>
-                <button onclick="switchTab('sec-calendar', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-calendar', this)" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-calendar-days text-sm"></i>
                     <span>Partidak</span>
                 </button>
-                <button onclick="switchTab('sec-preparation', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-preparation', this)" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-chalkboard-user text-sm"></i>
                     <span>Deialdia & Pizarra</span>
                 </button>
-                <button onclick="switchTab('sec-exercises', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-exercises', this)" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-dumbbell text-sm"></i>
                     <span>Ariketak</span>
                 </button>
-                <button onclick="switchTab('sec-sessions', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-sessions', this)" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-clipboard-list text-sm"></i>
                     <span>Saioak</span>
                 </button>
-                <button onclick="switchTab('sec-stats', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-stats', this)" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-chart-line text-sm"></i>
                     <span>Scouting</span>
                 </button>
-                <button onclick="switchTab('sec-settings', this)" id="nav-tab-settings" class="nav-tab admin-only flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-settings', this)" id="nav-tab-settings" class="nav-tab admin-only flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-gears text-sm"></i>
                     <span>Ezarpenak</span>
                 </button>
@@ -203,54 +208,122 @@
         </nav>
     </header>
 
+    <!-- MUGIKORRARENTZAKO ALBOKO MENUA (SIDEBAR) -->
+    <div id="mobile-sidebar-backdrop" class="fixed inset-0 bg-black/60 z-50 hidden md:hidden transition-opacity" onclick="toggleMobileSidebar()"></div>
+    <div id="mobile-sidebar" class="fixed top-0 left-0 bottom-0 w-72 bg-volley-darkblue text-white z-50 transform -translate-x-full transition-transform duration-300 flex flex-col md:hidden shadow-2xl border-r-2 border-volley-yellow">
+        <div class="p-4 border-b border-blue-900/60 flex justify-between items-center bg-volley-blue">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-white p-0.5 flex items-center justify-center border border-volley-yellow">
+                    <svg viewBox="0 0 200 200" class="w-full h-full rounded-full">
+                        <rect width="200" height="200" fill="#0A2540"/>
+                        <text x="100" y="32" fill="#FFFFFF" font-family="Arial Black" font-size="20" text-anchor="middle">LEKEITIOKO</text>
+                        <text x="100" y="54" fill="#FFFFFF" font-family="Arial Black" font-size="19" text-anchor="middle">MARIERROTA</text>
+                        <text x="85" y="115" fill="#FFFFFF" font-family="Arial Black" font-size="70" text-anchor="end">20</text>
+                        <text x="95" y="105" fill="#FFFFFF" font-family="Arial Black" font-size="24">URTE</text>
+                        <path d="M 60,110 L 115,85 L 140,110 Z" fill="#E63946"/>
+                        <rect x="75" y="110" width="8" height="40" fill="#D97706"/>
+                        <rect x="110" y="100" width="8" height="50" fill="#D97706"/>
+                        <path d="M 125,100 C 130,130 145,150 145,170 C 130,170 120,150 115,130 Z" fill="#4ADE80"/>
+                        <circle cx="145" cy="140" r="18" fill="#F97316" stroke="#0A2540" stroke-width="3"/>
+                        <circle cx="145" cy="140" r="7" fill="#0A2540"/>
+                        <text x="100" y="185" fill="#FFFFFF" font-family="Arial Black" font-size="17" text-anchor="middle">BOLEIBOL</text>
+                    </svg>
+                </div>
+                <span class="font-extrabold text-sm text-white tracking-wide">MARIERROTA</span>
+            </div>
+            <button onclick="toggleMobileSidebar()" class="text-gray-300 hover:text-white p-2" aria-label="Itxi Menua">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-4 space-y-2">
+            <button onclick="switchTabMobile('sec-teams', this)" class="mobile-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-bold text-sm text-volley-yellow bg-white/10 transition-all">
+                <i class="fa-solid fa-users w-5 text-center"></i>
+                <span>Taldeak</span>
+            </button>
+            <button onclick="switchTabMobile('sec-calendar', this)" class="mobile-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-medium text-sm text-gray-200 hover:bg-white/5 transition-all">
+                <i class="fa-solid fa-calendar-days w-5 text-center"></i>
+                <span>Partidak</span>
+            </button>
+            <button onclick="switchTabMobile('sec-preparation', this)" class="mobile-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-medium text-sm text-gray-200 hover:bg-white/5 transition-all">
+                <i class="fa-solid fa-chalkboard-user w-5 text-center"></i>
+                <span>Deialdia & Pizarra</span>
+            </button>
+            <button onclick="switchTabMobile('sec-exercises', this)" class="mobile-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-medium text-sm text-gray-200 hover:bg-white/5 transition-all">
+                <i class="fa-solid fa-dumbbell w-5 text-center"></i>
+                <span>Ariketak</span>
+            </button>
+            <button onclick="switchTabMobile('sec-sessions', this)" class="mobile-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-medium text-sm text-gray-200 hover:bg-white/5 transition-all">
+                <i class="fa-solid fa-clipboard-list w-5 text-center"></i>
+                <span>Saioak</span>
+            </button>
+            <button onclick="switchTabMobile('sec-stats', this)" class="mobile-nav-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-medium text-sm text-gray-200 hover:bg-white/5 transition-all">
+                <i class="fa-solid fa-chart-line w-5 text-center"></i>
+                <span>Scouting</span>
+            </button>
+            <button onclick="switchTabMobile('sec-settings', this)" id="mobile-nav-settings" class="mobile-nav-btn admin-only w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left font-medium text-sm text-gray-200 hover:bg-white/5 transition-all">
+                <i class="fa-solid fa-gears w-5 text-center"></i>
+                <span>Ezarpenak</span>
+            </button>
+        </div>
+
+        <div class="p-4 border-t border-blue-900/60 bg-volley-darkblue/90 text-center text-[10px] text-gray-400">
+            Lekeitioko Marierrota Boleibol Taldea © 2025/2026
+        </div>
+    </div>
+
     <!-- EDUKIA -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-5">
+    <main class="flex-1 max-w-7xl w-full mx-auto p-2.5 sm:p-5 overflow-x-hidden">
         
         <!-- 1. ATALA: TALDEAK ETA JOKALARIAK -->
         <section id="sec-teams" class="app-section space-y-4">
-            <div class="flex justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100 gap-3">
                 <div>
-                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-users text-volley-blue mr-2"></i>Taldeak eta Jokalariak</h2>
+                    <h2 class="text-lg sm:text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-users text-volley-blue mr-2"></i>Taldeak eta Jokalariak</h2>
                     <p class="text-xs text-gray-500">Jokalarien kudeaketa, argazkiak, dortsalak eta posizioak</p>
                 </div>
-                <button onclick="openTeamModal()" id="btn-add-team" class="admin-coach-only bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
+                <button onclick="openTeamModal()" id="btn-add-team" class="admin-coach-only bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1 w-full sm:w-auto justify-center">
                     <i class="fa-solid fa-plus"></i> Talde Berria
                 </button>
             </div>
-            <div id="teams-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            <div id="teams-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"></div>
         </section>
 
         <!-- 2. ATALA: PARTIDEN EGUTEGIA -->
         <section id="sec-calendar" class="app-section hidden space-y-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-3">
-                <div>
-                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-calendar-days text-volley-blue mr-2"></i>Partiden Egutegia</h2>
-                    <p class="text-xs text-gray-500">Klubaren partiden plangintza eta egutegi formatuko ikuspegia</p>
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col gap-3">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-calendar-days text-volley-blue mr-2"></i>Partiden Egutegia</h2>
+                        <p class="text-xs text-gray-500">Klubaren partiden plangintza eta egutegi formatuko ikuspegia</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 no-print">
+                        <button onclick="openMatchModal()" id="btn-add-match" class="admin-coach-only bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Partida
+                        </button>
+                        <button onclick="exportCalendarPDF()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
+                            <i class="fa-solid fa-file-pdf"></i> PDF Egutegia
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="flex flex-wrap items-center gap-2 no-print">
-                    <select id="calendar-filter-team" onchange="renderCalendar()" class="text-xs bg-gray-50 border border-gray-300 rounded-lg p-2"></select>
+                <div class="flex flex-wrap items-center gap-2 pt-2 border-t no-print">
+                    <select id="calendar-filter-team" onchange="renderCalendar()" class="text-xs bg-gray-50 border border-gray-300 rounded-lg p-2 flex-1 sm:flex-none"></select>
                     
-                    <div class="flex items-center gap-1 bg-gray-50 border border-gray-300 rounded-lg px-2 py-1">
+                    <div class="flex items-center gap-1 bg-gray-50 border border-gray-300 rounded-lg px-2 py-1.5 flex-1 sm:flex-none">
                         <span class="text-[11px] font-bold text-gray-600"><i class="fa-solid fa-filter mr-1"></i>Asteburua:</span>
                         <input type="date" id="calendar-filter-weekend" onchange="renderCalendar()" class="text-xs bg-transparent focus:outline-none cursor-pointer">
                     </div>
 
                     <div class="flex bg-gray-100 p-1 rounded-lg border text-xs font-bold">
                         <button onclick="setCalendarViewMode('list')" id="cal-mode-list" class="px-3 py-1 rounded-md bg-volley-blue text-white shadow-sm transition-all">Zerrenda</button>
-                        <button onclick="setCalendarViewMode('grid')" id="cal-mode-grid" class="px-3 py-1 rounded-md text-gray-700 transition-all">Egutegia (Hilabetea)</button>
+                        <button onclick="setCalendarViewMode('grid')" id="cal-mode-grid" class="px-3 py-1 rounded-md text-gray-700 transition-all">Egutegia</button>
                     </div>
 
-                    <button onclick="clearCalendarFilter()" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-lg border font-medium">Guztiak Ikusi</button>
-                    <button onclick="openMatchModal()" id="btn-add-match" class="admin-coach-only bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
-                        <i class="fa-solid fa-plus"></i> Partida
-                    </button>
-                    <button onclick="exportCalendarPDF()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
-                        <i class="fa-solid fa-file-pdf"></i> Gurasoentzat PDF Egutegia
-                    </button>
+                    <button onclick="clearCalendarFilter()" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-lg border font-medium">Guztiak</button>
                 </div>
             </div>
-            <div id="calendar-pdf-container" class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden p-4">
+            <div id="calendar-pdf-container" class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden p-3 sm:p-4">
                 <div id="calendar-list" class="divide-y divide-gray-100"></div>
                 <div id="calendar-grid-view" class="hidden space-y-4"></div>
             </div>
@@ -260,12 +333,12 @@
         <section id="sec-preparation" class="app-section hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                 <div>
-                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-chalkboard-user text-volley-blue mr-2"></i>Partiduko Deialdia, Errotazioa eta Pizarra Taktikoa</h2>
-                    <p class="text-xs text-gray-500">Aukeratu partidua, antolatu deialdia goitik behera argazkiekin, zehaztu hasierako errotazioa eta marraztu taktika</p>
+                    <h2 class="text-lg sm:text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-chalkboard-user text-volley-blue mr-2"></i>Deialdia, Errotazioa eta Pizarra</h2>
+                    <p class="text-xs text-gray-500">Aukeratu partidua, antolatu deialdia, errotazioa eta marraztu taktika</p>
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 space-y-4">
+            <div class="bg-white p-3 sm:p-4 rounded-xl shadow-sm border border-gray-100 space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="font-bold text-xs text-gray-700 block mb-1">Aukeratu Taldea</label>
@@ -280,34 +353,34 @@
                 <div id="prep-content-panel" class="space-y-6 border-t pt-4">
                     <!-- Partiduko Deialdia -->
                     <div class="space-y-2">
-                        <div class="flex justify-between items-center">
+                        <div class="flex justify-between items-center flex-wrap gap-2">
                             <h3 class="font-bold text-sm text-volley-darkblue flex items-center gap-2">
-                                <i class="fa-solid fa-user-check text-volley-blue"></i> 1. Partiduko Deialdia (Jokalarien Zerrenda)
+                                <i class="fa-solid fa-user-check text-volley-blue"></i> 1. Partiduko Deialdia (Zerrenda)
                             </h3>
                             <div class="flex gap-2">
                                 <button type="button" onclick="toggleAllPrepCallup(true)" class="text-[10px] bg-blue-50 text-volley-blue px-2.5 py-1 rounded font-bold border hover:bg-blue-100">Denak Deitu</button>
                                 <button type="button" onclick="toggleAllPrepCallup(false)" class="text-[10px] bg-gray-50 text-gray-600 px-2.5 py-1 rounded font-bold border hover:bg-gray-100">Denak Kendu</button>
                             </div>
                         </div>
-                        <div id="prep-callup-players-container" class="space-y-2 pr-1"></div>
+                        <div id="prep-callup-players-container" class="space-y-2 pr-1 max-h-60 overflow-y-auto"></div>
                     </div>
 
                     <!-- Hasierako Errotazio Taktikoa (P1 - P6) -->
                     <div class="space-y-3">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                             <h3 class="font-bold text-sm text-volley-darkblue flex items-center gap-2">
-                                <i class="fa-solid fa-users-gear text-volley-blue"></i> 2. Hasierako Errotazioa (P1 - P6) eta 4 Proposamen
+                                <i class="fa-solid fa-users-gear text-volley-blue"></i> 2. Hasierako Errotazioa (P1 - P6) eta Aukerak
                             </h3>
-                            <div class="flex gap-1.5 overflow-x-auto pb-1">
-                                <button type="button" onclick="switchPrepRotationTab(1)" id="prep-rotab-btn-1" class="prep-rotab-btn bg-volley-blue text-white px-3 py-1 rounded-lg text-xs font-bold shadow-sm">1. Aukera</button>
-                                <button type="button" onclick="switchPrepRotationTab(2)" id="prep-rotab-btn-2" class="prep-rotab-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-200">2. Aukera</button>
-                                <button type="button" onclick="switchPrepRotationTab(3)" id="prep-rotab-btn-3" class="prep-rotab-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-200">3. Aukera</button>
-                                <button type="button" onclick="switchPrepRotationTab(4)" id="prep-rotab-btn-4" class="prep-rotab-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-200">4. Aukera</button>
+                            <div class="flex gap-1.5 overflow-x-auto pb-1 w-full sm:w-auto">
+                                <button type="button" onclick="switchPrepRotationTab(1)" id="prep-rotab-btn-1" class="prep-rotab-btn bg-volley-blue text-white px-3 py-1 rounded-lg text-xs font-bold shadow-sm flex-1 sm:flex-none text-center">1. Aukera</button>
+                                <button type="button" onclick="switchPrepRotationTab(2)" id="prep-rotab-btn-2" class="prep-rotab-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-200 flex-1 sm:flex-none text-center">2. Aukera</button>
+                                <button type="button" onclick="switchPrepRotationTab(3)" id="prep-rotab-btn-3" class="prep-rotab-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-200 flex-1 sm:flex-none text-center">3. Aukera</button>
+                                <button type="button" onclick="switchPrepRotationTab(4)" id="prep-rotab-btn-4" class="prep-rotab-btn bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-bold shadow-sm hover:bg-gray-200 flex-1 sm:flex-none text-center">4. Aukera</button>
                             </div>
                         </div>
 
                         <!-- Errotazio Horizontala P1-etik P6ra -->
-                        <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 text-center text-xs bg-amber-50/80 p-3 rounded-xl border border-amber-300">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-center text-xs bg-amber-50/80 p-3 rounded-xl border border-amber-300">
                             <div class="bg-white p-2 rounded-lg border shadow-sm">
                                 <span class="font-bold text-volley-blue block text-[10px]">P1 (Z1 - Sakea)</span>
                                 <select id="prep-rot-p1" onchange="saveCurrentPrepRotation()" class="prep-input-lock w-full mt-1 border rounded p-1 bg-gray-50 text-xs font-bold"></select>
@@ -340,48 +413,48 @@
                     <!-- Helburua eta Pizarra -->
                     <div class="space-y-3">
                         <h3 class="font-bold text-sm text-volley-darkblue flex items-center gap-2">
-                            <i class="fa-solid fa-bullseye text-volley-blue"></i> 3. Partiduko Helburua eta Pizarra Taktikoa (Bertikala)
+                            <i class="fa-solid fa-bullseye text-volley-blue"></i> 3. Helburua eta Pizarra Taktikoa
                         </h3>
                         <div>
                             <label class="font-bold text-xs text-gray-700 block mb-1">Partiduko Helburu Nagusia</label>
-                            <input type="text" id="prep-match-objective" placeholder="Adib: Harrera finkatu eta Z4 bidezko trantsizio azkarrak jokatu" class="prep-input-lock w-full border p-2 rounded-lg text-xs bg-gray-50">
+                            <input type="text" id="prep-match-objective" placeholder="Adib: Harrera finkatu eta Z4 bidezko trantsizio azkarrak" class="prep-input-lock w-full border p-2 rounded-lg text-xs bg-gray-50">
                         </div>
 
-                        <div class="space-y-1 text-xs flex flex-col items-center">
-                            <div class="flex justify-between items-center w-full">
-                                <label class="font-bold text-gray-700">Pizarra Taktikoa (Bertikala) <span id="prep-canvas-lock-msg" class="text-[10px] text-gray-500 font-normal">(Ukitu elementu bat hautatzeko eta ezabatzeko)</span></label>
+                        <div class="space-y-2 text-xs flex flex-col items-center">
+                            <div class="flex justify-between items-center w-full flex-wrap gap-2">
+                                <label class="font-bold text-gray-700">Pizarra Taktikoa (Bertikala) <span id="prep-canvas-lock-msg" class="text-[10px] text-gray-500 font-normal">(Ukitu elementu bat hautatzeko)</span></label>
                                 <div id="prep-canvas-tools-container" class="flex gap-2">
                                     <button onclick="deleteSelectedPrepItem()" class="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-1 rounded hover:bg-red-200">Ezabatu Hautatua 🗑️</button>
-                                    <button onclick="clearPrepCanvas()" class="text-[10px] text-red-500 font-bold hover:underline">Garbitu Pizarra</button>
+                                    <button onclick="clearPrepCanvas()" class="text-[10px] text-red-500 font-bold hover:underline">Garbitu</button>
                                 </div>
                             </div>
                             
-                            <div id="prep-tools-bar" class="flex flex-wrap gap-1 p-1 bg-gray-100 rounded-lg w-full justify-center">
-                                <button id="ptool-pen" onclick="setPrepTool('pen')" class="ptool-btn bg-volley-blue text-white px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Arkatza</button>
-                                <button id="ptool-arrow" onclick="setPrepTool('arrow')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Gezia</button>
-                                <button id="ptool-attack" onclick="setPrepTool('attack')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Eraso Gezia ↗</button>
-                                <button id="ptool-space" onclick="setPrepTool('space')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Eraso Espazioa 🔵</button>
-                                <button id="ptool-def" onclick="setPrepTool('def')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Babes Eremua 🟥</button>
-                                <button id="ptool-K" onclick="setPrepTool('K')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">K (Kolokatzailea)</button>
-                                <button id="ptool-Op" onclick="setPrepTool('Op')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Op (Opuestoa)</button>
-                                <button id="ptool-L" onclick="setPrepTool('L')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">L (Liberoa)</button>
-                                <button id="ptool-4" onclick="setPrepTool('4')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">4 (Hartzailea)</button>
-                                <button id="ptool-3" onclick="setPrepTool('3')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">3 (Zentrala)</button>
-                                <button id="ptool-ball" onclick="setPrepTool('ball')" class="ptool-btn bg-white text-gray-700 px-2.5 py-1 rounded text-[10px] font-bold shadow-sm">Pilota 🏐</button>
+                            <div id="prep-tools-bar" class="flex flex-wrap gap-1 p-1.5 bg-gray-100 rounded-lg w-full justify-center">
+                                <button id="ptool-pen" onclick="setPrepTool('pen')" class="ptool-btn bg-volley-blue text-white px-2 py-1 rounded text-[10px] font-bold shadow-sm">Arkatza</button>
+                                <button id="ptool-arrow" onclick="setPrepTool('arrow')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Gezia</button>
+                                <button id="ptool-attack" onclick="setPrepTool('attack')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Eraso ↗</button>
+                                <button id="ptool-space" onclick="setPrepTool('space')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Espazioa 🔵</button>
+                                <button id="ptool-def" onclick="setPrepTool('def')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Babesa 🟥</button>
+                                <button id="ptool-K" onclick="setPrepTool('K')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">K</button>
+                                <button id="ptool-Op" onclick="setPrepTool('Op')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Op</button>
+                                <button id="ptool-L" onclick="setPrepTool('L')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">L</button>
+                                <button id="ptool-4" onclick="setPrepTool('4')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">4</button>
+                                <button id="ptool-3" onclick="setPrepTool('3')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">3</button>
+                                <button id="ptool-ball" onclick="setPrepTool('ball')" class="ptool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">🏐</button>
                             </div>
 
-                            <canvas id="prep-canvas" width="280" height="420" class="w-full max-w-xs h-[420px] rounded-lg border cursor-crosshair bg-amber-50 shadow-sm"></canvas>
+                            <canvas id="prep-canvas" width="280" height="420" class="w-full max-w-xs h-[380px] sm:h-[420px] rounded-lg border cursor-crosshair bg-amber-50 shadow-sm mx-auto block"></canvas>
                         </div>
                     </div>
 
                     <div id="prep-action-buttons-container" class="flex flex-wrap justify-end gap-2 pt-3 border-t">
-                        <button onclick="saveMatchPreparationData()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg text-xs font-bold shadow flex items-center gap-1.5">
+                        <button onclick="saveMatchPreparationData()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-3 sm:px-4 py-2 rounded-lg text-xs font-bold shadow flex items-center gap-1.5 flex-1 sm:flex-none justify-center">
                             <i class="fa-solid fa-floppy-disk"></i> Gorde Aldaketak
                         </button>
-                        <button onclick="previewMatchPreparationReport()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-xs font-bold shadow flex items-center gap-1.5">
-                            <i class="fa-solid fa-eye text-volley-blue"></i> Ikusi Txostena (Vista)
+                        <button onclick="previewMatchPreparationReport()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 sm:px-4 py-2 rounded-lg text-xs font-bold shadow flex items-center gap-1.5 flex-1 sm:flex-none justify-center">
+                            <i class="fa-solid fa-eye text-volley-blue"></i> Ikusi Txostena
                         </button>
-                        <button onclick="exportMatchPreparationPDF()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-xs font-bold shadow flex items-center gap-1.5">
+                        <button onclick="exportMatchPreparationPDF()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 sm:px-4 py-2 rounded-lg text-xs font-bold shadow flex items-center gap-1.5 w-full sm:w-auto justify-center">
                             <i class="fa-solid fa-file-pdf"></i> Deskargatu PDF Txostena
                         </button>
                     </div>
@@ -393,16 +466,16 @@
         <section id="sec-exercises" class="app-section hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                 <div>
-                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-dumbbell text-volley-blue mr-2"></i>Ariketa Bankua eta Pizarra Taktikoa</h2>
-                    <p class="text-xs text-gray-500">Ariketa osoak 3 zailtasun maila progresiborekin eta marrazki taktikoarekin</p>
+                    <h2 class="text-lg sm:text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-dumbbell text-volley-blue mr-2"></i>Ariketa Bankua eta Pizarra</h2>
+                    <p class="text-xs text-gray-500">Ariketa osoak 3 zailtasun maila progresiborekin</p>
                 </div>
-                <button onclick="openExerciseModal()" id="btn-add-exercise" class="admin-coach-only bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
+                <button onclick="openExerciseModal()" id="btn-add-exercise" class="admin-coach-only bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1 w-full sm:w-auto justify-center">
                     <i class="fa-solid fa-plus"></i> Sortu Ariketa + Pizarra
                 </button>
             </div>
 
             <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex flex-wrap gap-2 text-xs">
-                <select id="ex-filter-type" onchange="renderExercises()" class="border rounded-lg p-2 bg-gray-50">
+                <select id="ex-filter-type" onchange="renderExercises()" class="border rounded-lg p-2 bg-gray-50 flex-1 sm:flex-none">
                     <option value="ALL">Kategoria Guztiak</option>
                     <option value="Juegos">Jokoak</option>
                     <option value="Calentamiento">Beroketa</option>
@@ -411,7 +484,7 @@
                     <option value="Retos">Erronkak</option>
                 </select>
 
-                <select id="ex-filter-target" onchange="renderExercises()" class="border rounded-lg p-2 bg-gray-50">
+                <select id="ex-filter-target" onchange="renderExercises()" class="border rounded-lg p-2 bg-gray-50 flex-1 sm:flex-none">
                     <option value="ALL">Helburu Guztiak</option>
                     <option value="Saque">Sakea</option>
                     <option value="Movilidad">Mugikortasuna / Koordinazioa</option>
@@ -425,17 +498,17 @@
                 </select>
             </div>
 
-            <div id="exercises-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+            <div id="exercises-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"></div>
         </section>
 
         <!-- 5. ATALA: ENTRENAMENDU FITXAK -->
         <section id="sec-sessions" class="app-section hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                 <div>
-                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-clipboard-list text-volley-blue mr-2"></i>Entrenamendu Fitxak (4 Ataleko Egitura)</h2>
-                    <p class="text-xs text-gray-500">Saio egituratuak 4 ataletan banatuta, iraupenen baturarekin eta scouting estatistikekin</p>
+                    <h2 class="text-lg sm:text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-clipboard-list text-volley-blue mr-2"></i>Entrenamendu Fitxak (4 Atal)</h2>
+                    <p class="text-xs text-gray-500">Saio egituratuak 4 ataletan banatuta iraupen baturarekin</p>
                 </div>
-                <button onclick="openSessionModal()" id="btn-add-session" class="admin-coach-only bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
+                <button onclick="openSessionModal()" id="btn-add-session" class="admin-coach-only bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1 w-full sm:w-auto justify-center">
                     <i class="fa-solid fa-plus"></i> Fitxa Berria
                 </button>
             </div>
@@ -448,22 +521,22 @@
 
         <!-- 6. ATALA: SCOUTING ETA ESTATISTIKAK -->
         <section id="sec-stats" class="app-section hidden space-y-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between md:items-center gap-2">
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between md:items-center gap-3">
                 <div>
-                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-chart-line text-volley-blue mr-2"></i>Set eta Errotazio Scouting-a</h2>
+                    <h2 class="text-lg sm:text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-chart-line text-volley-blue mr-2"></i>Set eta Errotazio Scouting-a</h2>
                     <p class="text-xs text-gray-500">Kontrol taktikoa pistan: 1-5 Setak eta P1-P6 Errotazioak</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="generateFullMatchReport()" class="bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
-                        <i class="fa-solid fa-file-lines"></i> Partiduaren Txosten Osoa
+                    <button onclick="generateFullMatchReport()" class="bg-volley-blue hover:bg-volley-darkblue text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1 flex-1 sm:flex-none justify-center">
+                        <i class="fa-solid fa-file-lines"></i> Txosten Osoa
                     </button>
-                    <button onclick="shareStatsWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1">
-                        <i class="fa-brands fa-whatsapp"></i> Set WhatsApp
+                    <button onclick="shareStatsWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2 rounded-lg shadow flex items-center gap-1 flex-1 sm:flex-none justify-center">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
                     </button>
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 space-y-3 text-xs">
+            <div class="bg-white p-3 sm:p-4 rounded-xl shadow-sm border border-gray-100 space-y-3 text-xs">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                         <label class="font-bold text-gray-700 block mb-1">Aukeratu Taldea</label>
@@ -477,90 +550,90 @@
 
                 <div>
                     <label class="font-bold text-gray-700 block mb-1">Uneko Seta</label>
-                    <div class="flex gap-2">
-                        <button onclick="setScoutSet(1)" id="btn-set-1" class="set-btn flex-1 py-1.5 rounded-lg border font-bold text-center bg-volley-blue text-white">SET 1</button>
-                        <button onclick="setScoutSet(2)" id="btn-set-2" class="set-btn flex-1 py-1.5 rounded-lg border font-bold text-center bg-gray-100 text-gray-700">SET 2</button>
-                        <button onclick="setScoutSet(3)" id="btn-set-3" class="set-btn flex-1 py-1.5 rounded-lg border font-bold text-center bg-gray-100 text-gray-700">SET 3</button>
-                        <button onclick="setScoutSet(4)" id="btn-set-4" class="set-btn flex-1 py-1.5 rounded-lg border font-bold text-center bg-gray-100 text-gray-700">SET 4</button>
-                        <button onclick="setScoutSet(5)" id="btn-set-5" class="set-btn flex-1 py-1.5 rounded-lg border font-bold text-center bg-gray-100 text-gray-700">SET 5</button>
+                    <div class="flex gap-1 sm:gap-2">
+                        <button onclick="setScoutSet(1)" id="btn-set-1" class="set-btn flex-1 py-2 rounded-lg border font-bold text-center bg-volley-blue text-white text-xs">S1</button>
+                        <button onclick="setScoutSet(2)" id="btn-set-2" class="set-btn flex-1 py-2 rounded-lg border font-bold text-center bg-gray-100 text-gray-700 text-xs">S2</button>
+                        <button onclick="setScoutSet(3)" id="btn-set-3" class="set-btn flex-1 py-2 rounded-lg border font-bold text-center bg-gray-100 text-gray-700 text-xs">S3</button>
+                        <button onclick="setScoutSet(4)" id="btn-set-4" class="set-btn flex-1 py-2 rounded-lg border font-bold text-center bg-gray-100 text-gray-700 text-xs">S4</button>
+                        <button onclick="setScoutSet(5)" id="btn-set-5" class="set-btn flex-1 py-2 rounded-lg border font-bold text-center bg-gray-100 text-gray-700 text-xs">S5</button>
                     </div>
                 </div>
 
                 <div class="border-t pt-3 space-y-3">
-                    <div class="flex justify-between items-center">
+                    <div class="flex justify-between items-center flex-wrap gap-2">
                         <span class="font-bold text-gray-800 text-sm">Pistako Errotazio Bisuala (Set <span id="current-set-num">1</span>)</span>
                         <button onclick="rotatePlayersClockwise()" class="bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded-md text-xs font-bold shadow-sm flex items-center gap-1.5">
-                            <i class="fa-solid fa-rotate-right"></i> Errotatu (+1 Pista)
+                            <i class="fa-solid fa-rotate-right"></i> Errotatu (+1)
                         </button>
                     </div>
 
-                    <div class="bg-amber-100/70 border-2 border-amber-300 rounded-xl p-3 shadow-inner space-y-3">
+                    <div class="bg-amber-100/70 border-2 border-amber-300 rounded-xl p-2.5 sm:p-3 shadow-inner space-y-3">
                         <div class="text-center bg-volley-blue/10 text-volley-darkblue font-extrabold text-[11px] py-1 rounded">Sarearen Aldea (Aurreko Lerroa)</div>
-                        <div class="grid grid-cols-3 gap-2">
-                            <div class="bg-white p-2 rounded-xl border shadow-sm text-center space-y-1">
-                                <span class="font-bold text-volley-blue text-[10px] block">P4 (Z4 - Ezk)</span>
-                                <select id="rot-p4" onchange="saveRotationState()" class="w-full border rounded p-1 bg-gray-50 text-[11px] mb-1"></select>
-                                <div id="visual-card-p4" class="flex flex-col items-center justify-center p-1 bg-blue-50 rounded-lg min-h-[50px]"></div>
+                        <div class="grid grid-cols-3 gap-1.5 sm:gap-2">
+                            <div class="bg-white p-1.5 sm:p-2 rounded-xl border shadow-sm text-center space-y-1">
+                                <span class="font-bold text-volley-blue text-[9px] sm:text-[10px] block">P4 (Z4)</span>
+                                <select id="rot-p4" onchange="saveRotationState()" class="w-full border rounded p-0.5 sm:p-1 bg-gray-50 text-[10px] sm:text-[11px] mb-1"></select>
+                                <div id="visual-card-p4" class="flex flex-col items-center justify-center p-1 bg-blue-50 rounded-lg min-h-[45px]"></div>
                             </div>
-                            <div class="bg-white p-2 rounded-xl border shadow-sm text-center space-y-1">
-                                <span class="font-bold text-volley-blue text-[10px] block">P3 (Z3 - Erd)</span>
-                                <select id="rot-p3" onchange="saveRotationState()" class="w-full border rounded p-1 bg-gray-50 text-[11px] mb-1"></select>
-                                <div id="visual-card-p3" class="flex flex-col items-center justify-center p-1 bg-blue-50 rounded-lg min-h-[50px]"></div>
+                            <div class="bg-white p-1.5 sm:p-2 rounded-xl border shadow-sm text-center space-y-1">
+                                <span class="font-bold text-volley-blue text-[9px] sm:text-[10px] block">P3 (Z3)</span>
+                                <select id="rot-p3" onchange="saveRotationState()" class="w-full border rounded p-0.5 sm:p-1 bg-gray-50 text-[10px] sm:text-[11px] mb-1"></select>
+                                <div id="visual-card-p3" class="flex flex-col items-center justify-center p-1 bg-blue-50 rounded-lg min-h-[45px]"></div>
                             </div>
-                            <div class="bg-white p-2 rounded-xl border shadow-sm text-center space-y-1">
-                                <span class="font-bold text-volley-blue text-[10px] block">P2 (Z2 - Esk)</span>
-                                <select id="rot-p2" onchange="saveRotationState()" class="w-full border rounded p-1 bg-gray-50 text-[11px] mb-1"></select>
-                                <div id="visual-card-p2" class="flex flex-col items-center justify-center p-1 bg-blue-50 rounded-lg min-h-[50px]"></div>
+                            <div class="bg-white p-1.5 sm:p-2 rounded-xl border shadow-sm text-center space-y-1">
+                                <span class="font-bold text-volley-blue text-[9px] sm:text-[10px] block">P2 (Z2)</span>
+                                <select id="rot-p2" onchange="saveRotationState()" class="w-full border rounded p-0.5 sm:p-1 bg-gray-50 text-[10px] sm:text-[11px] mb-1"></select>
+                                <div id="visual-card-p2" class="flex flex-col items-center justify-center p-1 bg-blue-50 rounded-lg min-h-[45px]"></div>
                             </div>
                         </div>
 
                         <div class="border-t-2 border-dashed border-amber-400 my-2"></div>
 
-                        <div class="grid grid-cols-3 gap-2">
-                            <div class="bg-white p-2 rounded-xl border shadow-sm text-center space-y-1">
-                                <span class="font-bold text-amber-700 text-[10px] block">P5 (Z5 - Atze. Ezk)</span>
-                                <select id="rot-p5" onchange="saveRotationState()" class="w-full border rounded p-1 bg-gray-50 text-[11px] mb-1"></select>
-                                <div id="visual-card-p5" class="flex flex-col items-center justify-center p-1 bg-amber-50 rounded-lg min-h-[50px]"></div>
+                        <div class="grid grid-cols-3 gap-1.5 sm:gap-2">
+                            <div class="bg-white p-1.5 sm:p-2 rounded-xl border shadow-sm text-center space-y-1">
+                                <span class="font-bold text-amber-700 text-[9px] sm:text-[10px] block">P5 (Z5)</span>
+                                <select id="rot-p5" onchange="saveRotationState()" class="w-full border rounded p-0.5 sm:p-1 bg-gray-50 text-[10px] sm:text-[11px] mb-1"></select>
+                                <div id="visual-card-p5" class="flex flex-col items-center justify-center p-1 bg-amber-50 rounded-lg min-h-[45px]"></div>
                             </div>
-                            <div class="bg-white p-2 rounded-xl border shadow-sm text-center space-y-1">
-                                <span class="font-bold text-amber-700 text-[10px] block">P6 (Z6 - Atze. Erd)</span>
-                                <select id="rot-p6" onchange="saveRotationState()" class="w-full border rounded p-1 bg-gray-50 text-[11px] mb-1"></select>
-                                <div id="visual-card-p6" class="flex flex-col items-center justify-center p-1 bg-amber-50 rounded-lg min-h-[50px]"></div>
+                            <div class="bg-white p-1.5 sm:p-2 rounded-xl border shadow-sm text-center space-y-1">
+                                <span class="font-bold text-amber-700 text-[9px] sm:text-[10px] block">P6 (Z6)</span>
+                                <select id="rot-p6" onchange="saveRotationState()" class="w-full border rounded p-0.5 sm:p-1 bg-gray-50 text-[10px] sm:text-[11px] mb-1"></select>
+                                <div id="visual-card-p6" class="flex flex-col items-center justify-center p-1 bg-amber-50 rounded-lg min-h-[45px]"></div>
                             </div>
-                            <div class="bg-white p-2 rounded-xl border shadow-sm text-center space-y-1">
-                                <span class="font-bold text-amber-700 text-[10px] block">P1 (Z1 - Sakea)</span>
-                                <select id="rot-p1" onchange="saveRotationState()" class="w-full border rounded p-1 bg-gray-50 text-[11px] mb-1"></select>
-                                <div id="visual-card-p1" class="flex flex-col items-center justify-center p-1 bg-amber-50 rounded-lg min-h-[50px]"></div>
+                            <div class="bg-white p-1.5 sm:p-2 rounded-xl border shadow-sm text-center space-y-1">
+                                <span class="font-bold text-amber-700 text-[9px] sm:text-[10px] block">P1 (Z1)</span>
+                                <select id="rot-p1" onchange="saveRotationState()" class="w-full border rounded p-0.5 sm:p-1 bg-gray-50 text-[10px] sm:text-[11px] mb-1"></select>
+                                <div id="visual-card-p1" class="flex flex-col items-center justify-center p-1 bg-amber-50 rounded-lg min-h-[45px]"></div>
                             </div>
                         </div>
-                        <div class="text-center text-gray-500 font-semibold text-[10px] py-0.5">Atzeko Lerroa (Sakearen Eremua)</div>
+                        <div class="text-center text-gray-500 font-semibold text-[10px] py-0.5">Atzeko Lerroa (Sakea)</div>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 space-y-3">
+            <div class="bg-white p-3 sm:p-4 rounded-xl shadow-sm border border-gray-100 space-y-3">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-2 gap-2">
                     <div>
                         <h3 class="text-xs font-bold text-volley-darkblue">Baloratu Ekintza Jokalariari</h3>
-                        <p class="text-[10px] text-gray-500">Aukeratu jokalaria borobila sakatuz eta erregistratu balorazioa</p>
+                        <p class="text-[10px] text-gray-500">Aukeratu jokalaria eta erregistratu balorazioa</p>
                     </div>
                     <div>
                         <button type="button" onclick="undoLastStat()" id="undo-stat-btn" disabled class="text-[10px] bg-gray-200 text-gray-500 px-2.5 py-1.5 rounded-lg font-bold flex items-center gap-1 opacity-50 cursor-not-allowed transition-all">
-                            <i class="fa-solid fa-rotate-left"></i> Desegin Azken Ekintza
+                            <i class="fa-solid fa-rotate-left"></i> Desegin
                         </button>
                     </div>
                 </div>
 
                 <div class="space-y-1">
-                    <span class="text-[11px] font-bold text-gray-700 block">Hautatu Jokalaria (Mugikorrean azkar egiteko):</span>
+                    <span class="text-[11px] font-bold text-gray-700 block">Hautatu Jokalaria:</span>
                     <div id="scout-player-buttons-container" class="flex overflow-x-auto gap-2 py-1 hide-scrollbar"></div>
                 </div>
                 
-                <div id="stats-pad-container" class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 border-t"></div>
+                <div id="stats-pad-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2 border-t"></div>
             </div>
 
-            <div id="scout-report-pdf-target" class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                <div class="border-b pb-2 flex justify-between items-center">
+            <div id="scout-report-pdf-target" class="bg-white p-3 sm:p-4 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                <div class="border-b pb-2 flex justify-between items-center flex-wrap gap-2">
                     <div>
                         <h3 class="font-bold text-xs text-volley-darkblue">Taldearen Eraginkortasun Laburpena (Set <span id="summary-set-num">1</span>)</h3>
                         <p id="pdf-report-subtitle" class="text-[10px] text-gray-500">Lekeitioko Marierrota Boleibol Taldea</p>
@@ -572,11 +645,11 @@
                 <!-- KOLOKAZIO ETA ERASO ZONALDEEN BANAKETA ANALITIKOA -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t">
                     <div class="bg-blue-50/70 p-3 rounded-xl border border-blue-200 space-y-1.5 text-xs">
-                        <span class="font-bold text-volley-blue block"><i class="fa-solid fa-bullseye mr-1"></i> Kolokatzailearen Zonalde Banaketa (Balio Absolutuak eta Portzentajeak %)</span>
+                        <span class="font-bold text-volley-blue block"><i class="fa-solid fa-bullseye mr-1"></i> Kolokatzailearen Zonaldea (%)</span>
                         <div id="scout-setting-zones-breakdown" class="space-y-1"></div>
                     </div>
                     <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200 space-y-1.5 text-xs">
-                        <span class="font-bold text-amber-800 block"><i class="fa-solid fa-volleyball mr-1"></i> Eraso Gune / Norabide Banaketa (Balio Absolutuak eta Portzentajeak %)</span>
+                        <span class="font-bold text-amber-800 block"><i class="fa-solid fa-volleyball mr-1"></i> Eraso Gune / Norabidea (%)</span>
                         <div id="scout-attack-zones-breakdown" class="space-y-1"></div>
                     </div>
                 </div>
@@ -592,19 +665,19 @@
         <section id="sec-settings" class="app-section hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between md:items-center gap-2">
                 <div>
-                    <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-gears text-volley-blue mr-2"></i>Aplikazioaren Ezarpenak eta Kudeaketa</h2>
-                    <p class="text-xs text-gray-500">Konfiguratu kluba, datu-base konexioak, segurtasun kopiak eta rol baimenak</p>
+                    <h2 class="text-lg sm:text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-gears text-volley-blue mr-2"></i>Aplikazioaren Ezarpenak</h2>
+                    <p class="text-xs text-gray-500">Konfiguratu kluba, datu-base konexioak eta segurtasun kopiak</p>
                 </div>
-                <span class="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full border border-red-300 flex items-center gap-1">
-                    <i class="fa-solid fa-shield-halved"></i> Kirol Arduraduna (Administratzailea)
+                <span class="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full border border-red-300 flex items-center gap-1 w-fit">
+                    <i class="fa-solid fa-shield-halved"></i> Administratzailea
                 </span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- KLUBARIAREN INFORMAZIOA ETA DENBORALDIA -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
                     <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-shield text-volley-blue"></i> Klubaren Konfigurazioa eta Denboraldia
+                        <i class="fa-solid fa-shield text-volley-blue"></i> Klubaren Konfigurazioa
                     </h3>
                     <div class="space-y-3 text-xs">
                         <div>
@@ -616,7 +689,7 @@
                             <input type="text" id="settings-club-season" value="2025/2026" class="w-full border p-2 rounded-lg bg-gray-50 font-semibold">
                         </div>
                         <div class="pt-2 flex justify-end">
-                            <button onclick="saveClubSettings()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5">
+                            <button onclick="saveClubSettings()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5 w-full sm:w-auto justify-center">
                                 <i class="fa-solid fa-floppy-disk"></i> Gorde Kluba
                             </button>
                         </div>
@@ -624,13 +697,13 @@
                 </div>
 
                 <!-- 1. DATU-BASE ETA SUPABASE KONEXIO EZARPENAK -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
                     <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-database text-volley-blue"></i> Datu-Basearen eta Hodeiko Konexioaren Ezarpenak
+                        <i class="fa-solid fa-database text-volley-blue"></i> Hodeiko Konexioaren Ezarpenak (Supabase)
                     </h3>
                     <div class="space-y-3 text-xs">
                         <div>
-                            <label class="font-bold text-gray-700 block mb-1">Datu-Basearen Izena / Proiektua</label>
+                            <label class="font-bold text-gray-700 block mb-1">Datu-Basearen Izena</label>
                             <input type="text" id="settings-db-name" value="Marierrota Boleibol DB (Cloud)" class="w-full border p-2 rounded-lg bg-gray-50 font-semibold">
                         </div>
                         <div>
@@ -638,11 +711,11 @@
                             <input type="text" id="settings-supabase-url" placeholder="https://xyz.supabase.co" class="w-full border p-2 rounded-lg bg-gray-50">
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 block mb-1">Supabase Anon / Publishable Key</label>
+                            <label class="font-bold text-gray-700 block mb-1">Supabase Anon Key</label>
                             <input type="password" id="settings-supabase-key" placeholder="eyJhbGciOi..." class="w-full border p-2 rounded-lg bg-gray-50">
                         </div>
                         <div class="pt-2 flex justify-end gap-2">
-                            <button onclick="saveAppSettingsDatabase()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5">
+                            <button onclick="saveAppSettingsDatabase()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5 w-full sm:w-auto justify-center">
                                 <i class="fa-solid fa-floppy-disk"></i> Gorde Konexioa
                             </button>
                         </div>
@@ -650,35 +723,35 @@
                 </div>
 
                 <!-- SEGURTASUN KOPIAK ETA DATU-BASE DESKARGATZEA -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4 md:col-span-2">
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-sm border border-gray-100 space-y-4 md:col-span-2">
                     <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-file-arrow-down text-emerald-600"></i> Segurtasun Kopia (Backup), Datu-Base Deskarga eta Berreskurapena
+                        <i class="fa-solid fa-file-arrow-down text-emerald-600"></i> Segurtasun Kopia (Backup) eta Berreskurapena
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                         <div class="bg-gray-50 p-3 rounded-xl border space-y-2 flex flex-col justify-between">
                             <div>
-                                <span class="font-bold text-gray-800 block mb-1">Datu-Basearen eta Taldeen Kopia JSON Fitxategian</span>
-                                <p class="text-gray-500 text-[11px]">Deskargatu ordenagailura aplikazioko datu osoa (taldeak, egutegia, ariketak eta fitxak) segurtasun kopia gisa.</p>
+                                <span class="font-bold text-gray-800 block mb-1">Datu-Basearen Kopia (JSON)</span>
+                                <p class="text-gray-500 text-[11px]">Deskargatu ordenagailura aplikazioko datu osoa segurtasun kopia gisa.</p>
                             </div>
                             <button onclick="downloadFullDatabaseBackup()" class="w-full bg-volley-blue hover:bg-volley-darkblue text-white py-2 rounded-lg font-bold shadow flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-download"></i> Deskargatu Kopia JSON
+                                <i class="fa-solid fa-download"></i> Deskargatu Kopia
                             </button>
                         </div>
 
                         <div class="bg-gray-50 p-3 rounded-xl border space-y-2 flex flex-col justify-between">
                             <div>
-                                <span class="font-bold text-gray-800 block mb-1">Egutegia eta Partiden Kopia Esportatu</span>
-                                <p class="text-gray-500 text-[11px]">Deskargatu soilik denboraldiko partiden egutegia eta deialdiak.</p>
+                                <span class="font-bold text-gray-800 block mb-1">Egutegia Esportatu</span>
+                                <p class="text-gray-500 text-[11px]">Deskargatu soilik denboraldiko partiden egutegia.</p>
                             </div>
                             <button onclick="downloadCalendarBackup()" class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg font-bold shadow flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-calendar-days"></i> Deskargatu Egutegia JSON
+                                <i class="fa-solid fa-calendar-days"></i> Deskargatu Egutegia
                             </button>
                         </div>
 
                         <div class="bg-gray-50 p-3 rounded-xl border space-y-2 flex flex-col justify-between">
                             <div>
-                                <span class="font-bold text-gray-800 block mb-1">Segurtasun Kopia Berreskuratu (Igo)</span>
-                                <p class="text-gray-500 text-[11px]">Kargatu aurretik egindako JSON fitxategia aplikazioa eta datu-basea leheneratzeko.</p>
+                                <span class="font-bold text-gray-800 block mb-1">Kopia Berreskuratu (Igo)</span>
+                                <p class="text-gray-500 text-[11px]">Kargatu aurretik egindako JSON fitxategia leheneratzeko.</p>
                             </div>
                             <input type="file" id="backup-file-input" accept=".json" onchange="restoreDatabaseFromBackup(event)" class="hidden">
                             <button onclick="document.getElementById('backup-file-input').click()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-lg font-bold shadow flex items-center justify-center gap-1.5">
@@ -689,13 +762,13 @@
                 </div>
 
                 <!-- 2. ROLEN PASAHITZEN KUDEAKETA -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-sm border border-gray-100 space-y-4 md:col-span-2">
                     <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-key text-volley-yellow"></i> Rolen Pasahitz Pertsonalizatuak
+                        <i class="fa-solid fa-key text-volley-yellow"></i> Rolen Pasahitza Pertsonalizatuak
                     </h3>
-                    <div class="space-y-3 text-xs">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                         <div>
-                            <label class="font-bold text-gray-700 block mb-1">Kirol Arduradunaren Pasahitza (Admin)</label>
+                            <label class="font-bold text-gray-700 block mb-1">Kirol Arduradunaren Pasahitza</label>
                             <div class="relative flex items-center">
                                 <input type="password" id="settings-pass-admin" value="marierrota2026" class="w-full border p-2 rounded-lg bg-gray-50 pr-10">
                                 <button type="button" onclick="togglePasswordVisibility('settings-pass-admin', this)" class="absolute right-2.5 text-gray-400 hover:text-gray-700 p-1" title="Ikusi / Ezkutatu">
@@ -712,81 +785,12 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="pt-2 flex justify-end gap-2">
-                            <button onclick="saveAppSettingsPasswords()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5">
-                                <i class="fa-solid fa-floppy-disk"></i> Gorde Pasahitzak
-                            </button>
-                        </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- 3. ROLEN BAIMENEN MATRIZEA -->
-            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
-                    <i class="fa-solid fa-user-shield text-emerald-600"></i> Rolen Baimen eta Ikusgarritasun Matrizea
-                </h3>
-                <div class="overflow-x-auto text-xs">
-                    <table class="w-full border-collapse">
-                        <thead>
-                            <tr class="bg-volley-blue text-white text-left">
-                                <th class="p-2.5">Aplikazioaren Atala</th>
-                                <th class="p-2.5 text-center">Kirol Arduraduna</th>
-                                <th class="p-2.5 text-center">Entrenatzailea</th>
-                                <th class="p-2.5 text-center">Jokalaria</th>
-                                <th class="p-2.5 text-center">Gurasoa</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200">
-                            <tr>
-                                <td class="p-2.5 font-bold text-gray-800">Taldeak eta Jokalariak</td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked class="accent-volley-blue" disabled></td>
-                            </tr>
-                            <tr>
-                                <td class="p-2.5 font-bold text-gray-800">Partiden Egutegia</td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                            </tr>
-                            <tr>
-                                <td class="p-2.5 font-bold text-gray-800">Deialdia & Pizarra Taktikoa</td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" class="accent-volley-blue"></td>
-                            </tr>
-                            <tr>
-                                <td class="p-2.5 font-bold text-gray-800">Ariketa Bankua</td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox"></td>
-                            </tr>
-                            <tr>
-                                <td class="p-2.5 font-bold text-gray-800">Entrenamendu Fitxak eta Asistentzia</td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox"></td>
-                            </tr>
-                            <tr>
-                                <td class="p-2.5 font-bold text-gray-800">Scouting eta Estatistikak</td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox" checked disabled class="accent-volley-blue"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox"></td>
-                                <td class="p-2.5 text-center"><input type="checkbox"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="flex justify-end pt-2">
-                    <button onclick="alert('Baimenen matrizea ondo gorde da.')" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg text-xs font-bold shadow">
-                        Gorde Baimenak
-                    </button>
+                    <div class="pt-2 flex justify-end">
+                        <button onclick="saveAppSettingsPasswords()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5 w-full sm:w-auto justify-center">
+                            <i class="fa-solid fa-floppy-disk"></i> Gorde Pasahitzak
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -794,62 +798,62 @@
     </main>
 
     <!-- TXOSTEN OSOAREN MODALA -->
-    <div id="modal-full-report" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-4xl w-full p-5 space-y-4 max-h-[90vh] overflow-y-auto">
+    <div id="modal-full-report" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-4xl w-full p-4 sm:p-5 space-y-4 max-h-[90vh] overflow-y-auto my-auto">
             <div class="flex justify-between items-center border-b pb-3 no-print">
                 <div>
-                    <h3 class="font-bold text-gray-800 text-base">Partiduaren Txosten Osoa - Scouting</h3>
-                    <p class="text-xs text-gray-500">Analisi global kontsolidatua set, talde eta jokalarien arabera</p>
+                    <h3 class="font-bold text-gray-800 text-sm sm:text-base">Partiduaren Txosten Osoa - Scouting</h3>
+                    <p class="text-xs text-gray-500">Analisi global kontsolidatua</p>
                 </div>
-                <button onclick="closeModal('modal-full-report')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeModal('modal-full-report')" class="text-gray-400 hover:text-gray-600 p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
 
-            <div id="full-report-content" class="space-y-6 text-xs bg-white p-4"></div>
+            <div id="full-report-content" class="space-y-6 text-xs bg-white p-2 sm:p-4 overflow-x-auto"></div>
 
             <div class="flex justify-end gap-2 pt-3 border-t no-print">
                 <button onclick="closeModal('modal-full-report')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold">Itxi</button>
                 <button onclick="exportFullReportPDF()" class="px-4 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold flex items-center gap-1 shadow">
-                    <i class="fa-solid fa-file-pdf"></i> Deskargatu PDF Txostena
+                    <i class="fa-solid fa-file-pdf"></i> Deskargatu PDF
                 </button>
             </div>
         </div>
     </div>
 
     <!-- DEIALDIA ETA PIZARRA TXOSTEN PREVIEW MODALA -->
-    <div id="modal-prep-preview" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-3xl w-full p-5 space-y-4 max-h-[90vh] overflow-y-auto">
+    <div id="modal-prep-preview" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-3xl w-full p-4 sm:p-5 space-y-4 max-h-[90vh] overflow-y-auto my-auto">
             <div class="flex justify-between items-center border-b pb-3 no-print">
                 <div>
-                    <h3 class="font-bold text-gray-800 text-base">Partiduko Deialdia eta Pizarra Taktikoaren Txostena</h3>
+                    <h3 class="font-bold text-gray-800 text-sm sm:text-base">Partiduko Deialdia eta Pizarra Txostena</h3>
                     <p class="text-xs text-gray-500">Aurreikuspena inprimatu edo gordetzeko</p>
                 </div>
-                <button onclick="closeModal('modal-prep-preview')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeModal('modal-prep-preview')" class="text-gray-400 hover:text-gray-600 p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
 
-            <div id="prep-preview-content" class="space-y-4 bg-white p-4 text-xs"></div>
+            <div id="prep-preview-content" class="space-y-4 bg-white p-2 sm:p-4 text-xs overflow-x-auto"></div>
 
             <div class="flex justify-end gap-2 pt-3 border-t no-print">
                 <button onclick="closeModal('modal-prep-preview')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold">Itxi</button>
                 <button onclick="exportMatchPreparationPDF()" class="px-4 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-semibold flex items-center gap-1 shadow">
-                    <i class="fa-solid fa-file-pdf"></i> Deskargatu PDF Txostena
+                    <i class="fa-solid fa-file-pdf"></i> Deskargatu PDF
                 </button>
             </div>
         </div>
     </div>
 
     <!-- ARIKETA SORTU/EDITATU MODALA -->
-    <div id="modal-exercise" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full p-4 space-y-3 max-h-[90vh] overflow-y-auto">
+    <div id="modal-exercise" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full p-4 space-y-3 max-h-[90vh] overflow-y-auto my-auto">
             <div class="flex justify-between items-center border-b pb-2">
                 <h3 id="ex-modal-title" class="font-bold text-gray-800 text-sm">Sortu Ariketa Pizarekin</h3>
-                <button onclick="closeModal('modal-exercise')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeModal('modal-exercise')" class="text-gray-400 hover:text-gray-600 p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             
             <input type="hidden" id="ex-edit-id">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div>
-                    <label class="font-bold text-gray-700 block mb-1">Ariketaren Izenburua</label>
+                    <label class="font-bold text-gray-700 block mb-1">Izenburua</label>
                     <input type="text" id="ex-title" placeholder="Adib: Hozkera diagonalean" class="w-full border p-2 rounded-lg bg-gray-50">
                 </div>
                 <div>
@@ -866,10 +870,10 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                 <div>
-                    <label class="font-bold text-gray-700 block mb-1">Helburu Zehatza</label>
+                    <label class="font-bold text-gray-700 block mb-1">Helburua</label>
                     <select id="ex-target" class="w-full border p-2 rounded-lg bg-gray-50">
                         <option value="Saque">Sakea</option>
-                        <option value="Movilidad">Mugikortasuna / Koordinazioa</option>
+                        <option value="Movilidad">Mugikortasuna</option>
                         <option value="Remate">Rematea</option>
                         <option value="Colocación">Kolokazioa</option>
                         <option value="Defensa">Defentsa</option>
@@ -881,27 +885,27 @@
                 </div>
                 <div>
                     <label class="font-bold text-gray-700 block mb-1">Iraupena (min)</label>
-                    <input type="number" id="ex-duration" min="1" max="120" value="10" placeholder="10" class="w-full border p-2 rounded-lg bg-gray-50">
+                    <input type="number" id="ex-duration" min="1" max="120" value="10" class="w-full border p-2 rounded-lg bg-gray-50">
                 </div>
                 <div>
                     <label class="font-bold text-gray-700 block mb-1">Errepikapenak</label>
-                    <input type="text" id="ex-reps" placeholder="Adib: 3 serie x 10 erremate" class="w-full border p-2 rounded-lg bg-gray-50">
+                    <input type="text" id="ex-reps" placeholder="Adib: 3 serie x 10" class="w-full border p-2 rounded-lg bg-gray-50">
                 </div>
             </div>
 
-            <div class="space-y-1 text-xs">
-                <div class="flex justify-between items-center">
-                    <label class="font-bold text-gray-700">Marrazki Taktikoa (Pizarra Bertikala)</label>
+            <div class="space-y-1 text-xs flex flex-col items-center">
+                <div class="flex justify-between items-center w-full">
+                    <label class="font-bold text-gray-700">Marrazki Taktikoa (Pizarra)</label>
                     <div class="flex gap-2">
-                        <button onclick="deleteSelectedModalItem()" class="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-1 rounded hover:bg-red-200">Ezabatu Hautatua 🗑️</button>
-                        <button onclick="clearModalCanvas()" class="text-[10px] text-red-500 font-bold hover:underline">Garbitu Pizarra</button>
+                        <button onclick="deleteSelectedModalItem()" class="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-1 rounded">Ezabatu 🗑️</button>
+                        <button onclick="clearModalCanvas()" class="text-[10px] text-red-500 font-bold hover:underline">Garbitu</button>
                     </div>
                 </div>
                 
-                <div class="flex flex-wrap gap-1 p-1 bg-gray-100 rounded-lg justify-center">
+                <div class="flex flex-wrap gap-1 p-1.5 bg-gray-100 rounded-lg justify-center w-full">
                     <button id="mtool-pen" onclick="setModalTool('pen')" class="mtool-btn bg-volley-blue text-white px-2 py-1 rounded text-[10px] font-bold shadow-sm">Arkatza</button>
                     <button id="mtool-arrow" onclick="setModalTool('arrow')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Gezia</button>
-                    <button id="mtool-attack" onclick="setModalTool('attack')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Eraso Gezia ↗</button>
+                    <button id="mtool-attack" onclick="setModalTool('attack')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Eraso ↗</button>
                     <button id="mtool-space" onclick="setModalTool('space')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Espazioa 🔵</button>
                     <button id="mtool-def" onclick="setModalTool('def')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Babesa 🟥</button>
                     <button id="mtool-K" onclick="setModalTool('K')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">K</button>
@@ -909,10 +913,10 @@
                     <button id="mtool-L" onclick="setModalTool('L')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">L</button>
                     <button id="mtool-4" onclick="setModalTool('4')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">4</button>
                     <button id="mtool-3" onclick="setModalTool('3')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">3</button>
-                    <button id="mtool-ball" onclick="setModalTool('ball')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">Pilota 🏐</button>
+                    <button id="mtool-ball" onclick="setModalTool('ball')" class="mtool-btn bg-white text-gray-700 px-2 py-1 rounded text-[10px] font-bold shadow-sm">🏐</button>
                 </div>
 
-                <canvas id="modal-canvas" width="280" height="420" class="w-full max-w-xs h-[420px] rounded-lg border cursor-crosshair bg-amber-50 shadow-sm mx-auto block"></canvas>
+                <canvas id="modal-canvas" width="280" height="420" class="w-full max-w-xs h-[360px] sm:h-[420px] rounded-lg border cursor-crosshair bg-amber-50 shadow-sm mx-auto block"></canvas>
             </div>
 
             <div class="space-y-2 text-xs">
@@ -926,20 +930,20 @@
                 </div>
                 <div>
                     <label class="font-bold text-emerald-700 block mb-0.5">3. Maila: Globala / Erreala</label>
-                    <textarea id="ex-v3" rows="1" placeholder="Adib: 6x6 jokoa helburua betez gero puntu bikoitza..." class="w-full border p-2 rounded-lg bg-gray-50"></textarea>
+                    <textarea id="ex-v3" rows="1" placeholder="Adib: 6x6 jokoa helburua betez..." class="w-full border p-2 rounded-lg bg-gray-50"></textarea>
                 </div>
             </div>
 
             <div class="flex justify-end gap-2 pt-2 border-t">
                 <button onclick="closeModal('modal-exercise')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold text-gray-600">Utzi</button>
-                <button onclick="saveExercise()" class="px-4 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold shadow">Gorde Ariketa</button>
+                <button onclick="saveExercise()" class="px-4 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold shadow">Gorde</button>
             </div>
         </div>
     </div>
 
     <!-- SUPABASE MODALA -->
-    <div id="modal-supabase" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-4 space-y-3">
+    <div id="modal-supabase" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-4 space-y-3 my-auto">
             <h3 class="font-bold text-gray-800 text-sm">Supabase Cloud Konfigurazioa</h3>
             <p class="text-xs text-gray-500">Sartu zure kredentzialak hodeian datuak sinkronizatzeko.</p>
             <div class="space-y-2 text-xs">
@@ -963,11 +967,11 @@
     </div>
 
     <!-- SAIOa HASTEN / ROL MODALA -->
-    <div id="modal-login" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-5 space-y-4">
+    <div id="modal-login" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-5 space-y-4 my-auto">
             <div class="flex justify-between items-center border-b pb-2">
-                <h3 class="font-bold text-volley-darkblue text-base"><i class="fa-solid fa-lock mr-2 text-volley-yellow"></i>Sartu Kredentzialekin</h3>
-                <button onclick="closeModal('modal-login')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <h3 class="font-bold text-volley-darkblue text-sm sm:text-base"><i class="fa-solid fa-lock mr-2 text-volley-yellow"></i>Sartu Kredentzialekin</h3>
+                <button onclick="closeModal('modal-login')" class="text-gray-400 hover:text-gray-600 p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             
             <div class="space-y-3 text-xs">
@@ -997,14 +1001,14 @@
 
             <div class="flex justify-end gap-2 pt-2 border-t" id="login-action-buttons">
                 <button onclick="closeModal('modal-login')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold">Utzi</button>
-                <button onclick="verifyAndLogin()" class="px-4 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-bold shadow">Sartu / Aldatu Rola</button>
+                <button onclick="verifyAndLogin()" class="px-4 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-bold shadow">Sartu / Aldatu</button>
             </div>
         </div>
     </div>
 
     <!-- TALDEA MODALA -->
-    <div id="modal-team" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-4 space-y-3">
+    <div id="modal-team" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-4 space-y-3 my-auto">
             <h3 id="team-modal-title" class="font-bold text-gray-800 text-sm">Sortu / Editatu Taldea</h3>
             <input type="hidden" id="team-edit-id">
             <div class="space-y-2 text-xs">
@@ -1023,14 +1027,14 @@
             </div>
             <div class="flex justify-end gap-2 pt-2 border-t">
                 <button onclick="closeModal('modal-team')" class="px-3 py-1.5 rounded-lg border text-xs">Utzi</button>
-                <button onclick="saveTeam()" class="px-3 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold">Gorde Taldea</button>
+                <button onclick="saveTeam()" class="px-3 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold">Gorde</button>
             </div>
         </div>
     </div>
 
     <!-- JOKALARIA MODALA -->
-    <div id="modal-player" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-4 space-y-3">
+    <div id="modal-player" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-4 space-y-3 my-auto">
             <h3 id="player-modal-title" class="font-bold text-gray-800 text-sm">Gehitu Jokalaria</h3>
             <input type="hidden" id="player-edit-id">
             <input type="hidden" id="player-team-id">
@@ -1054,7 +1058,7 @@
                 <div>
                     <label class="font-bold text-gray-700 block mb-1">Argazkia (Irudiaren URL edo Kargatu)</label>
                     <div class="flex gap-2">
-                        <input type="text" id="player-photo" placeholder="https://... (Irudiaren esteka)" class="flex-1 border p-2 rounded-lg">
+                        <input type="text" id="player-photo" placeholder="https://..." class="flex-1 border p-2 rounded-lg">
                         <input type="file" id="player-photo-file" accept="image/*" onchange="handlePlayerPhotoUpload(event)" class="hidden">
                         <button type="button" onclick="document.getElementById('player-photo-file').click()" class="bg-gray-100 border px-2.5 py-1.5 rounded-lg hover:bg-gray-200">Kargatu</button>
                     </div>
@@ -1068,8 +1072,8 @@
     </div>
 
     <!-- PARTIDA MODALA -->
-    <div id="modal-match" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-4 space-y-3">
+    <div id="modal-match" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-4 space-y-3 my-auto">
             <h3 id="match-modal-title" class="font-bold text-gray-800 text-sm">Programatu / Editatu Partida</h3>
             <input type="hidden" id="match-edit-id">
             <div class="space-y-2 text-xs">
@@ -1078,8 +1082,8 @@
                 <div>
                     <label class="font-bold text-gray-700 block mb-1">Non jokatzen da?</label>
                     <select id="match-is-home" onchange="toggleMatchTravelFields()" class="w-full border p-2 rounded-lg bg-gray-50 font-semibold">
-                        <option value="home">Lekeition (Etxeko Partida)</option>
-                        <option value="away">Lekeitiotik Kanpo (Etxetik Kanpo)</option>
+                        <option value="home">Lekeition (Etxekoa)</option>
+                        <option value="away">Lekeitiotik Kanpo</option>
                     </select>
                 </div>
 
@@ -1094,29 +1098,29 @@
                         <input type="date" id="match-date" class="w-full border p-2 rounded-lg">
                     </div>
                     <div>
-                        <label class="font-bold text-gray-700 block mb-1">Partida Ordua</label>
+                        <label class="font-bold text-gray-700 block mb-1">Ordua</label>
                         <input type="time" id="match-time" class="w-full border p-2 rounded-lg" value="18:00">
                     </div>
                 </div>
 
                 <div>
                     <label class="font-bold text-gray-700 block mb-1">Pabelloia / Zelaia</label>
-                    <input type="text" id="match-location" placeholder="Adib: Lekeitioko Kiroldegia" class="w-full border p-2 rounded-lg">
+                    <input type="text" id="match-location" placeholder="Lekeitioko Kiroldegia" class="w-full border p-2 rounded-lg">
                 </div>
 
                 <!-- Kanpoan Jokatzean Garraio Orokorra -->
                 <div id="match-travel-container" class="space-y-2 border-t pt-2 bg-amber-50/50 p-2 rounded-lg border border-amber-200">
-                    <span class="font-bold text-amber-900 block text-[11px]"><i class="fa-solid fa-bus mr-1"></i> Kanpoko Bidaiaren Xehetasunak:</span>
+                    <span class="font-bold text-amber-900 block text-[11px]"><i class="fa-solid fa-bus mr-1"></i> Kanpoko Bidaia:</span>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="font-bold text-gray-700 block mb-1">Garraio Mota</label>
+                            <label class="font-bold text-gray-700 block mb-1">Garraioa</label>
                             <select id="match-transport" class="w-full border p-2 rounded-lg bg-white">
                                 <option value="Autobusa">Autobusa 🚌</option>
                                 <option value="Kotxeak">Kotxeak 🚗</option>
                             </select>
                         </div>
                         <div>
-                            <label class="font-bold text-gray-700 block mb-1">Geltokiko Irteera</label>
+                            <label class="font-bold text-gray-700 block mb-1">Irteera</label>
                             <input type="time" id="match-departure-time" class="w-full border p-2 rounded-lg bg-white" value="16:00">
                         </div>
                     </div>
@@ -1124,17 +1128,17 @@
             </div>
             <div class="flex justify-end gap-2 pt-2">
                 <button onclick="closeModal('modal-match')" class="px-3 py-1.5 rounded-lg border text-xs">Utzi</button>
-                <button onclick="saveMatch()" class="px-3 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold">Gorde Partida</button>
+                <button onclick="saveMatch()" class="px-3 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold">Gorde</button>
             </div>
         </div>
     </div>
 
-    <!-- SAIOA MODALA -->
-    <div id="modal-session" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full p-5 space-y-4 max-h-[90vh] overflow-y-auto">
+    <!-- SAIOa MODALA -->
+    <div id="modal-session" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-2xl w-full p-4 sm:p-5 space-y-4 max-h-[90vh] overflow-y-auto my-auto">
             <div class="flex justify-between items-center border-b pb-2">
                 <h3 id="session-modal-title" class="font-bold text-gray-800 text-sm">Planifikatu 4 Ataleko Entrenamendu Fitxa</h3>
-                <button onclick="closeModal('modal-session')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeModal('modal-session')" class="text-gray-400 hover:text-gray-600 p-1"><i class="fa-solid fa-xmark text-lg"></i></button>
             </div>
             <input type="hidden" id="session-edit-id">
 
@@ -1148,26 +1152,26 @@
                     <input type="date" id="session-date" class="w-full border p-2 rounded-lg bg-gray-50">
                 </div>
                 <div>
-                    <label class="font-bold text-gray-700 block mb-1">Saioaren Iraupena</label>
+                    <label class="font-bold text-gray-700 block mb-1">Iraupena</label>
                     <div id="session-total-duration-badge" class="w-full border p-2 rounded-lg bg-amber-50 text-amber-900 font-extrabold text-center">0 min</div>
                 </div>
             </div>
 
             <div>
                 <label class="font-bold text-gray-700 block mb-1">Helburu Nagusia</label>
-                <input type="text" id="session-objective" placeholder="Adib: K1 irteera eta blokeoaren koordinazioa" class="w-full border p-2 rounded-lg text-xs bg-gray-50">
+                <input type="text" id="session-objective" placeholder="Adib: K1 irteera eta blokeoa" class="w-full border p-2 rounded-lg text-xs bg-gray-50">
             </div>
 
             <!-- 4 ATALETAN BANATUTA -->
             <div class="space-y-4 border-t pt-3">
-                <span class="font-bold text-xs text-volley-darkblue block"><i class="fa-solid fa-layer-group text-volley-blue mr-1"></i> Entrenamenduaren 4 Atal Nagusiak eta Ariketen Hautapena:</span>
+                <span class="font-bold text-xs text-volley-darkblue block"><i class="fa-solid fa-layer-group text-volley-blue mr-1"></i> Entrenamenduaren 4 Atal Nagusiak:</span>
 
                 <!-- 1. BEROKETA -->
                 <div class="bg-blue-50/50 border border-blue-200 rounded-xl p-3 space-y-2 text-xs">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-blue-200 pb-2">
                         <span class="font-extrabold text-volley-blue">1. ATALA: Beroketa</span>
                         <div class="flex gap-2">
-                            <select id="filter-sec-1-type" onchange="renderSessionSelectorSection(1)" class="border p-1 rounded bg-white text-[11px]">
+                            <select id="filter-sec-1-type" onchange="renderSessionSelectorSection(1)" class="border p-1 rounded bg-white text-[11px] flex-1 sm:flex-none">
                                 <option value="ALL" selected>Kategoria Guztiak</option>
                                 <option value="Calentamiento">Beroketa</option>
                                 <option value="Juegos">Jokoak</option>
@@ -1175,9 +1179,9 @@
                                 <option value="Táctica">Taktika</option>
                                 <option value="Retos">Erronkak</option>
                             </select>
-                            <select id="filter-sec-1-target" onchange="renderSessionSelectorSection(1)" class="border p-1 rounded bg-white text-[11px]">
-                                <option value="ALL" selected>Helburu Guztiak</option>
-                                <option value="Movilidad">Mugikortasuna / Koordinazioa</option>
+                            <select id="filter-sec-1-target" onchange="renderSessionSelectorSection(1)" class="border p-1 rounded bg-white text-[11px] flex-1 sm:flex-none">
+                                <option value="ALL" selected>Helburuak</option>
+                                <option value="Movilidad">Mugikortasuna</option>
                                 <option value="Saque">Sakea</option>
                                 <option value="Remate">Rematea</option>
                             </select>
@@ -1191,7 +1195,7 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-200 pb-2">
                         <span class="font-extrabold text-amber-800">2. ATALA: Lehenengo Atala</span>
                         <div class="flex gap-2">
-                            <select id="filter-sec-2-type" onchange="renderSessionSelectorSection(2)" class="border p-1 rounded bg-white text-[11px]">
+                            <select id="filter-sec-2-type" onchange="renderSessionSelectorSection(2)" class="border p-1 rounded bg-white text-[11px] flex-1 sm:flex-none">
                                 <option value="ALL" selected>Kategoria Guztiak</option>
                                 <option value="Técnica">Teknika</option>
                                 <option value="Táctica">Taktika</option>
@@ -1199,8 +1203,8 @@
                                 <option value="Calentamiento">Beroketa</option>
                                 <option value="Retos">Erronkak</option>
                             </select>
-                            <select id="filter-sec-2-target" onchange="renderSessionSelectorSection(2)" class="border p-1 rounded bg-white text-[11px]">
-                                <option value="ALL" selected>Helburu Guztiak</option>
+                            <select id="filter-sec-2-target" onchange="renderSessionSelectorSection(2)" class="border p-1 rounded bg-white text-[11px] flex-1 sm:flex-none">
+                                <option value="ALL" selected>Helburuak</option>
                                 <option value="Salida KI">K1 Irteera</option>
                                 <option value="Colocación">Kolokazioa</option>
                                 <option value="Remate">Rematea</option>
@@ -1216,15 +1220,15 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-200 pb-2">
                         <span class="font-extrabold text-emerald-800">3. ATALA: Bigarren Atala</span>
                         <div class="flex gap-2">
-                            <select id="filter-sec-3-type" onchange="renderSessionSelectorSection(3)" class="border p-1 rounded bg-white text-[11px]">
+                            <select id="filter-sec-3-type" onchange="renderSessionSelectorSection(3)" class="border p-1 rounded bg-white text-[11px] flex-1 sm:flex-none">
                                 <option value="ALL" selected>Kategoria Guztiak</option>
                                 <option value="Táctica">Taktika</option>
                                 <option value="Técnica">Teknika</option>
                                 <option value="Juegos">Jokoak</option>
                                 <option value="Retos">Erronkak</option>
                             </select>
-                            <select id="filter-sec-3-target" onchange="renderSessionSelectorSection(3)" class="border p-1 rounded bg-white text-[11px]">
-                                <option value="ALL" selected>Helburu Guztiak</option>
+                            <select id="filter-sec-3-target" onchange="renderSessionSelectorSection(3)" class="border p-1 rounded bg-white text-[11px] flex-1 sm:flex-none">
+                                <option value="ALL" selected>Helburuak</option>
                                 <option value="Defensa KII">K2 Defentsa</option>
                                 <option value="Contrataques KII">K2 Kontraerasoak</option>
                                 <option value="Defensa">Defentsa</option>
@@ -1240,14 +1244,14 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-purple-200 pb-2">
                         <span class="font-extrabold text-purple-800">4. ATALA: Laugarren Atala</span>
                         <div class="flex gap-2">
-                            <select id="filter-sec-4-type" onchange="renderSessionSelectorSection(4)" class="border p-1 rounded bg-white text-[11px]">
+                            <select id="filter-sec-4-type" onchange="renderSessionSelectorSection(4)" class="border p-1 rounded bg-white text-[11px] flex-1 sm:flex-none">
                                 <option value="ALL" selected>Kategoria Guztiak</option>
                                 <option value="Táctica">Taktika</option>
                                 <option value="Retos">Erronkak</option>
                                 <option value="Juegos">Jokoak</option>
                             </select>
-                            <select id="filter-sec-4-target" onchange="renderSessionSelectorSection(4)" class="border p-1 rounded bg-white text-[11px]">
-                                <option value="ALL" selected>Helburu Guztiak</option>
+                            <select id="filter-sec-4-target" onchange="renderSessionSelectorSection(4)" class="border p-1 rounded bg-white text-[11px] flex-1 sm:flex-none">
+                                <option value="ALL" selected>Helburuak</option>
                                 <option value="Sistema de juego">Joko sistema</option>
                                 <option value="Saque">Sakea</option>
                                 <option value="Remate">Rematea</option>
@@ -1260,8 +1264,8 @@
 
             <!-- ENTRENATZAILEAREN OHARRAK -->
             <div class="space-y-1 text-xs pt-2">
-                <label class="font-bold text-gray-700 block"><i class="fa-solid fa-note-sticky mr-1 text-volley-blue"></i> Entrenatzailearen Oharrak / Gomendioak</label>
-                <textarea id="session-coach-notes" rows="2" placeholder="Sartu entrenamendu honetarako ohar bereziak, materialen banaketa edo intentsitate gakoak..." class="w-full border p-2 rounded-lg bg-gray-50"></textarea>
+                <label class="font-bold text-gray-700 block"><i class="fa-solid fa-note-sticky mr-1 text-volley-blue"></i> Entrenatzailearen Oharrak</label>
+                <textarea id="session-coach-notes" rows="2" placeholder="Ohar bereziak edo materialen banaketa..." class="w-full border p-2 rounded-lg bg-gray-50"></textarea>
             </div>
 
             <div class="flex justify-end gap-2 pt-2 border-t">
@@ -1272,9 +1276,9 @@
     </div>
 
     <!-- SAIOAREN AURREIKUSPEN MODALA -->
-    <div id="modal-session-preview" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden">
-        <div class="bg-white rounded-xl shadow-xl max-w-3xl w-full p-5 space-y-4 max-h-[90vh] overflow-y-auto">
-            <div id="session-preview-content" class="space-y-4 text-xs"></div>
+    <div id="modal-session-preview" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-2 sm:p-3 hidden overflow-y-auto">
+        <div class="bg-white rounded-xl shadow-xl max-w-3xl w-full p-4 sm:p-5 space-y-4 max-h-[90vh] overflow-y-auto my-auto">
+            <div id="session-preview-content" class="space-y-4 text-xs overflow-x-auto"></div>
             <div class="flex justify-end gap-2 border-t pt-3 no-print">
                 <button onclick="closeModal('modal-session-preview')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold">Itxi</button>
                 <button onclick="saveSessionPreviewNotes()" class="px-3 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-semibold flex items-center gap-1 shadow">
@@ -1350,6 +1354,7 @@
 
         window.onload = async function () {
             initSupabaseFromStorage();
+            await checkGoogleOAuthRedirect();
             await loadDataFromCloudOrLocal();
             if (!appData.teams || appData.teams.length === 0) {
                 seedDemoData();
@@ -1365,6 +1370,42 @@
                 onPrepTeamChange();
             }
         };
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('mobile-sidebar');
+            const backdrop = document.getElementById('mobile-sidebar-backdrop');
+            if (!sidebar || !backdrop) return;
+            const isOpen = !sidebar.classList.contains('-translate-x-full');
+            if (isOpen) {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+            } else {
+                sidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+            }
+        }
+
+        function switchTabMobile(tabId, btnEl) {
+            switchTab(tabId, btnEl);
+            toggleMobileSidebar();
+        }
+
+        async function checkGoogleOAuthRedirect() {
+            if (supabaseClient) {
+                try {
+                    const { data: { session }, error } = await supabaseClient.auth.getSession();
+                    if (session && session.user) {
+                        const email = session.user.email || '';
+                        currentRole = email.includes('admin') ? 'admin' : 'player';
+                        const welcomeScreen = document.getElementById('welcome-role-screen');
+                        if (welcomeScreen) welcomeScreen.classList.add('hidden');
+                        document.getElementById('header-role-label').innerText = currentRole === 'admin' ? 'Kirol Arduraduna (Google)' : 'Jokalaria (Google)';
+                    }
+                } catch(e) {
+                    console.error("OAuth session check error:", e);
+                }
+            }
+        }
 
         function selectWelcomeRole(role) {
             currentRole = role;
@@ -1398,7 +1439,7 @@
                     const { data, error } = await supabaseClient.auth.signInWithOAuth({
                         provider: 'google',
                         options: {
-                            redirectTo: window.location.href
+                            redirectTo: window.location.origin + window.location.pathname
                         }
                     });
                     if (error) {
@@ -1409,14 +1450,13 @@
                     alert("Ezin izan da Google bidez saioa hasi.");
                 }
             } else {
-                // Supabase aktibatu gabe badago modu lokalean simulatu Google saioa
                 const role = document.getElementById('login-role-select').value;
                 currentRole = role;
                 closeModal('modal-login');
                 const welcomeScreen = document.getElementById('welcome-role-screen');
                 if (welcomeScreen) welcomeScreen.classList.add('hidden');
                 renderAll();
-                document.getElementById('header-role-label').innerText = role === 'player' ? 'Jokalaria (Google)' : 'Gurasoa (Google)';
+                document.getElementById('header-role-label').innerText = role === 'player' ? 'Jokalaria' : 'Gurasoa';
             }
         }
 
@@ -1473,6 +1513,7 @@
         async function loadDataFromCloudOrLocal() {
             if (supabaseClient) {
                 try {
+                    // Cache garbiketa bermatzeko force-fetch hodeitik
                     const { data, error } = await supabaseClient.from('marierrota_app_state').select('*').eq('id', 'main_state').single();
                     if (data && data.payload) {
                         appData = data.payload;
@@ -1535,7 +1576,11 @@
                     tab.classList.remove('text-volley-yellow', 'font-bold', 'bg-white/10');
                     tab.classList.add('text-gray-300', 'font-medium');
                 });
-                btnEl.classList.remove('text-gray-300', 'font-medium');
+                document.querySelectorAll('.mobile-nav-btn').forEach(tab => {
+                    tab.classList.remove('text-volley-yellow', 'font-bold', 'bg-white/10');
+                    tab.classList.add('text-gray-200', 'font-medium');
+                });
+                btnEl.classList.remove('text-gray-300', 'text-gray-200', 'font-medium');
                 btnEl.classList.add('text-volley-yellow', 'font-bold', 'bg-white/10');
             }
 
