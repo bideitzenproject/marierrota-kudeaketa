@@ -1293,6 +1293,7 @@
         let currentRole = 'admin';
         let supabaseClient = null;
         let tempPlayerPhotoBase64 = '';
+        let syncPollInterval = null;
 
         // SUPABASE SINKRONIZAZIO AUTOMATIKORAKO GAKO PUBLIKOAK (AUTOMATIKOKI PRESTATUTA)
         const DEFAULT_SUPABASE_URL = "https://wxgamdfszvveaexymbsq.supabase.co";
@@ -1369,7 +1370,31 @@
                 onScoutTeamChange();
                 onPrepTeamChange();
             }
+            startRealtimePolling();
         };
+
+        function startRealtimePolling() {
+            if (syncPollInterval) clearInterval(syncPollInterval);
+            // Datuen sinkronizazio automatikoa urruneko gailuekin (3 segundutik behin hodeia egiaztatu)
+            syncPollInterval = setInterval(async () => {
+                if (supabaseClient) {
+                    try {
+                        const { data, error } = await supabaseClient.from('marierrota_app_state').select('*').eq('id', 'main_state').single();
+                        if (data && data.payload) {
+                            const remoteStr = JSON.stringify(data.payload);
+                            const localStr = JSON.stringify(appData);
+                            if (remoteStr !== localStr) {
+                                appData = data.payload;
+                                saveLocalData();
+                                renderAll();
+                            }
+                        }
+                    } catch(e) {
+                        console.error("Sinkronizazio errorea hodeiarekin:", e);
+                    }
+                }
+            }, 3000);
+        }
 
         function toggleMobileSidebar() {
             const sidebar = document.getElementById('mobile-sidebar');
