@@ -676,6 +676,7 @@
                 <div id="login-password-container">
                     <label class="font-bold text-gray-700 block mb-1" id="login-pass-label">Pasahitza:</label>
                     <input type="password" id="login-password-input" placeholder="Sartu pasahitza..." class="w-full border p-2.5 rounded-lg bg-gray-50">
+                    <p class="text-[10px] text-gray-500 mt-1" id="login-pass-hint">Administratzaileak eta Entrenatzaileak pasahitza behar dute sartzeko.</p>
                 </div>
             </div>
 
@@ -1066,7 +1067,11 @@
             const passContainer = document.getElementById('login-password-container');
             if (role === 'admin' || role === 'coach') {
                 passContainer.style.display = 'block';
-                document.getElementById('login-pass-label').innerText = "Pasahitza:";
+                if (role === 'admin') {
+                    document.getElementById('login-pass-label').innerText = "Pasahitza (Administratzailea - marierrota2026):";
+                } else {
+                    document.getElementById('login-pass-label').innerText = "Pasahitza (Entrenatzailea - entrenatzailea2026):";
+                }
             } else {
                 passContainer.style.display = 'none';
             }
@@ -1078,12 +1083,12 @@
 
             if (role === 'admin') {
                 if (pass !== 'marierrota2026') {
-                    alert("Pasahitz okerra!");
+                    alert("Pasahitz okerra Administratzailearentzat! Erabili: marierrota2026");
                     return;
                 }
             } else if (role === 'coach') {
                 if (pass !== 'entrenatzailea2026') {
-                    alert("Pasahitz okerra!");
+                    alert("Pasahitz okerra Entrenatzailearentzat! Erabili: entrenatzailea2026");
                     return;
                 }
             }
