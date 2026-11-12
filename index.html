@@ -1234,12 +1234,10 @@
         let syncPollInterval = null;
         let realtimeChannel = null;
 
-        // Bertsio gakoa cachea saihesteko
         const CACHE_VERSION_KEY = 'marierrota_app_version_2026_v7';
 
-        // ZURE SUPABASE PROIEKTU BERRIA (sioyxmchodjsuogdrslq)
+        // ZURE SUPABASE PROIEKTU ZUZENA ETA ANON KEY GAKOA PRESTATUTA
         const DEFAULT_SUPABASE_URL = "https://sioyxmchodjsuogdrslq.supabase.co";
-        // Sartu hemen zure proiektuko Anon Key publikoa edo Ezarpenak atalean:
         const DEFAULT_SUPABASE_KEY = "sb_publishable_K3Vij-6jE2X9JX_-4yg_-A_XzT28XV9";
 
         let appData = {
@@ -1399,7 +1397,6 @@
 
         function startRealtimePolling() {
             if (syncPollInterval) clearInterval(syncPollInterval);
-            // Polling maiztasuna handitu dugu (segundo 1ean behin) aldaketak berehala islatzeko
             syncPollInterval = setInterval(async () => {
                 if (supabaseClient) {
                     try {
