@@ -1399,6 +1399,7 @@
 
         function startRealtimePolling() {
             if (syncPollInterval) clearInterval(syncPollInterval);
+            // Polling maiztasuna handitu dugu (segundo 1ean behin) aldaketak berehala islatzeko
             syncPollInterval = setInterval(async () => {
                 if (supabaseClient) {
                     try {
@@ -1413,7 +1414,7 @@
                         }
                     } catch(e) {}
                 }
-            }, 3000);
+            }, 1000);
         }
 
         function setupSupabaseRealtimeChannel() {
@@ -1423,7 +1424,7 @@
                     supabaseClient.removeChannel(realtimeChannel);
                 }
                 realtimeChannel = supabaseClient
-                    .channel('public:marierrota_app_state')
+                    .channel('public:marierrota_app_state_realtime')
                     .on('postgres_changes', { event: '*', schema: 'public', table: 'marierrota_app_state' }, payload => {
                         if (payload && payload.new && (payload.new.payload || payload.new.content)) {
                             const remotePayload = payload.new.payload || payload.new.content;
