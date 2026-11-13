@@ -593,7 +593,7 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between md:items-center gap-2">
                 <div>
                     <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-gears text-volley-blue mr-2"></i>Aplikazioaren Ezarpenak eta Kudeaketa</h2>
-                    <p class="text-xs text-gray-500">Konfiguratu kluba, datu-base konexioak, segurtasun kopiak eta rol baimenak</p>
+                    <p class="text-xs text-gray-500">Konfiguratu datu-base konexioak, pasahitz pertsonalizatuak eta rol baimenak</p>
                 </div>
                 <span class="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full border border-red-300 flex items-center gap-1">
                     <i class="fa-solid fa-shield-halved"></i> Kirol Arduraduna (Administratzailea)
@@ -601,28 +601,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- KLUBARIAREN INFORMAZIOA ETA DENBORALDIA -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
-                    <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-shield text-volley-blue"></i> Klubaren Konfigurazioa eta Denboraldia
-                    </h3>
-                    <div class="space-y-3 text-xs">
-                        <div>
-                            <label class="font-bold text-gray-700 block mb-1">Klubaren Izena</label>
-                            <input type="text" id="settings-club-name" value="Lekeitioko Marierrota Boleibol Taldea" class="w-full border p-2 rounded-lg bg-gray-50 font-semibold">
-                        </div>
-                        <div>
-                            <label class="font-bold text-gray-700 block mb-1">Egungo Denboraldia</label>
-                            <input type="text" id="settings-club-season" value="2025/2026" class="w-full border p-2 rounded-lg bg-gray-50 font-semibold">
-                        </div>
-                        <div class="pt-2 flex justify-end">
-                            <button onclick="saveClubSettings()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5">
-                                <i class="fa-solid fa-floppy-disk"></i> Gorde Kluba
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- 1. DATU-BASE ETA SUPABASE KONEXIO EZARPENAK -->
                 <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
                     <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
@@ -644,45 +622,6 @@
                         <div class="pt-2 flex justify-end gap-2">
                             <button onclick="saveAppSettingsDatabase()" class="bg-volley-blue hover:bg-volley-darkblue text-white px-4 py-2 rounded-lg font-bold shadow flex items-center gap-1.5">
                                 <i class="fa-solid fa-floppy-disk"></i> Gorde Konexioa
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SEGURTASUN KOPIAK ETA DATU-BASE DESKARGATZEA -->
-                <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4 md:col-span-2">
-                    <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
-                        <i class="fa-solid fa-file-arrow-down text-emerald-600"></i> Segurtasun Kopia (Backup), Datu-Base Deskarga eta Berreskurapena
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-                        <div class="bg-gray-50 p-3 rounded-xl border space-y-2 flex flex-col justify-between">
-                            <div>
-                                <span class="font-bold text-gray-800 block mb-1">Datu-Basearen eta Taldeen Kopia JSON Fitxategian</span>
-                                <p class="text-gray-500 text-[11px]">Deskargatu ordenagailura aplikazioko datu osoa (taldeak, egutegia, ariketak eta fitxak) segurtasun kopia gisa.</p>
-                            </div>
-                            <button onclick="downloadFullDatabaseBackup()" class="w-full bg-volley-blue hover:bg-volley-darkblue text-white py-2 rounded-lg font-bold shadow flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-download"></i> Deskargatu Kopia JSON
-                            </button>
-                        </div>
-
-                        <div class="bg-gray-50 p-3 rounded-xl border space-y-2 flex flex-col justify-between">
-                            <div>
-                                <span class="font-bold text-gray-800 block mb-1">Egutegia eta Partiden Kopia Esportatu</span>
-                                <p class="text-gray-500 text-[11px]">Deskargatu soilik denboraldiko partiden egutegia eta deialdiak.</p>
-                            </div>
-                            <button onclick="downloadCalendarBackup()" class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded-lg font-bold shadow flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-calendar-days"></i> Deskargatu Egutegia JSON
-                            </button>
-                        </div>
-
-                        <div class="bg-gray-50 p-3 rounded-xl border space-y-2 flex flex-col justify-between">
-                            <div>
-                                <span class="font-bold text-gray-800 block mb-1">Segurtasun Kopia Berreskuratu (Igo)</span>
-                                <p class="text-gray-500 text-[11px]">Kargatu aurretik egindako JSON fitxategia aplikazioa eta datu-basea leheneratzeko.</p>
-                            </div>
-                            <input type="file" id="backup-file-input" accept=".json" onchange="restoreDatabaseFromBackup(event)" class="hidden">
-                            <button onclick="document.getElementById('backup-file-input').click()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-lg font-bold shadow flex items-center justify-center gap-1.5">
-                                <i class="fa-solid fa-upload"></i> Berreskuratu Kopia
                             </button>
                         </div>
                     </div>
@@ -981,12 +920,9 @@
                     </select>
                 </div>
 
-                <div id="login-google-container" class="hidden space-y-2 pt-2">
-                    <p class="text-[11px] text-gray-600 text-center font-medium">Jokalari eta gurasoek Google kontuarekin sartu behar dute segurtasuna bermatzeko:</p>
-                    <button type="button" onclick="loginWithGoogle()" class="w-full bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-300 font-bold py-2.5 px-4 rounded-xl shadow-sm flex items-center justify-center gap-2.5 transition-all">
-                        <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.18v3.15C3.15 21.32 7.23 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.61H1.18C.43 8.13 0 9.87 0 12s.43 3.87 1.18 5.39l4.09-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.15 2.68 1.18 6.61l4.09 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
-                        <span>Sartu Google Kontuarekin</span>
-                    </button>
+                <div id="login-email-container" class="hidden">
+                    <label class="font-bold text-gray-700 block mb-1">Emaila:</label>
+                    <input type="email" id="login-email-input" placeholder="zure.emaila@marierrota.eus" class="w-full border p-2.5 rounded-lg bg-gray-50">
                 </div>
 
                 <div id="login-password-container">
@@ -995,7 +931,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-end gap-2 pt-2 border-t" id="login-action-buttons">
+            <div class="flex justify-end gap-2 pt-2 border-t">
                 <button onclick="closeModal('modal-login')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold">Utzi</button>
                 <button onclick="verifyAndLogin()" class="px-4 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-bold shadow">Sartu / Aldatu Rola</button>
             </div>
@@ -1377,46 +1313,14 @@
         function onLoginRoleChange() {
             const role = document.getElementById('login-role-select').value;
             const passContainer = document.getElementById('login-password-container');
-            const googleContainer = document.getElementById('login-google-container');
-            const actionButtons = document.getElementById('login-action-buttons');
+            const emailContainer = document.getElementById('login-email-container');
             
             if (role === 'player' || role === 'parent') {
-                if (googleContainer) googleContainer.style.display = 'block';
-                if (passContainer) passContainer.style.display = 'none';
-                if (actionButtons) actionButtons.style.display = 'none';
+                emailContainer.style.display = 'block';
+                document.getElementById('login-pass-label').innerText = "Pasahitza / PIN kodea:";
             } else {
-                if (googleContainer) googleContainer.style.display = 'none';
-                if (passContainer) passContainer.style.display = 'block';
-                if (actionButtons) actionButtons.style.display = 'flex';
+                emailContainer.style.display = 'none';
                 document.getElementById('login-pass-label').innerText = "Pasahitza:";
-            }
-        }
-
-        async function loginWithGoogle() {
-            if (supabaseClient) {
-                try {
-                    const { data, error } = await supabaseClient.auth.signInWithOAuth({
-                        provider: 'google',
-                        options: {
-                            redirectTo: window.location.href
-                        }
-                    });
-                    if (error) {
-                        alert("Google bidezko saioa hasteko errorea: " + error.message);
-                    }
-                } catch(e) {
-                    console.error("Google auth exception:", e);
-                    alert("Ezin izan da Google bidez saioa hasi.");
-                }
-            } else {
-                // Supabase aktibatu gabe badago modu lokalean simulatu Google saioa
-                const role = document.getElementById('login-role-select').value;
-                currentRole = role;
-                closeModal('modal-login');
-                const welcomeScreen = document.getElementById('welcome-role-screen');
-                if (welcomeScreen) welcomeScreen.classList.add('hidden');
-                renderAll();
-                document.getElementById('header-role-label').innerText = role === 'player' ? 'Jokalaria (Google)' : 'Gurasoa (Google)';
             }
         }
 
@@ -1829,71 +1733,6 @@
             const coachPassInput = document.getElementById('settings-pass-coach');
             if (adminPassInput) adminPassInput.value = localStorage.getItem('volley_pass_admin') || 'marierrota2026';
             if (coachPassInput) coachPassInput.value = localStorage.getItem('volley_pass_coach') || 'entrenatzailea2026';
-
-            const clubNameInput = document.getElementById('settings-club-name');
-            const clubSeasonInput = document.getElementById('settings-club-season');
-            if (clubNameInput) clubNameInput.value = localStorage.getItem('volley_club_name') || 'Lekeitioko Marierrota Boleibol Taldea';
-            if (clubSeasonInput) clubSeasonInput.value = localStorage.getItem('volley_club_season') || '2025/2026';
-        }
-
-        function saveClubSettings() {
-            const clubName = document.getElementById('settings-club-name').value.trim();
-            const clubSeason = document.getElementById('settings-club-season').value.trim();
-            if (clubName && clubSeason) {
-                localStorage.setItem('volley_club_name', clubName);
-                localStorage.setItem('volley_club_season', clubSeason);
-                alert("Klubaren izena eta denboraldia ondo gorde dira.");
-            } else {
-                alert("Mesedez, bete eremu guztiak.");
-            }
-        }
-
-        function downloadFullDatabaseBackup() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `Marierrota_Backup_${new Date().toISOString().slice(0,10)}.json`);
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            downloadAnchor.remove();
-        }
-
-        function downloadCalendarBackup() {
-            const calendarData = {
-                matches: appData.matches,
-                teams: appData.teams
-            };
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(calendarData, null, 2));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `Marierrota_Egutegia_Backup_${new Date().toISOString().slice(0,10)}.json`);
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            downloadAnchor.remove();
-        }
-
-        async function restoreDatabaseFromBackup(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                try {
-                    const parsed = JSON.parse(e.target.result);
-                    if (parsed.teams && parsed.players) {
-                        appData = parsed;
-                        if (!appData.preparations) appData.preparations = {};
-                        await saveDataToCloud();
-                        renderAll();
-                        alert("Datu-basearen segurtasun kopia ondo leheneratu da!");
-                    } else {
-                        alert("Fitxategiaren formatua ez da zuzena Marierrota datu-basearentzat.");
-                    }
-                } catch(err) {
-                    console.error("Errorea kopia irakurtzean:", err);
-                    alert("Errorea fitxategia irakurtzean.");
-                }
-            };
-            reader.readAsText(file);
         }
 
         function togglePasswordVisibility(inputId, btnEl) {
@@ -4695,6 +4534,395 @@
             closeModal('modal-session-scout');
         }
 
+        function registerSessionDetailedStat(sessionId, skill, type) {
+            if (!appData.sessionNotes[sessionId]) return;
+            if (!appData.sessionNotes[sessionId].sessionScoutData) {
+                appData.sessionNotes[sessionId].sessionScoutData = { k1:{pos:0,neu:0,neg:0}, k2:{pos:0,neu:0,neg:0}, k3:{pos:0,neu:0,neg:0} };
+            }
+
+            const sysKey = activeScoutSystem === 'KI' ? 'k1' : (activeScoutSystem === 'KII' ? 'k2' : 'k3');
+            if (!appData.sessionNotes[sessionId].sessionScoutData[sysKey]) {
+                appData.sessionNotes[sessionId].sessionScoutData[sysKey] = { pos: 0, neu: 0, neg: 0 };
+            }
+            appData.sessionNotes[sessionId].sessionScoutData[sysKey][type]++;
+
+            let detailMeta = '';
+            if (skill === 'Kolokazioa') {
+                detailMeta = activeSessionSettingZone;
+                if (!appData.sessionNotes[sessionId].sessionSettingZoneCounts) {
+                    appData.sessionNotes[sessionId].sessionSettingZoneCounts = { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 };
+                }
+                appData.sessionNotes[sessionId].sessionSettingZoneCounts[activeSessionSettingZone] = (appData.sessionNotes[sessionId].sessionSettingZoneCounts[activeSessionSettingZone] || 0) + 1;
+            }
+            if (skill === 'Rematea') {
+                detailMeta = activeSessionAttackDir;
+                if (!appData.sessionNotes[sessionId].sessionAttackDirCounts) {
+                    appData.sessionNotes[sessionId].sessionAttackDirCounts = { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 };
+                }
+                appData.sessionNotes[sessionId].sessionAttackDirCounts[activeSessionAttackDir] = (appData.sessionNotes[sessionId].sessionAttackDirCounts[activeSessionAttackDir] || 0) + 1;
+            }
+
+            if (activeSessionScoutTargetPlayer && activeSessionScoutTargetPlayer !== 'TEAM') {
+                const playerId = activeSessionScoutTargetPlayer;
+                if (!appData.sessionNotes[sessionId].sessionPlayerStats) {
+                    appData.sessionNotes[sessionId].sessionPlayerStats = {};
+                }
+                if (!appData.sessionNotes[sessionId].sessionPlayerStats[playerId]) {
+                    appData.sessionNotes[sessionId].sessionPlayerStats[playerId] = {};
+                }
+                if (!appData.sessionNotes[sessionId].sessionPlayerStats[playerId][skill]) {
+                    appData.sessionNotes[sessionId].sessionPlayerStats[playerId][skill] = { pos: 0, neu: 0, neg: 0 };
+                }
+                appData.sessionNotes[sessionId].sessionPlayerStats[playerId][skill][type]++;
+
+                if (!appData.sessionNotes[sessionId].sessionPlayerDetails) {
+                    appData.sessionNotes[sessionId].sessionPlayerDetails = {};
+                }
+                if (!appData.sessionNotes[sessionId].sessionPlayerDetails[playerId]) {
+                    appData.sessionNotes[sessionId].sessionPlayerDetails[playerId] = [];
+                }
+                appData.sessionNotes[sessionId].sessionPlayerDetails[playerId].push({ skill, type, meta: detailMeta });
+            }
+
+            saveLocalData();
+            updateSessionScoutLiveSummary(sessionId);
+        }
+
+        function updateSessionScoutLiveSummary(sessionId) {
+            const notesObj = appData.sessionNotes[sessionId];
+            if (!notesObj) return;
+            const teamK1 = notesObj.sessionScoutData?.k1 || { pos: 0, neu: 0, neg: 0 };
+            const teamK2 = notesObj.sessionScoutData?.k2 || { pos: 0, neu: 0, neg: 0 };
+            const teamK3 = notesObj.sessionScoutData?.k3 || { pos: 0, neu: 0, neg: 0 };
+
+            const summaryEl = document.getElementById('session-scout-live-summary');
+            if (!summaryEl) return;
+
+            const formatSummaryItem = (st) => {
+                const total = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                return `Guztira: ${total} | +(${st.pos}) 0(${st.neu}) -(${st.neg}) | <span class="font-bold ${eff >= 0 ? 'text-emerald-600' : 'text-red-500'}">${eff}%</span>`;
+            };
+
+            let html = `
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-2">
+                    <div class="bg-blue-50 p-2 rounded-lg border border-blue-200 text-xs">
+                        <b class="text-volley-blue block">KI Sistema (K1 / Harrera):</b>
+                        <span class="text-gray-700 block">${formatSummaryItem(teamK1)}</span>
+                    </div>
+                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-200 text-xs">
+                        <b class="text-amber-800 block">KII Sistema (K2 / Defentsa eta Kontraerasoa):</b>
+                        <span class="text-gray-700 block">${formatSummaryItem(teamK2)}</span>
+                    </div>
+                    <div class="bg-purple-50 p-2 rounded-lg border border-purple-200 text-xs">
+                        <b class="text-purple-800 block">KIII Sistema (K3):</b>
+                        <span class="text-gray-700 block">${formatSummaryItem(teamK3)}</span>
+                    </div>
+                </div>
+            `;
+
+            const playerStats = notesObj.sessionPlayerStats || {};
+            const teamPlayers = appData.players;
+
+            let pHtml = '';
+            for (const [pid, pSkills] of Object.entries(playerStats)) {
+                const pl = teamPlayers.find(p => p.id === pid);
+                if (!pl) continue;
+                let skillText = [];
+                for (const [sk, st] of Object.entries(pSkills)) {
+                    const total = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                    if (total > 0) {
+                        const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                        skillText.push(`<b>${sk}:</b> Guzt. ${total} (+${st.pos}/${st.neu}0/-${st.neg}) <span class="${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} font-bold">${eff}%</span>`);
+                    }
+                }
+                if (skillText.length > 0) {
+                    pHtml += `<div class="bg-white p-2 rounded border text-[11px] mb-1 flex justify-between items-center shadow-sm"><span><b>#${pl.number} ${pl.name} (${pl.position}):</b></span> <span class="text-gray-600">${skillText.join(' | ')}</span></div>`;
+                }
+            }
+
+            if (pHtml) {
+                html += `<div class="space-y-1 mt-3 border-t pt-2"><span class="font-bold text-volley-darkblue block text-xs"><i class="fa-solid fa-user-check mr-1 text-volley-blue"></i> Jokalarien Banakako Datuak (Uneko Emaitzak):</span>${pHtml}</div>`;
+            }
+
+            // Setting zones breakdown table
+            const szCounts = notesObj.sessionSettingZoneCounts || { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 };
+            const totalSz = (szCounts['Z4'] || 0) + (szCounts['Z3'] || 0) + (szCounts['Z2'] || 0) + (szCounts['Z6-Zag'] || 0);
+            let szHtml = ['Z4', 'Z3', 'Z2', 'Z6-Zag'].map(z => {
+                const c = szCounts[z] || 0;
+                const p = totalSz > 0 ? Math.round((c / totalSz) * 100) : 0;
+                return `<div class="flex justify-between items-center bg-white p-1 rounded border text-[10px]"><span class="font-bold text-volley-blue">Kolokazioa ${z}:</span><span><b>${c}</b> (${p}%)</span></div>`;
+            }).join('');
+
+            // Attack directions breakdown table
+            const adCounts = notesObj.sessionAttackDirCounts || { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 };
+            const totalAd = (adCounts['Diagonal'] || 0) + (adCounts['Linea'] || 0) + (adCounts['Z6'] || 0) + (adCounts['Beste'] || 0);
+            let adHtml = ['Diagonal', 'Linea', 'Z6', 'Beste'].map(d => {
+                const c = adCounts[d] || 0;
+                const p = totalAd > 0 ? Math.round((c / totalAd) * 100) : 0;
+                return `<div class="flex justify-between items-center bg-white p-1 rounded border text-[10px]"><span class="font-bold text-amber-800">Erasoa (${d}):</span><span><b>${c}</b> (${p}%)</span></div>`;
+            }).join('');
+
+            html += `
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+                    <div class="bg-blue-50/70 p-2 rounded-lg border border-blue-200 space-y-1 text-xs">
+                        <span class="font-bold text-volley-blue block"><i class="fa-solid fa-bullseye mr-1"></i> Kolokazio Zonaldeen Banaketa</span>
+                        ${szHtml}
+                    </div>
+                    <div class="bg-amber-50/70 p-2 rounded-lg border border-amber-200 space-y-1 text-xs">
+                        <span class="font-bold text-amber-800 block"><i class="fa-solid fa-volleyball mr-1"></i> Eraso Norabide Banaketa</span>
+                        ${adHtml}
+                    </div>
+                </div>
+            `;
+
+            summaryEl.innerHTML = html;
+        }
+
+        function previewSessionScoutReport(sessionId) {
+            const s = appData.sessions.find(item => item.id === sessionId);
+            if (!s) return;
+            const team = appData.teams.find(t => t.id === s.teamId);
+            const notesObj = appData.sessionNotes[sessionId] || {};
+            const teamPlayers = appData.players.filter(p => p.teamId === s.teamId);
+
+            let previewModal = document.getElementById('modal-session-scout-preview');
+            if (!previewModal) {
+                previewModal = document.createElement('div');
+                previewModal.id = 'modal-session-scout-preview';
+                previewModal.className = 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-3 hidden';
+                previewModal.innerHTML = `
+                    <div class="bg-white rounded-xl shadow-xl max-w-4xl w-full p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+                        <div class="flex justify-between items-center border-b pb-3 no-print">
+                            <h3 class="font-bold text-volley-darkblue text-base">Saioko Scouting-aren Informea eta Aurrebista</h3>
+                            <button onclick="closeModal('modal-session-scout-preview')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+                        </div>
+                        <div id="session-scout-preview-content" class="space-y-4 text-xs bg-white p-4"></div>
+                        <div class="flex justify-end gap-2 pt-3 border-t no-print">
+                            <button onclick="closeModal('modal-session-scout-preview')" class="px-4 py-1.5 rounded-lg border text-xs font-semibold">Itxi</button>
+                            <button onclick="exportSessionScoutPDF('${sessionId}')" class="px-4 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center gap-1 shadow">
+                                <i class="fa-solid fa-file-pdf"></i> Deskargatu PDF Txostena
+                            </button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(previewModal);
+            }
+
+            const k1 = notesObj.sessionScoutData?.k1 || {pos:0,neu:0,neg:0};
+            const k2 = notesObj.sessionScoutData?.k2 || {pos:0,neu:0,neg:0};
+            const k3 = notesObj.sessionScoutData?.k3 || {pos:0,neu:0,neg:0};
+
+            const szCounts = notesObj.sessionSettingZoneCounts || { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 };
+            const totalSz = (szCounts['Z4'] || 0) + (szCounts['Z3'] || 0) + (szCounts['Z2'] || 0) + (szCounts['Z6-Zag'] || 0);
+            let szHtml = ['Z4', 'Z3', 'Z2', 'Z6-Zag'].map(z => {
+                const c = szCounts[z] || 0;
+                const p = totalSz > 0 ? Math.round((c / totalSz) * 100) : 0;
+                return `<div class="flex justify-between items-center bg-white p-1.5 rounded border text-[11px]"><span class="font-bold text-volley-blue">Kolokazioa ${z}:</span><span><b>${c} kolokazio</b> (${p}%)</span></div>`;
+            }).join('');
+
+            const adCounts = notesObj.sessionAttackDirCounts || { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 };
+            const totalAd = (adCounts['Diagonal'] || 0) + (adCounts['Linea'] || 0) + (adCounts['Z6'] || 0) + (adCounts['Beste'] || 0);
+            let adHtml = ['Diagonal', 'Linea', 'Z6', 'Beste'].map(d => {
+                const c = adCounts[d] || 0;
+                const p = totalAd > 0 ? Math.round((c / totalAd) * 100) : 0;
+                return `<div class="flex justify-between items-center bg-white p-1.5 rounded border text-[11px]"><span class="font-bold text-amber-800">Erasoa (${d}):</span><span><b>${c} eraso</b> (${p}%)</span></div>`;
+            }).join('');
+
+            let playerRowsHtml = '';
+            const pStatsMap = notesObj.sessionPlayerStats || {};
+            const pDetailsMap = notesObj.sessionPlayerDetails || {};
+
+            teamPlayers.forEach(p => {
+                const pSt = pStatsMap[p.id] || {};
+                const pDets = pDetailsMap[p.id] || [];
+                let hasAnyAction = false;
+                let skRows = [];
+
+                for (const [sk, st] of Object.entries(pSt)) {
+                    const tot = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                    if (tot > 0) {
+                        hasAnyAction = true;
+                        const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                        skRows.push(`<div><b>${sk}:</b> Guztira: ${tot} ekintza (+${st.pos}/${st.neu}0/-${st.neg}) — <span class="${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} font-bold">${eff}% erag.</span></div>`);
+                    }
+                }
+
+                // Jokalariaren kolokazio zonaldeen eta eraso norabideen banaketa zehatza
+                let pSzCounts = { 'Z4': 0, 'Z3': 0, 'Z2': 0, 'Z6-Zag': 0 };
+                let pAdCounts = { 'Diagonal': 0, 'Linea': 0, 'Z6': 0, 'Beste': 0 };
+                pDets.forEach(d => {
+                    if (d.skill === 'Kolokazioa' && d.meta && pSzCounts[d.meta] !== undefined) pSzCounts[d.meta]++;
+                    if (d.skill === 'Rematea' && d.meta && pAdCounts[d.meta] !== undefined) pAdCounts[d.meta]++;
+                });
+
+                const pTotalSz = (pSzCounts['Z4'] || 0) + (pSzCounts['Z3'] || 0) + (pSzCounts['Z2'] || 0) + (pSzCounts['Z6-Zag'] || 0);
+                const pTotalAd = (pAdCounts['Diagonal'] || 0) + (pAdCounts['Linea'] || 0) + (pAdCounts['Z6'] || 0) + (pAdCounts['Beste'] || 0);
+
+                let pBreakdownHtml = '';
+                if (pTotalSz > 0 || pTotalAd > 0) {
+                    let szText = ['Z4', 'Z3', 'Z2', 'Z6-Zag'].filter(z => pSzCounts[z] > 0).map(z => `${z}: ${pSzCounts[z]} (${Math.round((pSzCounts[z]/pTotalSz)*100)}%)`).join(', ');
+                    let adText = ['Diagonal', 'Linea', 'Z6', 'Beste'].filter(d => pAdCounts[d] > 0).map(d => `${d}: ${pAdCounts[d]} (${Math.round((pAdCounts[d]/pTotalAd)*100)}%)`).join(', ');
+                    
+                    pBreakdownHtml = `
+                        <div class="text-[10px] text-gray-500 bg-blue-50/50 p-1.5 rounded border border-blue-100 mt-1 space-y-0.5">
+                            ${szText ? `<div><b>Kolokazio Zonaldeak:</b> ${szText}</div>` : ''}
+                            ${adText ? `<div><b>Eraso Norabideak:</b> ${adText}</div>` : ''}
+                        </div>
+                    `;
+                }
+
+                if (hasAnyAction) {
+                    playerRowsHtml += `
+                        <div class="bg-gray-50 p-3 rounded-lg border space-y-1">
+                            <span class="font-bold text-gray-900 text-sm block">#${p.number} ${p.name} (${p.position})</span>
+                            <div class="text-gray-600 text-xs space-y-0.5">${skRows.join('')}</div>
+                            ${pBreakdownHtml}
+                        </div>
+                    `;
+                }
+            });
+
+            const formatSystemBox = (title, st, bgClass, borderClass) => {
+                const tot = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                return `
+                    <div class="${bgClass} p-3 rounded-xl border ${borderClass} space-y-1">
+                        <b class="block text-volley-darkblue">${title}</b>
+                        <span class="text-gray-700 block text-[11px]">Ekintzak Guztira: ${tot}</span>
+                        <span class="font-bold text-xs ${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} block">Eraginkortasuna: ${eff}%</span>
+                    </div>
+                `;
+            };
+
+            document.getElementById('session-scout-preview-content').innerHTML = `
+                <div class="space-y-4 font-sans" id="printable-session-scout-content">
+                    <div class="border-b-2 border-volley-darkblue pb-3 flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-base text-volley-darkblue">LEKEITIOKO MARIERROTA BOLEIBOL TALDEA</h4>
+                            <p class="text-xs text-volley-blue font-semibold">Saioko Scouting Informea — ${team ? team.name : ''} (${s.date})</p>
+                        </div>
+                        <span class="bg-volley-blue text-white text-xs px-3 py-1 rounded-lg font-bold shadow-sm">Informe Ofiziala</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h5 class="font-bold text-xs text-volley-darkblue uppercase tracking-wide"><i class="fa-solid fa-chart-line mr-1 text-volley-blue"></i> 1. Talde Sistema Taktikoen Balantzea</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            ${formatSystemBox('KI Sistema (K1)', k1, 'bg-blue-50', 'border-blue-200')}
+                            ${formatSystemBox('KII Sistema (K2)', k2, 'bg-amber-50', 'border-amber-200')}
+                            ${formatSystemBox('KIII Sistema (K3)', k3, 'bg-purple-50', 'border-purple-200')}
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 pt-2 border-t">
+                        <h5 class="font-bold text-xs text-volley-darkblue uppercase tracking-wide"><i class="fa-solid fa-bullseye mr-1 text-volley-blue"></i> 2. Kolokazio Zonaldeen eta Eraso Norabideen Banaketa (%)</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="bg-blue-50/70 p-3 rounded-xl border border-blue-200 space-y-1.5 text-xs">
+                                <span class="font-bold text-volley-blue block"><i class="fa-solid fa-bullseye mr-1"></i> Kolokatzailearen Zonaldeak</span>
+                                ${szHtml}
+                            </div>
+                            <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200 space-y-1.5 text-xs">
+                                <span class="font-bold text-amber-800 block"><i class="fa-solid fa-volleyball mr-1"></i> Eraso Norabideak / Guneak</span>
+                                ${adHtml}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 pt-2 border-t">
+                        <h5 class="font-bold text-xs text-volley-darkblue uppercase tracking-wide"><i class="fa-solid fa-users mr-1 text-volley-blue"></i> 3. Jokalarien Banakako Xehetasunak, Zonaldeak eta Eraginkortasuna</h5>
+                        <div class="space-y-2">
+                            ${playerRowsHtml || '<p class="text-gray-400 italic text-xs">Ez dago jokalarien ekintza erregistraturik saio honetan.</p>'}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            openModal('modal-session-scout-preview');
+        }
+
+        function exportSessionScoutPDF(sessionId) {
+
+            teamPlayers.forEach(p => {
+                const pSt = pStatsMap[p.id] || {};
+                let hasAnyAction = false;
+                let skRows = [];
+
+                for (const [sk, st] of Object.entries(pSt)) {
+                    const tot = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                    if (tot > 0) {
+                        hasAnyAction = true;
+                        const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                        skRows.push(`<div><b>${sk}:</b> Guztira: ${tot} ekintza (+${st.pos}/${st.neu}0/-${st.neg}) — <span class="${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} font-bold">${eff}% erag.</span></div>`);
+                    }
+                }
+
+                if (hasAnyAction) {
+                    playerRowsHtml += `
+                        <div class="bg-gray-50 p-3 rounded-lg border space-y-1">
+                            <span class="font-bold text-gray-900 text-sm block">#${p.number} ${p.name} (${p.position})</span>
+                            <div class="text-gray-600 text-xs space-y-0.5">${skRows.join('')}</div>
+                        </div>
+                    `;
+                }
+            });
+
+            const formatSystemBox = (title, st, bgClass, borderClass) => {
+                const tot = (st.pos || 0) + (st.neu || 0) + (st.neg || 0);
+                const eff = calcEfficiency(st.pos, st.neu, st.neg);
+                return `
+                    <div class="${bgClass} p-3 rounded-xl border ${borderClass} space-y-1">
+                        <b class="block text-volley-darkblue">${title}</b>
+                        <span class="text-gray-700 block text-[11px]">Ekintzak Guztira: ${tot}</span>
+                        <span class="font-bold text-xs ${eff >= 0 ? 'text-emerald-600' : 'text-red-500'} block">Eraginkortasuna: ${eff}%</span>
+                    </div>
+                `;
+            };
+
+            document.getElementById('session-scout-preview-content').innerHTML = `
+                <div class="space-y-4 font-sans" id="printable-session-scout-content">
+                    <div class="border-b-2 border-volley-darkblue pb-3 flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-base text-volley-darkblue">LEKEITIOKO MARIERROTA BOLEIBOL TALDEA</h4>
+                            <p class="text-xs text-volley-blue font-semibold">Saioko Scouting Informea — ${team ? team.name : ''} (${s.date})</p>
+                        </div>
+                        <span class="bg-volley-blue text-white text-xs px-3 py-1 rounded-lg font-bold shadow-sm">Informe Ofiziala</span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h5 class="font-bold text-xs text-volley-darkblue uppercase tracking-wide"><i class="fa-solid fa-chart-line mr-1 text-volley-blue"></i> 1. Talde Sistema Taktikoen Balantzea</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            ${formatSystemBox('KI Sistema (K1)', k1, 'bg-blue-50', 'border-blue-200')}
+                            ${formatSystemBox('KII Sistema (K2)', k2, 'bg-amber-50', 'border-amber-200')}
+                            ${formatSystemBox('KIII Sistema (K3)', k3, 'bg-purple-50', 'border-purple-200')}
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 pt-2 border-t">
+                        <h5 class="font-bold text-xs text-volley-darkblue uppercase tracking-wide"><i class="fa-solid fa-bullseye mr-1 text-volley-blue"></i> 2. Kolokazio Zonaldeen eta Eraso Norabideen Banaketa (%)</h5>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div class="bg-blue-50/70 p-3 rounded-xl border border-blue-200 space-y-1.5 text-xs">
+                                <span class="font-bold text-volley-blue block"><i class="fa-solid fa-bullseye mr-1"></i> Kolokatzailearen Zonaldeak</span>
+                                ${szHtml}
+                            </div>
+                            <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200 space-y-1.5 text-xs">
+                                <span class="font-bold text-amber-800 block"><i class="fa-solid fa-volleyball mr-1"></i> Eraso Norabideak / Guneak</span>
+                                ${adHtml}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 pt-2 border-t">
+                        <h5 class="font-bold text-xs text-volley-darkblue uppercase tracking-wide"><i class="fa-solid fa-users mr-1 text-volley-blue"></i> 3. Jokalarien Banakako Baloreak eta Eraginkortasuna</h5>
+                        <div class="space-y-2">
+                            ${playerRowsHtml || '<p class="text-gray-400 italic text-xs">Ez dago jokalarien ekintza erregistraturik saio honetan.</p>'}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            openModal('modal-session-scout-preview');
+        }
+
         /* SCOUTING ETA ESTATISTIKAK */
         function onScoutTeamChange() {
             const teamSelect = document.getElementById('scout-team-select');
@@ -4935,7 +5163,7 @@
             if (!setStatsData[activeScoutSet]) setStatsData[activeScoutSet] = {};
             if (!setStatsData[activeScoutSet][skill]) setStatsData[activeScoutSet][skill] = { pos: 0, neg: 0, neu: 0 };
 
-            setStatsData[activeScoutSet][skill][type] += 1;
+            setStatsData[activeScoutSet][skill][type]++;
 
             const playerId = selectedScoutPlayerId;
             let detailMeta = '';
@@ -4953,7 +5181,7 @@
             if (playerId) {
                 if (!playerStatsData[activeScoutSet][playerId]) playerStatsData[activeScoutSet][playerId] = {};
                 if (!playerStatsData[activeScoutSet][playerId][skill]) playerStatsData[activeScoutSet][playerId][skill] = { pos: 0, neg: 0, neu: 0 };
-                playerStatsData[activeScoutSet][playerId][skill][type] += 1;
+                playerStatsData[activeScoutSet][playerId][skill][type]++;
 
                 if (!playerActionDetailsData[activeScoutSet][playerId]) playerActionDetailsData[activeScoutSet][playerId] = [];
                 playerActionDetailsData[activeScoutSet][playerId].push({ skill, type, meta: detailMeta });
