@@ -47,7 +47,7 @@
         }
     </style>
 </head>
-<body class="bg-volley-bg text-gray-800 pb-20 md:pb-0 flex flex-col min-h-screen">
+<body class="bg-volley-bg text-gray-800 pb-6 md:pb-0 flex flex-col min-h-screen">
 
     <!-- HASIERAKO ROL HAUTATZEKO PANELA (LANDING MENU) -->
     <div id="welcome-role-screen" class="fixed inset-0 bg-volley-darkblue z-50 flex items-center justify-center p-4">
@@ -106,10 +106,10 @@
                             <div class="w-9 h-9 rounded-lg bg-emerald-600 text-white flex items-center justify-center shadow"><i class="fa-solid fa-user-injured"></i></div>
                             <div>
                                 <span class="font-bold text-volley-darkblue text-sm block">Jokalaria</span>
-                                <span class="text-[11px] text-gray-500">Emaila eta pasahitza bidezko sarrera</span>
+                                <span class="text-[11px] text-gray-500">Google kontuarekin sarrera (Kontu 1 = Erabiltzaile 1)</span>
                             </div>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></i>
+                        <i class="fa-brands fa-google text-emerald-600 group-hover:translate-x-1 transition-transform"></i>
                     </button>
 
                     <button onclick="selectWelcomeRole('parent')" class="w-full text-left p-3.5 rounded-xl border-2 border-gray-200 hover:border-volley-blue bg-gray-50 hover:bg-white transition-all flex items-center justify-between group">
@@ -117,10 +117,10 @@
                             <div class="w-9 h-9 rounded-lg bg-purple-600 text-white flex items-center justify-center shadow"><i class="fa-solid fa-users"></i></div>
                             <div>
                                 <span class="font-bold text-volley-darkblue text-sm block">Gurasoa</span>
-                                <span class="text-[11px] text-gray-500">Emaila eta pasahitza bidezko sarrera</span>
+                                <span class="text-[11px] text-gray-500">Google kontuarekin sarrera (Kontu 1 = Erabiltzaile 1)</span>
                             </div>
                         </div>
-                        <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></i>
+                        <i class="fa-brands fa-google text-purple-600 group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </div>
             </div>
@@ -131,9 +131,9 @@
 
     <!-- HEADER / GOIALDEA LOGOAREKIN -->
     <header class="bg-volley-darkblue text-white sticky top-0 z-40 shadow-md no-print border-b-2 border-volley-yellow">
-        <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="w-11 h-11 rounded-full bg-white p-0.5 flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0 border-2 border-volley-yellow">
+        <div class="max-w-7xl mx-auto px-3 sm:px-4 py-2 flex justify-between items-center">
+            <div class="flex items-center space-x-2.5 sm:space-x-3">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white p-0.5 flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0 border-2 border-volley-yellow">
                     <svg viewBox="0 0 200 200" class="w-full h-full rounded-full">
                         <rect width="200" height="200" fill="#0A2540"/>
                         <text x="100" y="32" fill="#FFFFFF" font-family="Arial Black, sans-serif" font-weight="900" font-size="20" text-anchor="middle">LEKEITIOKO</text>
@@ -150,52 +150,119 @@
                     </svg>
                 </div>
                 <div>
-                    <h1 class="font-extrabold text-base md:text-lg tracking-wide text-white leading-tight">MARIERROTA <span class="text-volley-yellow">KUDEAKETA</span></h1>
-                    <p class="text-[10px] text-gray-300">Lekeitioko Marierrota Boleibol Taldea</p>
+                    <h1 class="font-extrabold text-sm sm:text-base md:text-lg tracking-wide text-white leading-tight">MARIERROTA <span class="text-volley-yellow">KUDEAKETA</span></h1>
+                    <p class="text-[10px] text-gray-300 hidden xs:block">Lekeitioko Marierrota Boleibol Taldea</p>
                 </div>
             </div>
             
-            <div class="flex items-center space-x-2">
-                <button onclick="openSupabaseModal()" id="db-status-badge" class="px-2 py-1 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1">
+            <div class="flex items-center space-x-1.5 sm:space-x-2">
+                <button onclick="openSupabaseModal()" id="db-status-badge" class="px-2 py-1 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1" title="Hodeiko Egoera">
                     <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                    <span id="db-status-text" class="hidden sm:inline">Modu Lokala</span>
+                    <span id="db-status-text" class="hidden md:inline">Modu Lokala</span>
                 </button>
 
-                <button onclick="openLoginModal()" id="current-user-btn" class="bg-volley-yellow text-volley-darkblue px-3 py-1.5 rounded-lg text-xs font-extrabold shadow flex items-center gap-1.5">
+                <button onclick="openLoginModal()" id="current-user-btn" class="bg-volley-yellow text-volley-darkblue px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-extrabold shadow flex items-center gap-1.5">
                     <i class="fa-solid fa-user-shield"></i>
-                    <span id="header-role-label">Kirol Arduraduna</span>
+                    <span id="header-role-label" class="hidden sm:inline">Kirol Arduraduna</span>
+                </button>
+
+                <button onclick="logoutUser()" id="logout-btn" class="hidden bg-red-600/80 hover:bg-red-600 text-white px-2.5 py-1.5 rounded-lg text-xs font-bold shadow flex items-center gap-1" title="Saioa Itxi">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+
+                <!-- MUGIKORRERAKO MENU DESPLEGABLEAREN BOTOIA -->
+                <button onclick="toggleMobileMenu()" id="mobile-menu-toggle-btn" class="md:hidden bg-volley-blue hover:bg-blue-800 text-volley-yellow border border-volley-yellow/50 px-3 py-1.5 rounded-lg text-sm font-bold shadow flex items-center gap-1.5 transition-all" aria-label="Menua ireki">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+                    <span class="text-xs">Menua</span>
                 </button>
             </div>
         </div>
 
-        <!-- NABIGAZIO BARRA NAGUSIA -->
-        <nav class="bg-volley-blue border-t border-blue-900/50 shadow-inner px-2 py-1.5 no-print">
-            <div class="max-w-7xl mx-auto flex justify-around sm:justify-center sm:gap-6 items-center">
-                <button onclick="switchTab('sec-teams', this)" class="nav-tab active-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-volley-yellow font-bold text-[11px] sm:text-xs transition-all">
+        <!-- MUGIKORRERAKO MENU DESPLEGABLEA (DROPDOWN) -->
+        <div id="mobile-dropdown-menu" class="hidden md:hidden bg-volley-blue border-t border-blue-800/80 px-3 py-2.5 space-y-1 shadow-2xl transition-all">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-volley-yellow/80 px-2 pb-1 border-b border-blue-800/60 flex justify-between items-center">
+                <span>Atalak</span>
+                <span id="mobile-active-tab-name" class="text-white">Taldeak</span>
+            </div>
+            <button onclick="switchTab('sec-teams', this); closeMobileMenu();" class="nav-tab mobile-nav-item w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-volley-yellow font-bold bg-white/10 text-xs transition-all">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-users w-4 text-center text-sm"></i>
+                    <span>Taldeak eta Jokalariak</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+            </button>
+            <button onclick="switchTab('sec-calendar', this); closeMobileMenu();" class="nav-tab mobile-nav-item w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-gray-200 hover:bg-white/5 font-medium text-xs transition-all">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-calendar-days w-4 text-center text-sm"></i>
+                    <span>Partiden Egutegia</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+            </button>
+            <button onclick="switchTab('sec-preparation', this); closeMobileMenu();" class="nav-tab mobile-nav-item w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-gray-200 hover:bg-white/5 font-medium text-xs transition-all">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-chalkboard-user w-4 text-center text-sm"></i>
+                    <span>Deialdia & Pizarra Taktikoa</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+            </button>
+            <button onclick="switchTab('sec-exercises', this); closeMobileMenu();" class="nav-tab mobile-nav-item w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-gray-200 hover:bg-white/5 font-medium text-xs transition-all">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-dumbbell w-4 text-center text-sm"></i>
+                    <span>Ariketen Bankua</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+            </button>
+            <button onclick="switchTab('sec-sessions', this); closeMobileMenu();" class="nav-tab mobile-nav-item w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-gray-200 hover:bg-white/5 font-medium text-xs transition-all">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-clipboard-list w-4 text-center text-sm"></i>
+                    <span>Entrenamendu Saioak</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+            </button>
+            <button onclick="switchTab('sec-stats', this); closeMobileMenu();" class="nav-tab mobile-nav-item w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-gray-200 hover:bg-white/5 font-medium text-xs transition-all">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-chart-line w-4 text-center text-sm"></i>
+                    <span>Scouting eta Estatistikak</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+            </button>
+            <button onclick="switchTab('sec-settings', this); closeMobileMenu();" id="mobile-nav-tab-settings" class="nav-tab mobile-nav-item admin-only w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-gray-200 hover:bg-white/5 font-medium text-xs transition-all">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-gears w-4 text-center text-sm"></i>
+                    <span>Ezarpenak (Admin)</span>
+                </div>
+                <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+            </button>
+        </div>
+
+        <!-- NABIGAZIO BARRA NAGUSIA (ORDENAGAILURAKO SOILIK - md:block) -->
+        <nav class="hidden md:block bg-volley-blue border-t border-blue-900/50 shadow-inner px-2 py-1.5 no-print">
+            <div class="max-w-7xl mx-auto flex justify-center gap-6 items-center">
+                <button onclick="switchTab('sec-teams', this)" class="nav-tab desktop-nav-item active-tab flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-volley-yellow font-bold bg-white/10 text-xs transition-all">
                     <i class="fa-solid fa-users text-sm"></i>
                     <span>Taldeak</span>
                 </button>
-                <button onclick="switchTab('sec-calendar', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-calendar', this)" class="nav-tab desktop-nav-item flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-calendar-days text-sm"></i>
                     <span>Partidak</span>
                 </button>
-                <button onclick="switchTab('sec-preparation', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-preparation', this)" class="nav-tab desktop-nav-item flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-chalkboard-user text-sm"></i>
                     <span>Deialdia & Pizarra</span>
                 </button>
-                <button onclick="switchTab('sec-exercises', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-exercises', this)" class="nav-tab desktop-nav-item flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-dumbbell text-sm"></i>
                     <span>Ariketak</span>
                 </button>
-                <button onclick="switchTab('sec-sessions', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-sessions', this)" class="nav-tab desktop-nav-item flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-clipboard-list text-sm"></i>
                     <span>Saioak</span>
                 </button>
-                <button onclick="switchTab('sec-stats', this)" class="nav-tab flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-stats', this)" class="nav-tab desktop-nav-item flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-chart-line text-sm"></i>
                     <span>Scouting</span>
                 </button>
-                <button onclick="switchTab('sec-settings', this)" id="nav-tab-settings" class="nav-tab admin-only flex flex-col sm:flex-row items-center gap-1 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-[11px] sm:text-xs transition-all">
+                <button onclick="switchTab('sec-settings', this)" id="nav-tab-settings" class="nav-tab desktop-nav-item admin-only flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-300 hover:text-white font-medium text-xs transition-all">
                     <i class="fa-solid fa-gears text-sm"></i>
                     <span>Ezarpenak</span>
                 </button>
@@ -593,7 +660,7 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between md:items-center gap-2">
                 <div>
                     <h2 class="text-xl font-bold text-volley-darkblue"><i class="fa-solid fa-gears text-volley-blue mr-2"></i>Aplikazioaren Ezarpenak eta Kudeaketa</h2>
-                    <p class="text-xs text-gray-500">Konfiguratu datu-base konexioak, pasahitz pertsonalizatuak eta rol baimenak</p>
+                    <p class="text-xs text-gray-500">Konfiguratu datu-base konexioak, Google kontu lotuak eta rol baimenak</p>
                 </div>
                 <span class="bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full border border-red-300 flex items-center gap-1">
                     <i class="fa-solid fa-shield-halved"></i> Kirol Arduraduna (Administratzailea)
@@ -660,7 +727,21 @@
                 </div>
             </div>
 
-            <!-- 3. ROLEN BAIMENEN MATRIZEA -->
+            <!-- 3. GOOGLE KONTU LOTUEN KUDEAKETA (1 GOOGLE KONTU = 1 ERABILTZAILE) -->
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-2">
+                    <h3 class="font-bold text-sm text-volley-darkblue flex items-center gap-2">
+                        <i class="fa-brands fa-google text-red-500"></i> Google Kontu Lotuak (Jokalariak eta Gurasoak)
+                    </h3>
+                    <span class="text-[11px] bg-blue-50 text-volley-blue font-bold px-2.5 py-1 rounded-full border border-blue-200">
+                        Araua: Google kontu bakoitza erabiltzaile bakar bati lotzen zaio
+                    </span>
+                </div>
+                <p class="text-xs text-gray-500">Hemen ikus ditzakezu aplikazioan Google kontuarekin sartu diren jokalari eta gurasoak. Kontu bat askatu nahi baduzu (beste erabiltzaile batera lotzeko), sakatu ezabatzeko botoia.</p>
+                <div id="settings-google-bindings-list" class="overflow-x-auto text-xs"></div>
+            </div>
+
+            <!-- 4. ROLEN BAIMENEN MATRIZEA -->
             <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 space-y-4">
                 <h3 class="font-bold text-sm text-volley-darkblue border-b pb-2 flex items-center gap-2">
                     <i class="fa-solid fa-user-shield text-emerald-600"></i> Rolen Baimen eta Ikusgarritasun Matrizea
@@ -901,7 +982,7 @@
         </div>
     </div>
 
-    <!-- SAIOA HASTEN / ROL MODALA -->
+    <!-- SAIOA HASTEN / ROL MODALA (GOOGLE OAUTH + ERABILTZAILE BAKARRA) -->
     <div id="modal-login" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-5 space-y-4">
             <div class="flex justify-between items-center border-b pb-2">
@@ -915,25 +996,48 @@
                     <select id="login-role-select" onchange="onLoginRoleChange()" class="w-full border p-2.5 rounded-lg bg-gray-50 font-bold text-volley-darkblue">
                         <option value="admin">Kirol Arduraduna (Administratzailea)</option>
                         <option value="coach">Entrenatzailea</option>
-                        <option value="player">Jokalaria</option>
-                        <option value="parent">Gurasoa</option>
+                        <option value="player">Jokalaria (Google Kontua)</option>
+                        <option value="parent">Gurasoa (Google Kontua)</option>
                     </select>
                 </div>
 
-                <div id="login-email-container" class="hidden">
-                    <label class="font-bold text-gray-700 block mb-1">Emaila:</label>
-                    <input type="email" id="login-email-input" placeholder="zure.emaila@marierrota.eus" class="w-full border p-2.5 rounded-lg bg-gray-50">
+                <!-- JOKALARI EDO GURASOENTZAKO GOOGLE KONEXIOA ETA ERABILTZAILE HAUTAPENA -->
+                <div id="login-google-container" class="hidden space-y-3">
+                    <div id="login-player-profile-select-box" class="space-y-1">
+                        <label class="font-bold text-gray-700 block">Aukeratu zein Jokalari zaren:</label>
+                        <select id="login-selected-player-id" class="w-full border p-2 rounded-lg bg-gray-50 font-semibold text-volley-darkblue"></select>
+                        <p class="text-[10px] text-gray-500">Zure Google kontua jokalari honi lotuko zaio behin betiko.</p>
+                    </div>
+
+                    <div id="login-parent-info-box" class="hidden space-y-1.5 bg-purple-50 p-2.5 rounded-lg border border-purple-200">
+                        <label class="font-bold text-purple-900 block">Gurasoaren Izen-Abizenak (Lotura egiteko):</label>
+                        <input type="text" id="login-parent-name" placeholder="Adib: Mikel Zubizarreta" class="w-full border p-2 rounded-lg bg-white text-xs">
+                        <p class="text-[10px] text-purple-700">Zure Google kontua guraso perfil honi lotuko zaio eta ezingo da beste erabiltzailerik izan.</p>
+                    </div>
+
+                    <div id="google-auth-error-msg" class="hidden bg-red-50 border border-red-300 text-red-700 p-2.5 rounded-lg text-[11px] font-semibold"></div>
+
+                    <button type="button" onclick="signInWithGoogleOAuth()" class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-gray-50 text-gray-800 font-bold border-2 border-gray-300 shadow-sm flex items-center justify-center gap-2.5 transition-all">
+                        <svg class="w-4 h-4" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24z"/>
+                            <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96z"/>
+                        </svg>
+                        <span>Sartu Google kontuarekin</span>
+                    </button>
                 </div>
 
+                <!-- ADMIN / ENTRENATZAILE PASAHITZA -->
                 <div id="login-password-container">
                     <label class="font-bold text-gray-700 block mb-1" id="login-pass-label">Pasahitza:</label>
                     <input type="password" id="login-password-input" placeholder="Sartu pasahitza..." class="w-full border p-2.5 rounded-lg bg-gray-50">
                 </div>
             </div>
 
-            <div class="flex justify-end gap-2 pt-2 border-t">
+            <div class="flex justify-end gap-2 pt-2 border-t" id="login-modal-footer">
                 <button onclick="closeModal('modal-login')" class="px-3 py-1.5 rounded-lg border text-xs font-semibold">Utzi</button>
-                <button onclick="verifyAndLogin()" class="px-4 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-bold shadow">Sartu / Aldatu Rola</button>
+                <button id="login-submit-password-btn" onclick="verifyAndLogin()" class="px-4 py-1.5 rounded-lg bg-volley-blue text-white text-xs font-bold shadow">Sartu / Aldatu Rola</button>
             </div>
         </div>
     </div>
@@ -1223,11 +1327,12 @@
     <!-- SCRIPT LOGIKA -->
     <script>
         let currentRole = 'admin';
+        let currentGoogleUser = null;
         let supabaseClient = null;
         let realtimeChannel = null;
         let tempPlayerPhotoBase64 = '';
 
-        // SUPABASE SINKRONIZAZIO AUTOMATIKORAKO GAKO PUBLIKOAK (AUTOMATIKOKI PRESTATUTA)
+        // SUPABASE SINKRONIZAZIO AUTOMATIKORAKO GAKO PUBLIKOAK
         const DEFAULT_SUPABASE_URL = "https://sioyxmchodjsuogdrslq.supabase.co";
         const DEFAULT_SUPABASE_KEY = "sb_publishable_K3Vij-6jE2X9JX_-4yg_-A_XzT28XV9";
 
@@ -1240,6 +1345,7 @@
             stats: [],
             preparations: {},
             sessionNotes: {},
+            googleBindings: {} // { "email@gmail.com": { role: 'player'|'parent', targetId: 'p_1', displayName: 'Ane Zabala', linkedAt: '...' } }
         };
 
         const ACTION_SKILLS = ['Sakea', 'Harrera', 'Kolokazioa', 'Rematea', 'Blokeoa', 'Defentsa'];
@@ -1302,7 +1408,259 @@
                 onScoutTeamChange();
                 onPrepTeamChange();
             }
+
+            // Egiaztatu ea Google OAuth itzulerako saio bat dagoen
+            await checkGoogleOAuthSession();
         };
+
+        /* GOOGLE OAUTH ETA ERABILTZAILE BAKARRAREN LOTURA (1 GOOGLE = 1 ERABILTZAILE) */
+        async function signInWithGoogleOAuth() {
+            const role = document.getElementById('login-role-select').value;
+            const errorBox = document.getElementById('google-auth-error-msg');
+            if (errorBox) {
+                errorBox.classList.add('hidden');
+                errorBox.innerText = '';
+            }
+
+            if (role !== 'player' && role !== 'parent') return;
+
+            let selectedTargetId = '';
+            let selectedDisplayName = '';
+
+            if (role === 'player') {
+                const playerSel = document.getElementById('login-selected-player-id');
+                if (!playerSel || !playerSel.value) {
+                    if (errorBox) {
+                        errorBox.innerText = "Mesedez, aukeratu zein jokalari zaren zerrendatik Google kontua lotu aurretik.";
+                        errorBox.classList.remove('hidden');
+                    }
+                    return;
+                }
+                selectedTargetId = playerSel.value;
+                const pl = appData.players.find(p => p.id === selectedTargetId);
+                selectedDisplayName = pl ? `#${pl.number} ${pl.name}` : 'Jokalaria';
+
+                // Egiaztatu ea jokalari horrek dagoeneko beste Google kontu bat lotuta daukan
+                const existingEntry = Object.entries(appData.googleBindings || {}).find(
+                    ([email, info]) => info.role === 'player' && info.targetId === selectedTargetId
+                );
+                if (existingEntry) {
+                    if (errorBox) {
+                        errorBox.innerText = `Errorea: Jokalari hau (${selectedDisplayName}) dagoeneko beste Google kontu batera lotuta dago (${existingEntry[0]}). Ezin da bi kontu desberdinetatik sartu.`;
+                        errorBox.classList.remove('hidden');
+                    }
+                    return;
+                }
+            } else if (role === 'parent') {
+                const parentNameInput = document.getElementById('login-parent-name');
+                const parentName = parentNameInput ? parentNameInput.value.trim() : '';
+                if (!parentName) {
+                    if (errorBox) {
+                        errorBox.innerText = "Mesedez, idatzi zure izen-abizenak zure Google kontua lotzeko.";
+                        errorBox.classList.remove('hidden');
+                    }
+                    return;
+                }
+                selectedTargetId = 'parent_' + parentName.toLowerCase().replace(/\s+/g, '_');
+                selectedDisplayName = parentName;
+            }
+
+            // Gorde aldi baterako hautatutako rola eta erabiltzailea Google-ra joan aurretik
+            localStorage.setItem('marierrota_pending_google_bind', JSON.stringify({
+                role,
+                targetId: selectedTargetId,
+                displayName: selectedDisplayName
+            }));
+
+            if (!supabaseClient) {
+                if (errorBox) {
+                    errorBox.innerText = "Supabase konexioa ez dago aktibatuta. Ezin da Google OAuth exekutatu.";
+                    errorBox.classList.remove('hidden');
+                }
+                return;
+            }
+
+            try {
+                const { error } = await supabaseClient.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: {
+                        redirectTo: window.location.origin + window.location.pathname
+                    }
+                });
+                if (error) throw error;
+            } catch (err) {
+                console.error("Google OAuth errorea:", err);
+                if (errorBox) {
+                    errorBox.innerText = "Errorea Google-rekin konektatzean: " + (err.message || "Egiaztatu Supabase-n Google Provider aktibatuta dagoela.");
+                    errorBox.classList.remove('hidden');
+                }
+            }
+        }
+
+        async function checkGoogleOAuthSession() {
+            if (!supabaseClient) return;
+            try {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (!session || !session.user || !session.user.email) return;
+
+                const googleEmail = session.user.email.toLowerCase().trim();
+                if (!appData.googleBindings) appData.googleBindings = {};
+
+                const existingBinding = appData.googleBindings[googleEmail];
+                const pendingRaw = localStorage.getItem('marierrota_pending_google_bind');
+                const pendingBind = pendingRaw ? JSON.parse(pendingRaw) : null;
+
+                // 1. KASUA: Google kontu hau DAGOENEKO erabiltzaile bati lotuta dago datu-basean
+                if (existingBinding) {
+                    // Erabiltzailea beste rol edo beste pertsona bat aukeratzen saiatu bada -> BLOKEATU!
+                    if (pendingBind && (pendingBind.role !== existingBinding.role || pendingBind.targetId !== existingBinding.targetId)) {
+                        localStorage.removeItem('marierrota_pending_google_bind');
+                        await supabaseClient.auth.signOut();
+                        alert(`⛔ SARBIDEA UKATUTA!\n\nZure Google kontua (${googleEmail}) dagoeneko erabiltzaile honi lotuta dago:\n👤 ${existingBinding.displayName} (${existingBinding.role === 'player' ? 'Jokalaria' : 'Gurasoa'})\n\nGoogle kontu bakoitzak erabiltzaile bakar bat izan dezake.`);
+                        return;
+                    }
+
+                    // Lotura zuzena da -> Sartu zuzenean dagokion rol eta erabiltzailearekin
+                    localStorage.removeItem('marierrota_pending_google_bind');
+                    completeGoogleLogin(googleEmail, existingBinding);
+                    return;
+                }
+
+                // 2. KASUA: Google kontu berria da eta aukeratutako erabiltzaileari lotu behar zaio
+                if (pendingBind) {
+                    // Egiaztatu ea aukeratutako jokalaria ez dagoen beste Google kontu batera lotuta
+                    const duplicateUser = Object.entries(appData.googleBindings).find(
+                        ([em, info]) => info.role === pendingBind.role && info.targetId === pendingBind.targetId && em !== googleEmail
+                    );
+
+                    if (duplicateUser) {
+                        localStorage.removeItem('marierrota_pending_google_bind');
+                        await supabaseClient.auth.signOut();
+                        alert(`⛔ ERABILTZAILEA DAGOENEKO LOTUTA!\n\n"${pendingBind.displayName}" erabiltzaileak badu beste Google kontu bat lotuta (${duplicateUser[0]}). Ezin da bi kontu desberdinetatik sartu.`);
+                        return;
+                    }
+
+                    const newBinding = {
+                        role: pendingBind.role,
+                        targetId: pendingBind.targetId,
+                        displayName: pendingBind.displayName,
+                        linkedAt: new Date().toISOString()
+                    };
+
+                    appData.googleBindings[googleEmail] = newBinding;
+                    localStorage.removeItem('marierrota_pending_google_bind');
+                    await saveDataToCloud();
+                    completeGoogleLogin(googleEmail, newBinding);
+                }
+            } catch (e) {
+                console.error("Google saioa egiaztatzean errorea:", e);
+            }
+        }
+
+        function completeGoogleLogin(email, binding) {
+            currentGoogleUser = { email, ...binding };
+            currentRole = binding.role;
+
+            closeModal('modal-login');
+            const welcomeScreen = document.getElementById('welcome-role-screen');
+            if (welcomeScreen) welcomeScreen.classList.add('hidden');
+
+            const roleText = binding.role === 'player' ? 'Jokalaria' : 'Gurasoa';
+            document.getElementById('header-role-label').innerText = `${binding.displayName} (${roleText})`;
+
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) logoutBtn.classList.remove('hidden');
+
+            renderAll();
+        }
+
+        async function logoutUser() {
+            if (supabaseClient) {
+                await supabaseClient.auth.signOut();
+            }
+            currentGoogleUser = null;
+            localStorage.removeItem('marierrota_pending_google_bind');
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) logoutBtn.classList.add('hidden');
+            const welcomeScreen = document.getElementById('welcome-role-screen');
+            if (welcomeScreen) welcomeScreen.classList.remove('hidden');
+        }
+
+        function renderGoogleBindingsAdminList() {
+            const container = document.getElementById('settings-google-bindings-list');
+            if (!container) return;
+
+            const bindings = appData.googleBindings || {};
+            const entries = Object.entries(bindings);
+
+            if (entries.length === 0) {
+                container.innerHTML = `<p class="text-xs text-gray-400 italic py-2">Oraindik ez dago Google konturik lotuta.</p>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-700 text-left">
+                            <th class="p-2">Google Emaila</th>
+                            <th class="p-2">Rola</th>
+                            <th class="p-2">Lotutako Erabiltzailea</th>
+                            <th class="p-2 text-right">Ekintza</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        ${entries.map(([email, info]) => `
+                            <tr>
+                                <td class="p-2 font-bold text-volley-darkblue">${email}</td>
+                                <td class="p-2">
+                                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${info.role === 'player' ? 'bg-emerald-100 text-emerald-800' : 'bg-purple-100 text-purple-800'}">
+                                        ${info.role === 'player' ? 'Jokalaria' : 'Gurasoa'}
+                                    </span>
+                                </td>
+                                <td class="p-2 font-semibold text-gray-800">${info.displayName}</td>
+                                <td class="p-2 text-right">
+                                    <button onclick="unbindGoogleAccount('${email}')" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-2 py-1 rounded text-[11px] font-bold" title="Askatu Google kontua">
+                                        <i class="fa-solid fa-link-slash mr-1"></i>Askatu
+                                    </button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        async function unbindGoogleAccount(email) {
+            if (currentRole !== 'admin') return;
+            if (!confirm(`Ziur zaude "${email}" Google kontuaren lotura ezabatu nahi duzula?`)) return;
+            if (appData.googleBindings && appData.googleBindings[email]) {
+                delete appData.googleBindings[email];
+                await saveDataToCloud();
+                renderGoogleBindingsAdminList();
+            }
+        }
+
+        /* MUGIKORRERAKO MENU DESPLEGABLEAREN KONTROLA */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-dropdown-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (!menu) return;
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                if (icon) icon.className = "fa-solid fa-xmark";
+            } else {
+                menu.classList.add('hidden');
+                if (icon) icon.className = "fa-solid fa-bars";
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-dropdown-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (menu) menu.classList.add('hidden');
+            if (icon) icon.className = "fa-solid fa-bars";
+        }
 
         function selectWelcomeRole(role) {
             currentRole = role;
@@ -1315,23 +1673,57 @@
         function onLoginRoleChange() {
             const role = document.getElementById('login-role-select').value;
             const passContainer = document.getElementById('login-password-container');
-            const emailContainer = document.getElementById('login-email-container');
+            const googleContainer = document.getElementById('login-google-container');
+            const playerSelectBox = document.getElementById('login-player-profile-select-box');
+            const parentInfoBox = document.getElementById('login-parent-info-box');
+            const submitPassBtn = document.getElementById('login-submit-password-btn');
+            const errorBox = document.getElementById('google-auth-error-msg');
+            if (errorBox) errorBox.classList.add('hidden');
             
             if (role === 'player' || role === 'parent') {
-                if (emailContainer) emailContainer.style.display = 'block';
-                if (passContainer) passContainer.style.display = 'none';
+                if (googleContainer) googleContainer.classList.remove('hidden');
+                if (passContainer) passContainer.classList.add('hidden');
+                if (submitPassBtn) submitPassBtn.classList.add('hidden');
+
+                if (role === 'player') {
+                    if (playerSelectBox) playerSelectBox.classList.remove('hidden');
+                    if (parentInfoBox) parentInfoBox.classList.add('hidden');
+                    populateLoginPlayerDropdown();
+                } else {
+                    if (playerSelectBox) playerSelectBox.classList.add('hidden');
+                    if (parentInfoBox) parentInfoBox.classList.remove('hidden');
+                }
             } else {
-                if (emailContainer) emailContainer.style.display = 'none';
-                if (passContainer) passContainer.style.display = 'block';
+                if (googleContainer) googleContainer.classList.add('hidden');
+                if (passContainer) passContainer.classList.remove('hidden');
+                if (submitPassBtn) submitPassBtn.classList.remove('hidden');
                 document.getElementById('login-pass-label').innerText = "Pasahitza:";
             }
+        }
+
+        function populateLoginPlayerDropdown() {
+            const sel = document.getElementById('login-selected-player-id');
+            if (!sel) return;
+            const bindings = appData.googleBindings || {};
+
+            let optionsHtml = '<option value="">-- Aukeratu zure izena --</option>';
+            appData.teams.forEach(team => {
+                const teamPlayers = appData.players.filter(p => p.teamId === team.id);
+                if (teamPlayers.length > 0) {
+                    optionsHtml += `<optgroup label="${team.name}">`;
+                    teamPlayers.forEach(p => {
+                        const isTaken = Object.values(bindings).some(b => b.role === 'player' && b.targetId === p.id);
+                        optionsHtml += `<option value="${p.id}">#${p.number} ${p.name} ${isTaken ? '(Lotuta dago)' : ''}</option>`;
+                    });
+                    optionsHtml += `</optgroup>`;
+                }
+            });
+            sel.innerHTML = optionsHtml;
         }
 
         async function verifyAndLogin() {
             const role = document.getElementById('login-role-select').value;
             const pass = document.getElementById('login-password-input').value.trim();
-            const emailInput = document.getElementById('login-email-input');
-            const email = emailInput ? emailInput.value.trim() : '';
 
             if (role === 'admin') {
                 const adminPass = localStorage.getItem('volley_pass_admin') || 'marierrota2026';
@@ -1345,13 +1737,11 @@
                     alert("Pasahitz okerra Entrenatzailearentzat! Saiatu berriro.");
                     return;
                 }
-            } else if (role === 'player' || role === 'parent') {
-                if (!email) {
-                    alert("Mesedez, sartu zure posta elektronikoa.");
-                    return;
-                }
+            } else {
+                return;
             }
 
+            currentGoogleUser = null;
             currentRole = role;
             closeModal('modal-login');
             const welcomeScreen = document.getElementById('welcome-role-screen');
@@ -1361,11 +1751,11 @@
 
             const roleLabels = {
                 'admin': 'Kirol Arduraduna',
-                'coach': 'Entrenatzailea',
-                'player': 'Jokalaria',
-                'parent': 'Gurasoa'
+                'coach': 'Entrenatzailea'
             };
             document.getElementById('header-role-label').innerText = roleLabels[currentRole] || 'Erabiltzailea';
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) logoutBtn.classList.remove('hidden');
         }
 
         async function loadDataFromCloudOrLocal() {
@@ -1382,7 +1772,8 @@
                             sessions: cloudData.sessions || [],
                             stats: cloudData.stats || [],
                             preparations: cloudData.preparations || {},
-                            sessionNotes: cloudData.sessionNotes || {}
+                            sessionNotes: cloudData.sessionNotes || {},
+                            googleBindings: cloudData.googleBindings || {}
                         };
                         saveLocalData();
                         return;
@@ -1431,7 +1822,8 @@
                                 sessions: incoming.sessions || [],
                                 stats: incoming.stats || [],
                                 preparations: incoming.preparations || {},
-                                sessionNotes: incoming.sessionNotes || {}
+                                sessionNotes: incoming.sessionNotes || {},
+                                googleBindings: incoming.googleBindings || {}
                             };
                             saveLocalData();
                             renderAll();
@@ -1451,13 +1843,32 @@
             const target = document.getElementById(tabId);
             if (target) target.classList.remove('hidden');
 
-            if (btnEl) {
-                document.querySelectorAll('.nav-tab').forEach(tab => {
-                    tab.classList.remove('text-volley-yellow', 'font-bold', 'bg-white/10');
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('text-volley-yellow', 'font-bold', 'bg-white/10');
+                if (tab.classList.contains('mobile-nav-item')) {
+                    tab.classList.add('text-gray-200', 'font-medium');
+                } else {
                     tab.classList.add('text-gray-300', 'font-medium');
-                });
-                btnEl.classList.remove('text-gray-300', 'font-medium');
-                btnEl.classList.add('text-volley-yellow', 'font-bold', 'bg-white/10');
+                }
+            });
+
+            document.querySelectorAll(`.nav-tab[onclick*="'${tabId}'"]`).forEach(matchingTab => {
+                matchingTab.classList.remove('text-gray-300', 'text-gray-200', 'font-medium');
+                matchingTab.classList.add('text-volley-yellow', 'font-bold', 'bg-white/10');
+            });
+
+            const tabLabels = {
+                'sec-teams': 'Taldeak',
+                'sec-calendar': 'Partidak',
+                'sec-preparation': 'Deialdia & Pizarra',
+                'sec-exercises': 'Ariketak',
+                'sec-sessions': 'Saioak',
+                'sec-stats': 'Scouting',
+                'sec-settings': 'Ezarpenak'
+            };
+            const mobileActiveLabel = document.getElementById('mobile-active-tab-name');
+            if (mobileActiveLabel && tabLabels[tabId]) {
+                mobileActiveLabel.innerText = tabLabels[tabId];
             }
 
             if (tabId === 'sec-stats') {
@@ -1467,6 +1878,8 @@
             } else if (tabId === 'sec-preparation') {
                 populateSelectOptions();
                 if (appData.teams.length > 0) onPrepTeamChange();
+            } else if (tabId === 'sec-settings') {
+                renderGoogleBindingsAdminList();
             }
         }
 
@@ -1513,7 +1926,8 @@
                 ],
                 stats: [],
                 preparations: {},
-                sessionNotes: {}
+                sessionNotes: {},
+                googleBindings: {}
             };
 
             setRotations[1] = { p1: 'p_1', p6: 'p_6', p5: 'p_2', p4: 'p_3', p3: 'p_4', p2: 'p_5' };
@@ -1526,7 +1940,7 @@
             const ctx = canvas.getContext('2d');
             ctx.fillStyle = '#FDE68A'; ctx.fillRect(0,0,400,220);
             ctx.strokeStyle = '#0F4C81'; ctx.lineWidth = 3; ctx.strokeRect(20,20,360,180);
-            ctx.beginPath(); ctx.moveTo(200,20); ctx.lineTo(200,200); ctx.lineWidth = 4; ctx.strokeStyle = '#1F2937'; ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(20,20); ctx.lineTo(200,200); ctx.lineWidth = 4; ctx.strokeStyle = '#1F2937'; ctx.stroke();
             return canvas.toDataURL();
         }
 
@@ -1537,6 +1951,7 @@
                     appData = JSON.parse(stored);
                     if (!appData.preparations) appData.preparations = {};
                     if (!appData.sessionNotes) appData.sessionNotes = {};
+                    if (!appData.googleBindings) appData.googleBindings = {};
                 }
             } catch(e) { console.error("Errorea datuak kargatzean:", e); }
         }
@@ -1600,6 +2015,7 @@
             renderExercises();
             renderSessions();
             populateSelectOptions();
+            renderGoogleBindingsAdminList();
             applyRolePermissions();
         }
 
@@ -1614,12 +2030,14 @@
             const btnAddExercise = document.getElementById('btn-add-exercise');
             const btnAddSession = document.getElementById('btn-add-session');
             const navTabSettings = document.getElementById('nav-tab-settings');
+            const mobileNavTabSettings = document.getElementById('mobile-nav-tab-settings');
 
             if (btnAddTeam) btnAddTeam.style.display = isAdminOrCoach ? 'flex' : 'none';
             if (btnAddMatch) btnAddMatch.style.display = isAdminOrCoach ? 'flex' : 'none';
             if (btnAddExercise) btnAddExercise.style.display = isAdminOrCoach ? 'flex' : 'none';
             if (btnAddSession) btnAddSession.style.display = isAdminOrCoach ? 'flex' : 'none';
             if (navTabSettings) navTabSettings.style.display = isAdmin ? 'flex' : 'none';
+            if (mobileNavTabSettings) mobileNavTabSettings.style.display = isAdmin ? 'flex' : 'none';
 
             if (isPlayer || isParent) {
                 document.querySelectorAll('.prep-player-cb, .prep-input-lock, .session-att-cb').forEach(el => {
@@ -1714,11 +2132,11 @@
 
             const activeSec = document.querySelector('.app-section:not(.hidden)');
             if (isParent && activeSec && activeSec.id !== 'sec-calendar') {
-                switchTab('sec-calendar', document.querySelector("button[onclick*='sec-calendar']"));
+                switchTab('sec-calendar');
             } else if (isPlayer && activeSec && !['sec-calendar', 'sec-sessions', 'sec-preparation'].includes(activeSec.id)) {
-                switchTab('sec-calendar', document.querySelector("button[onclick*='sec-calendar']"));
+                switchTab('sec-calendar');
             } else if (!isAdmin && activeSec && activeSec.id === 'sec-settings') {
-                switchTab('sec-teams', document.querySelector("button[onclick*='sec-teams']"));
+                switchTab('sec-teams');
             }
         }
 
